@@ -3,7 +3,7 @@ class CreateImages < ActiveRecord::Migration[5.2]
     create_table :images do |t|
       t.string :path, null: false
 
-      t.timestamps :created_at, null: false
+      t.datetime :created_at, null: false
     end
   end
 end
