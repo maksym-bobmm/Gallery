@@ -1,14 +1,15 @@
 class CategoriesController < ApplicationController
   def index
-
   end
 
   def show
-
   end
-  def create
 
-    file = Image.new(params[:filename])
-    raise qwe
+  def create
+    img = Image.new
+    File.open(params[:picture].tempfile.path) do |file|
+      img.path = file
+    end
+    img.save!
   end
 end
