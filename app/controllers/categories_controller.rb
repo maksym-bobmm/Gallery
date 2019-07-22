@@ -9,6 +9,6 @@ class CategoriesController < ApplicationController
   def create
 
     file = Image.new(params[:filename])
-    raise QWE
+    raise qwe
   end
 end
