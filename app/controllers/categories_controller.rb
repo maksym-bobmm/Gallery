@@ -6,10 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    img = Image.new
-    File.open(params[:picture].tempfile.path) do |file|
-      img.path = file
-    end
-    img.save!
+    cat = Category.new
+    cat.save!
   end
 end
