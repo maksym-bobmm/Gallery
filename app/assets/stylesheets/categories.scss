@@ -4,5 +4,8 @@
 ul.menu{
   list-style: none; /*убираем маркеры списка*/
   //margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
-  //padding-left: 0; /*убираем левый отступ, равный 40px*/
+  padding-left: 0px; /*убираем левый отступ, равный 40px*/
+  li {
+    display: inline-block;
+  }
 }

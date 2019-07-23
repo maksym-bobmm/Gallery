@@ -3,3 +3,11 @@
 = form_with model: @category, local: true do |f|
   = f.file_field :picture
   = f.submit
+- Category.all.each do |category|
+  %div.category-list-main
+    %p
+      =category.name
+      %ul.menu
+        %li update
+        %li delete
+= link_to 'create category', new_category_path
