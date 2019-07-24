@@ -1,6 +1,4 @@
-!!!
-= render 'welcome/index'
-= form_with local: true do |f|
-  = f.label(for: :category)
-  = f.text_field(name: :category)
-  = f.submit 'Create'
+= form_with model: @category, local: true do |f|
+  = f.label :category
+  = f.text_field :name
+  = f.submit :submit

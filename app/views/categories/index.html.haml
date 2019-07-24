@@ -8,6 +8,8 @@
     %p
       =category.name
       %ul.menu
-        %li update
-        %li delete
+        -#%li update
+        %li
+          -#%a(href='destroy') delete
+          = link_to 'delete', category, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'create category', new_category_path
