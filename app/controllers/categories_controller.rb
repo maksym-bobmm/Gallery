@@ -42,6 +42,17 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    # raise qwe
+    if current_user.categories.find(params[:id]).update(name: params[:name])
+      redirect_to categories_path
+    end
+  end
+
   private
 
   def category_params
