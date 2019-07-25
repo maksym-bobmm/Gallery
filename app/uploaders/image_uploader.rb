@@ -13,13 +13,13 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :thumb do
-    process resize_to_fill: [280, 280]
-  end
-
-  version :avatar, from_version: :thumb do
-    process resize_to_fill: [50, 50]
-  end
+  # version :thumb do
+  #   process resize_to_fit: [280, 280]
+  # end
+  #
+  # version :avatar, from_version: :thumb do
+  #   process resize_to_fit: [50, 50]
+  # end
 
   def move_to_cache
     true

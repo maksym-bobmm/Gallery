@@ -1,4 +1,4 @@
 class Image < ApplicationRecord
-  mount_uploader :image, ImageUploader
-  belongs_to :categories
+  mount_uploader :path, ImageUploader
+  belongs_to :categories, optional: true
 end

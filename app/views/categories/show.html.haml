@@ -1,5 +1,11 @@
-!!!
+-#!!!
 = render 'share/menu'
-= form_with model: @image, local: true do |f|
-  = f.file_field :picture
+= @category.images.each do |image|
+  = image_tag( "#{image.path}", alt: image[:path])
+  -#%div.category-list-main
+  -#  %img{src=image.path}
+= form_with model: @image , url: images_path, local: true do |f|
+  = f.file_field :path
+  = f.hidden_field :cat_id, value:  params[:id]
+  -#-raise qwe
   = f.submit

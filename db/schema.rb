@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_123638) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.bigint "owner_id", null: false
+    t.bigint "owner_id"
     t.string "name", null: false
   end
 
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2019_07_22_123638) do
   create_table "images", force: :cascade do |t|
     t.string "path", null: false
     t.datetime "created_at", null: false
-    t.bigint "categories_id"
-    t.index ["categories_id"], name: "index_images_on_categories_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_images_on_category_id"
   end
 
   create_table "likes", id: false, force: :cascade do |t|
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_123638) do
   add_foreign_key "category_subscriptions", "users"
   add_foreign_key "comments", "images"
   add_foreign_key "comments", "users"
-  add_foreign_key "images", "categories", column: "categories_id"
+  add_foreign_key "images", "categories"
   add_foreign_key "likes", "images"
   add_foreign_key "likes", "users"
   add_foreign_key "logs", "actions", column: "actions_id"
