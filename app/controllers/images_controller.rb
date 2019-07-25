@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
   def create
     @category.images.create(image_params)
     # raise Go
-    redirect_to categories_path
+    redirect_to @category
   end
 
   private

@@ -12,7 +12,7 @@ gem 'devise'
 gem 'haml'
 gem 'omniauth-facebook'
 gem 'carrierwave'
-# gem 'mini_magick'
+gem 'mini_magick'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
