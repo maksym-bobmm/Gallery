@@ -1,0 +1,7 @@
+!!!
+-#=raise qwe
+%div
+  = image_tag "#{@image.path}", alt: @image[:path]
+- @comments&.each do |comment|
+  = link_to(comment&.body, 'google.com')
+
