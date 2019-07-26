@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :categories, foreign_key: 'owner_id'
+  has_many :categories, foreign_key: 'owner_id', dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :confirmable,
