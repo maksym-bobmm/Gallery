@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_123638) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.bigint "owner_id"
+    t.bigint "owner_id", null: false
     t.string "name", null: false
   end
 

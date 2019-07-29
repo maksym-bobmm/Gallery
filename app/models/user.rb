@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes, dependent: :destroy
   has_and_belongs_to_many :images, through: :likes
+  has_and_belongs_to_many :categories, through: :category_subscriptions
+  has_many :category_subscriptions, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :confirmable,

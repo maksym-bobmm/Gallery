@@ -1,7 +1,12 @@
 = render 'share/menu'
 - @category.images.each do |image|
   = link_to(image_tag( "#{image.path.thumb}", alt: image[:path]), "#{images_path}/#{image.id}")
-= form_with model: @image, url: images_path, local: true do |f|
-  = f.file_field :path
-  = f.hidden_field :cat_id, value:  params[:id]
-  = f.submit
+%p
+  = form_with model: @category, url: category_subscriptions_path, method: :post, local: :yes do |f|
+    = f.hidden_field :category_id, value: params[:id]
+    = f.submit 'subscribe'
+%p
+  = form_with model: @image, url: images_path, local: true do |f|
+    = f.file_field :path
+    = f.hidden_field :cat_id, value:  params[:id]
+    = f.submit

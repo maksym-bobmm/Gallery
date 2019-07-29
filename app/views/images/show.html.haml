@@ -6,7 +6,7 @@
   %p.menu
     = form_with model: @image, url: likes_path(@image), method: :post, local: :yes do |f|
       = f.hidden_field :img_id, value: params[:id]
-      = f.submit 'Like', method: :post
+      = f.submit 'Like'
     = @likes_count
     = @likes_count == 1 ? 'Like' : 'Likes'
 - @image.comments.each do |comment|
