@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
     @comments = Array.new
     @image = Image.find(params[:id])
     @comments << Comment.find_by(image_id: @image.id)
+    @likes_count = @image.likes.count
   end
 
   def new
