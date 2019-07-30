@@ -2,7 +2,7 @@
 - @category.images.each do |image|
   = link_to(image_tag( "#{image.path.thumb}", alt: image[:path]), "#{images_path}/#{image.id}")
 %p
-  = form_with model: @category, url: category_subscriptions_path, method: :post, local: :yes do |f|
+  = form_with model: @category, url: subscriptions_path, method: :post, local: :yes do |f|
     = f.hidden_field :category_id, value: params[:id]
     = f.submit @subscription_exist? 'unsubscribe' : 'subscribe'
 %p

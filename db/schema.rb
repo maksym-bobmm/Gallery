@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_091037) do
+ActiveRecord::Schema.define(version: 2019_07_30_105703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,6 @@ ActiveRecord::Schema.define(version: 2019_07_30_091037) do
   create_table "categories", force: :cascade do |t|
     t.bigint "owner_id", null: false
     t.string "name", null: false
-  end
-
-  create_table "category_subscriptions", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_category_subscriptions_on_category_id"
-    t.index ["user_id"], name: "index_category_subscriptions_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -74,6 +67,13 @@ ActiveRecord::Schema.define(version: 2019_07_30_091037) do
     t.index ["user_id"], name: "index_logs_on_user_id"
   end
 
+  create_table "subscriptions", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_subscriptions_on_category_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "first_name"
@@ -96,8 +96,6 @@ ActiveRecord::Schema.define(version: 2019_07_30_091037) do
   end
 
   add_foreign_key "categories", "users", column: "owner_id"
-  add_foreign_key "category_subscriptions", "categories"
-  add_foreign_key "category_subscriptions", "users"
   add_foreign_key "comments", "images"
   add_foreign_key "comments", "users"
   add_foreign_key "images", "categories"
@@ -105,4 +103,6 @@ ActiveRecord::Schema.define(version: 2019_07_30_091037) do
   add_foreign_key "likes", "users"
   add_foreign_key "logs", "actions", column: "actions_id"
   add_foreign_key "logs", "users"
+  add_foreign_key "subscriptions", "categories"
+  add_foreign_key "subscriptions", "users"
 end

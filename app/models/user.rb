@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :categories, foreign_key: 'owner_id', dependent: :destroy
   has_many :comments
   has_many :likes, dependent: :delete_all
-  has_many :category_subscriptions, dependent: :delete_all
+  has_many :subscriptions, dependent: :delete_all
   has_many :images, through: :likes
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
