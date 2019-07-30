@@ -2,6 +2,7 @@ class LikesController < ApplicationController
   before_action :find_image
 
   def create
+    raise Sawqw
     if already_liked?
       @image.likes.where(user_id: current_user.id).delete_all
     else
