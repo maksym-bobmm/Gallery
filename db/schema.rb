@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_123638) do
+ActiveRecord::Schema.define(version: 2019_07_30_091037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 2019_07_22_123638) do
 
   create_table "category_subscriptions", id: false, force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "categories_id"
-    t.index ["categories_id"], name: "index_category_subscriptions_on_categories_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_category_subscriptions_on_category_id"
     t.index ["user_id"], name: "index_category_subscriptions_on_user_id"
   end
 
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_123638) do
   end
 
   add_foreign_key "categories", "users", column: "owner_id"
-  add_foreign_key "category_subscriptions", "categories", column: "categories_id"
+  add_foreign_key "category_subscriptions", "categories"
   add_foreign_key "category_subscriptions", "users"
   add_foreign_key "comments", "images"
   add_foreign_key "comments", "users"

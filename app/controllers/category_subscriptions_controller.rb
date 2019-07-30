@@ -14,7 +14,7 @@ class CategorySubscriptionsController < ApplicationController
   private
 
   def subscribed?
-    current_user.category_subscriptions.where(categories_id: params[:category][:category_id]).exists?
+    current_user.category_subscriptions.where(category_id: params[:category][:category_id]).exists?
   end
 
   def find_category

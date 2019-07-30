@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @subscription_exist = current_user.category_subscriptions.find_by(category_id: @category.id).present?
   end
 
   def new

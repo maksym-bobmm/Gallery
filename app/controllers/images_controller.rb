@@ -13,7 +13,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @category.images.create(image_params)
+    @category.images.create(image_params) unless image_params.empty?
     # raise Go
     redirect_to @category
   end

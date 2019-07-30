@@ -10,6 +10,10 @@ class LikesController < ApplicationController
     redirect_to image_path(@image)
   end
 
+  def destroy
+    @image.likes.where(user_id: current_user.id).delete_all
+  end
+
   private
 
   def find_image

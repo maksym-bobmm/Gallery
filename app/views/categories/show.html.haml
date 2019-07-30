@@ -4,7 +4,7 @@
 %p
   = form_with model: @category, url: category_subscriptions_path, method: :post, local: :yes do |f|
     = f.hidden_field :category_id, value: params[:id]
-    = f.submit 'subscribe'
+    = f.submit @subscription_exist? 'unsubscribe' : 'subscribe'
 %p
   = form_with model: @image, url: images_path, local: true do |f|
     = f.file_field :path
