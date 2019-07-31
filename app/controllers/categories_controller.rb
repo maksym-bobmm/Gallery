@@ -3,6 +3,8 @@ class CategoriesController < ApplicationController
 
 
   def index
+    # raise QWe
+    # @pupular_image =
   end
 
   def show
@@ -14,17 +16,6 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
-  # def create
-  #   @category = Category.new
-  #   @category.name = category_params[:name]
-  #   @category.owner_id = current_user.id
-  #   if @category.save!
-  #     redirect_to categories_path
-  #   else
-  #     redirect_to new_category_path
-  #   end
-  # end
-
   def create
     if current_user.categories.create(name: category_params[:name])
       redirect_to categories_path
@@ -33,20 +24,15 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # def destroy
-  #   category = Category.find(params[:id])
-  #   category.destroy
-  #   redirect_to categories_path
-  # end
-
   def destroy
-    if current_user.categories.find(params[:id]).destroy
-      redirect_to categories_path
+    # raise QWE
+    category = current_user.categories.where(id: params[:id])
+    if category.first.present?
+        redirect_to categories_path if category.first.destroy
     end
   end
 
   def edit
-
   end
 
   def update
