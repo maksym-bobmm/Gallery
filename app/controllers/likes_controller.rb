@@ -2,6 +2,10 @@ class LikesController < ApplicationController
   before_action :find_image
 
   def create
+<<<<<<< Updated upstream
+=======
+    # raise Sawqw
+>>>>>>> Stashed changes
     if already_liked?
       @image.likes.where(user_id: current_user.id).delete_all
     else
