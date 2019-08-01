@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_064929) do
+ActiveRecord::Schema.define(version: 2019_08_01_101756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
-    t.string "type", null: false
+    t.string "activity", null: false
   end
 
   create_table "active_admin_comments", force: :cascade do |t|
@@ -77,10 +77,10 @@ ActiveRecord::Schema.define(version: 2019_08_01_064929) do
 
   create_table "logs", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "ulr", null: false
+    t.string "url", null: false
     t.datetime "created_at", null: false
-    t.bigint "actions_id"
-    t.index ["actions_id"], name: "index_logs_on_actions_id"
+    t.bigint "action_id"
+    t.index ["action_id"], name: "index_logs_on_action_id"
     t.index ["user_id"], name: "index_logs_on_user_id"
   end
 
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2019_08_01_064929) do
   add_foreign_key "images", "categories"
   add_foreign_key "likes", "images"
   add_foreign_key "likes", "users"
-  add_foreign_key "logs", "actions", column: "actions_id"
+  add_foreign_key "logs", "actions"
   add_foreign_key "logs", "users"
   add_foreign_key "subscriptions", "categories"
   add_foreign_key "subscriptions", "users"

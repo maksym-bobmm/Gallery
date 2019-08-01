@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :delete_all
   has_many :subscriptions, dependent: :delete_all
   has_many :images, through: :likes
+  has_many :logs
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :confirmable,

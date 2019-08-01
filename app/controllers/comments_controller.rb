@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
     comment = @image.comments.new(comment_params)
     comment.user = current_user
     comment.save
+    Log.create(user_id: current_user.id, url: request.referer, created_at: Time.now, action_id: 3)
     # raise qwe
     redirect_to "#{images_path}/#{params[:comment][:image_id]}"
   end

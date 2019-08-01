@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', sessions: "sessions"  }
   resources :categories
   resources :images
   resources :comments

@@ -5,9 +5,11 @@ class LikesController < ApplicationController
     if already_liked?
       @image.likes.where(user_id: current_user.id).delete_all
       decrement_images_rating
+      Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 2)
     else
       @image.likes.create(user_id: current_user.id)
       increment_images_rating
+      Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 2)
     end
     redirect_to image_path(@image)
   end
