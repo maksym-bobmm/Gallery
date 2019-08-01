@@ -9,4 +9,12 @@ class SessionsController < Devise::SessionsController
   def before_logout
     Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 5)
   end
+
+  def after_sign_in_path_for(resource)
+    categories_path
+  end
+
+  def after_sign_out_path_for(resource)
+    user_session_path
+  end
 end
