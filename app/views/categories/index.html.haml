@@ -10,11 +10,11 @@
         = link_to image_tag( "#{img.path.thumb}", alt: img[:path] ), category_path(category)
       - else
         = link_to category.name, category_path(category)
-
-      %ul.menu
-        %li
-          = link_to 'rename', edit_category_path(category)
-        %li
-          -#%a(href='destroy') delete
-          = link_to 'delete', category, method: :delete, data: { confirm: 'Are you sure?' }
+      - if category.owner_id == current_user.id
+        %ul.menu
+          %li
+            = link_to 'rename', edit_category_path(category)
+          %li
+            -#%a(href='destroy') delete
+            = link_to 'delete', category, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'create category', new_category_path
