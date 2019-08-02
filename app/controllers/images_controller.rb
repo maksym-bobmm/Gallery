@@ -12,6 +12,10 @@ class ImagesController < ApplicationController
     @image = Image.new
   end
 
+  def index
+    @images = Image.all.order(:rating).reverse_order
+  end
+
   def create
     @category.images.create(image_params) unless image_params.empty?
     # raise Go
