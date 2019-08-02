@@ -30,11 +30,11 @@ class LikesController < ApplicationController
 
   def increment_images_rating
     @image.rating += 1
-    @image.save
+    @image.save!
   end
 
   def decrement_images_rating
-    @image.rating -= 1
-    @image.save
+    @image.rating -= 1 if @image.rating > 0
+    @image.save!
   end
 end

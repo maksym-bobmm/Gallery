@@ -3,8 +3,6 @@ class CategoriesController < ApplicationController
 
 
   def index
-    # raise QWe
-    # @pupular_image =
   end
 
   def show
@@ -48,3 +46,25 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name)
   end
 end
+# пример запроса для рейтина категорий
+# select * from(
+#     select sum(i.rating) as total from categories as cat
+# left join images as i
+# on cat.id = i.category_id
+# where cat.id = 11
+#
+# union all
+#
+# select count(i)  from categories as cat
+# left join images as i
+# on cat.id = i.category_id
+# where cat.id = 11
+#
+# union all
+#
+# select count(comments) from comments
+# left join images as i
+# on comments.image_id = i.id
+# left join categories as c
+# on i.category_id = c.id
+# where c.id = 11) as query
