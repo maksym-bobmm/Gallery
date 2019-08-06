@@ -18,6 +18,7 @@ class ImagesController < ApplicationController
 
   def create
     @category.images.create(image_params) unless image_params.empty?
+    UserMailer.create_new_image_in_category(@category)
     redirect_to @category
   end
 
