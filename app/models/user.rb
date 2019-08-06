@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :cached_failed_attempts
   has_many :categories, foreign_key: 'owner_id', dependent: :destroy
   has_many :comments
   has_many :likes, dependent: :delete_all
@@ -33,5 +34,9 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def self.logins_before_captcha
+    3
   end
 end
