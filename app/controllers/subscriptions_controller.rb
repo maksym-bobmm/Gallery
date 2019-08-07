@@ -5,8 +5,10 @@ class SubscriptionsController < ApplicationController
     # raise QWE
     if subscribed?
       @category.subscriptions.where(user_id: current_user.id).delete_all
+      UserMailer.with(category: @category, user: current_user, subscribe: false).subscriptions.deliver_later
     else
       @category.subscriptions.create(user_id: current_user.id)
+      UserMailer.with(category: @category, user: current_user, subscribe: true).subscriptions.deliver_later
     end
     redirect_to category_path(@category)
   end

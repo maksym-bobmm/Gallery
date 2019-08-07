@@ -7,10 +7,21 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Welcome to My Awesome Site')
   end
 
-  def new_image_in_category(category)
-    users = User.joins(:subscriptions).where subscriptions: {category_id: category.id}
-    users.each do |user|
-      mail(to:user, subject: 'New Image on you subscriptions')
+  def new_image_in_category
+    users = User.joins(:subscriptions).where(subscriptions: {category_id: params[:category].id}).pluck(:email)
+    # users.each do |user|
+      mail(to:users, subject: 'New Image on you subscriptions')
+    # end
+  end
+
+  def subscriptions
+    @name = params[:category].name
+    user = params[:user]
+    @is_subscribe = params[:subscribe]
+    if @is_subscribe
+      mail(to: user.email, subject: 'Successful subscription')
+    else
+      mail(to: user.email, subject: 'Successful unsubscription')
     end
   end
 end
