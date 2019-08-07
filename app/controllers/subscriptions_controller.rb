@@ -1,25 +1,25 @@
 class SubscriptionsController < ApplicationController
-  before_action :find_category
+  before_action :find_category, only: %i[create destroy]
+  after_action  :send_email,    only: %i[create destroy]
 
   def create
-    # raise QWE
-    if subscribed?
-      @category.subscriptions.where(user_id: current_user.id).delete_all
-      UserMailer.with(category: @category, user: current_user, subscribe: false).subscriptions.deliver_later
-    else
-      @category.subscriptions.create(user_id: current_user.id)
-      UserMailer.with(category: @category, user: current_user, subscribe: true).subscriptions.deliver_later
-    end
+    @category.subscriptions.create(user_id: current_user.id)
     redirect_to category_path(@category)
   end
 
+   def destroy
+     @category.subscriptions.where(user_id: current_user.id).delete_all
+     redirect_to category_path(@category)
+   end
+
   private
 
-  def subscribed?
-    current_user.subscriptions.where(category_id: params[:category][:category_id]).exists?
+  def send_email
+    action = request.parameters[:action] == 'create' ? true : false
+    UserMailer.with(category: @category, user: current_user, subscribe: action).subscriptions.deliver_later
   end
 
   def find_category
-    @category = Category.find params[:category][:category_id]
+    @category = Category.find Rails.application.routes.recognize_path(request.referrer)[:id]
   end
 end

@@ -3,18 +3,18 @@ module CategoriesHelper
     category.images.order(:rating).last
   end
 
-  def find_categories
-    cats = {}
-    category = Category.all
-    category.each do |cat|
-      final_sum = 0
-      cat.images.each do |image|
-        final_sum += image.rating + image.comments.count + 1 # +1 its images count
-      end
-      cats[cat.name.to_sym] = final_sum
-    end
-    cats.sort_by{|_,v| v}.reverse
-  end
+  # def find_categories
+  #   cats = {}
+  #   category = Category.all
+  #   category.each do |cat|
+  #     final_sum = 0
+  #     cat.images.each do |image|
+  #       final_sum += image.rating + image.comments.count + 1 # +1 its images count
+  #     end
+  #     cats[cat.name.to_sym] = final_sum
+  #   end
+  #   cats.sort_by{|_,v| v}.reverse
+  # end
 
   def fill_categories
     category_with_rating = []
@@ -47,5 +47,9 @@ module CategoriesHelper
     end
     # raise QWE
     category_with_rating.sort_by { |hash| hash[:rating] }.reverse
+  end
+
+  def subscribed?
+    current_user.subscriptions.where(category_id: params[:id]).exists?
   end
 end

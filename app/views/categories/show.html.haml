@@ -2,9 +2,13 @@
 - @category.images.each do |image|
   = link_to(image_tag( "#{image.path.thumb}", alt: image[:path]), "#{images_path}/#{image.id}")
 %p
-  = form_with model: @category, url: subscriptions_path, method: :post, local: :yes do |f|
-    = f.hidden_field :category_id, value: params[:id]
-    = f.submit @subscription_exist? 'unsubscribe' : 'subscribe'
+  - if subscribed?
+    = link_to 'unsubscribe', subscription_path, method: :delete, class: 'link-button'
+  - else
+    = link_to 'subscribe', subscriptions_path, method: :post, class: 'link-button'
+  -#= form_with model: @category, url: subscriptions_path, method: :post, local: :yes do |f|
+  -#  = f.hidden_field :category_id, value: params[:id]
+  -#  = f.submit @subscription_exist? 'unsubscribe' : 'subscribe'
 %p
   = form_with model: @image, url: images_path, local: true do |f|
     = f.file_field :path

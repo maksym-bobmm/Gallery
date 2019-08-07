@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
     categories_path
   end
 
+  private
+
   def navigation
     Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 1) if user_signed_in?
   end

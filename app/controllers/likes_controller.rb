@@ -1,31 +1,27 @@
 class LikesController < ApplicationController
-  before_action :find_image
+  before_action :find_image,  only: %i[create destroy]
+  after_action  :logging,     only: %i[create destroy]
 
   def create
-    if already_liked?
-      @image.likes.where(user_id: current_user.id).delete_all
-      decrement_images_rating
-      Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 2)
-    else
-      @image.likes.create(user_id: current_user.id)
-      increment_images_rating
-      Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 2)
-    end
+    @image.likes.create(user_id: current_user.id)
+    increment_images_rating
     redirect_to image_path(@image)
   end
 
   def destroy
     @image.likes.where(user_id: current_user.id).delete_all
+    decrement_images_rating
+    redirect_to image_path(@image)
   end
 
   private
 
-  def find_image
-    @image = Image.find(params[:image][:img_id])
+  def logging
+    Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 2)
   end
 
-  def already_liked?
-    Like.where(user_id: current_user.id, image_id: params[:image][:img_id]).exists?
+  def find_image
+    @image = Image.find(Rails.application.routes.recognize_path(request.referrer)[:id])
   end
 
   def increment_images_rating
@@ -34,7 +30,7 @@ class LikesController < ApplicationController
   end
 
   def decrement_images_rating
-    @image.rating -= 1 if @image.rating > 0
+    @image.rating -= 1 if @image.rating.positive?
     @image.save!
   end
 end
