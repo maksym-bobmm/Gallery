@@ -9,7 +9,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @image.likes.where(user_id: current_user.id).delete_all
+    @image.likes.find_by(user_id: current_user.id).destroy
     decrement_images_rating
     redirect_to image_path(@image)
   end

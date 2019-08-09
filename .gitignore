@@ -28,3 +28,4 @@
 # Innore images solder
 /public/uploads/
 dump.rdb
+config/database.yml

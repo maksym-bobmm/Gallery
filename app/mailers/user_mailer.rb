@@ -7,10 +7,11 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Welcome to My Awesome Site')
   end
 
-  # def new_image_in_category
-  #   users = User.joins(:subscriptions).where(subscriptions: {category_id: params[:category].id}).pluck(:email)
-  #   mail(to:users, subject: 'New Image on you subscriptions')
-  # end
+  def new_image_in_category
+    # raise QWE
+    users = User.joins(:subscriptions).where( subscriptions: {category_id: params[:category_id] }).pluck(:email)
+    mail(to: users, subject: 'New Image on you subscriptions')
+  end
 
   def subscriptions
     @name = params[:category].name

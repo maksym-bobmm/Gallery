@@ -16,7 +16,6 @@ gem 'mini_magick'
 gem 'activeadmin'
 gem 'redis'
 gem 'resque'
-gem 'resque-scheduler'
 gem 'resque-web', require: 'resque_web'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

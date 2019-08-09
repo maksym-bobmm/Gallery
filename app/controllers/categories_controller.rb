@@ -23,7 +23,6 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    # raise QWE
     category = current_user.categories.where(id: params[:id])
     if category.first.present?
         redirect_to categories_path if category.first.destroy
@@ -34,7 +33,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    # raise qwe
     if current_user.categories.find(params[:id]).update(name: params[:name])
       redirect_to categories_path
     end
