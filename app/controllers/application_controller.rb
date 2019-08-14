@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   private
 
   def navigation
-    byebug
     Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 1) if user_signed_in?
   end
 end

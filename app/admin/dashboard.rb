@@ -10,23 +10,46 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
+    columns do
+      column do
+        panel "Recent Images" do
+          ul do
+            Image.last(5).map do |image|
+              li link_to(image, admin_image_path(image))
+            end
+          end
+        end
+      end
+
+      column do
+        panel "Info" do
+          para "Welcome to ActiveAdmin."
+        end
+      end
+    end
+
+
+    index do
+      column :name
+
+      column 'Downloader' do |p|
+        image_tag p.thumb.url
+      end
+
+      # column 'Members' do |p|
+      #   p.is_member?
+      # end
+
+      default_actions
+    end
+
+    # section "Download images" do
+    #   div do
+    #     render "index"
     #   end
     # end
+
+    # render Rails.root.join('app', 'views', 'admin_users', 'nokogiri', 'index').to_s
   end # content
 end
