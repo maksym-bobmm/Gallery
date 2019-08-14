@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  before_action :authenticate_user!, only: %i[create]
   before_action :find_category, only: %i[create destroy]
   after_action  :send_email,    only: %i[create destroy]
 

@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!, only: %i[create]
   before_action :find_image,  only: %i[create destroy]
   after_action  :logging,     only: %i[create destroy]
 

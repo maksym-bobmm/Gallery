@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[new create destroy edit update]
 
 
   def index
@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @subscription_exist = current_user.subscriptions.find_by(category_id: @category.id).present?
+    @subscription_exist = current_user.subscriptions.find_by(category_id: @category.id).present? if user_signed_in?
   end
 
   def new

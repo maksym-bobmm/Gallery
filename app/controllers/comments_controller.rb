@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create]
   before_action :get_image, only: [:create]
   def new
     @comment = Comment.new
