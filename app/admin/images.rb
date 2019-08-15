@@ -12,8 +12,21 @@ ActiveAdmin.register Image do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  index as: :grid do |image|
-    link_to image_tag(img.path.thumb), admin_image_path(image)
-  end
-
+  # index as: :grid do |image|
+  #   image_tag(image.path)
+  # end
+  #
+  # content :title => proc{ I18n.t("active_admin.images") } do
+  #   columns do
+  #     column do
+  #       panel "Recent Images" do
+  #         ul do
+  #           Image.find_each do |image|
+  #             li link_to(image, admin_image_path(image))
+  #           end
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 end

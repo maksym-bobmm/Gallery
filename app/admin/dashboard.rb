@@ -14,42 +14,49 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Recent Images" do
-          ul do
-            Image.last(5).map do |image|
-              li link_to(image, admin_image_path(image))
+          ul class: 'dashboard-images' do
+            Image.last(10).each do |image|
+              ul link_to(image_tag("#{image.path.thumb}", alt: image.path), admin_image_path(image))
             end
           end
         end
       end
 
-      column do
-        panel "Info" do
-          para "Welcome to ActiveAdmin."
+      columns do
+        column do
+          panel "Recent Comments" do
+            ul class: 'dashboard-comments' do
+              Comment.last(5).each do |comment|
+                ul link_to(comment.body, image_path(comment.image_id))
+              end
+            end
+          end
+        end
+
+        column do
+          panel "Recent Categories" do
+            ul class: 'dashboard-categories' do
+              Category.last(5).each do |category|
+                ul link_to(category.name, category_path(category))
+              end
+            end
+          end
         end
       end
     end
-
-
-    index do
-      column :name
-
-      column 'Downloader' do |p|
-        image_tag p.thumb.url
+    columns do
+      column do
+        panel "Users Action" do
+          ul class: 'dashboard-actions' do
+            Log.find_each.joins(:action) do |log|
+              # ul link_to(image_tag("#{image.path.thumb}", alt: image.path), admin_image_path(image))
+              para log.
+            end
+          end
+        end
       end
-
-      # column 'Members' do |p|
-      #   p.is_member?
-      # end
-
-      default_actions
     end
-
-    # section "Download images" do
-    #   div do
-    #     render "index"
-    #   end
-    # end
-
     # render Rails.root.join('app', 'views', 'admin_users', 'nokogiri', 'index').to_s
-  end # content
+
+  end
 end
