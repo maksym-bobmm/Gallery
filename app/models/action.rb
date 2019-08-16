@@ -1,3 +1,3 @@
 class Action < ApplicationRecord
-  has_many :log
+  has_many :logs
 end

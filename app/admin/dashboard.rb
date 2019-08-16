@@ -3,10 +3,10 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc { I18n.t("active_admin.dashboard") } do
     div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
-      end
+      # span class: "blank_slate" do
+      #   span I18n.t("active_admin.dashboard_welcome.welcome")
+      #   small I18n.t("active_admin.dashboard_welcome.call_to_action")
+      # end
     end
 
     # Here is an example of a simple dashboard with columns and panels.
@@ -47,16 +47,23 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Users Action" do
-          ul class: 'dashboard-actions' do
-            Log.find_each.joins(:action) do |log|
-              # ul link_to(image_tag("#{image.path.thumb}", alt: image.path), admin_image_path(image))
-              para log.
-            end
-          end
-        end
-      end
-    end
-    # render Rails.root.join('app', 'views', 'admin_users', 'nokogiri', 'index').to_s
+          # ul class: 'dashboard-actions' do
+          table_for Log.select('logs.id, logs.url, users.email, actions.activity').joins(:user, :action).find_each do
+             # records.each do |record|
 
+                 # column(:records) { |attributes| attributes.titleize }
+                 column 'log_id', :id
+                 column :url
+                 column :email
+                 column 'action', :activity
+               end
+             br
+            # end
+              # ul link_to(image_tag("#{image.path.thumb}", alt: image.path), admin_image_path(image))
+          end
+        # end
+      end
+    # render Rails.root.join('app', 'views', 'admin_users', 'nokogiri', 'index').to_s
+    end
   end
 end
