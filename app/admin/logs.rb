@@ -7,10 +7,10 @@ ActiveAdmin.register Log do
       User.find(log.user_id).email
     end
     column :created_at
-    column :action_id do |log|
-      log.action.activity
-    end
-    column { |log| log.action.activity }
+    # column :action_id do |log|
+    #   log.action.activity
+    # end
+    column(:action) { |log| log.action.activity }
     actions
 
   end
@@ -27,5 +27,7 @@ ActiveAdmin.register Log do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  filter :user
+  filter :action, collection: -> { Action.all.pluck(:activity)}
+
 end

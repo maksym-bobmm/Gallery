@@ -3,4 +3,11 @@ class Category < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :subscriptions, dependent: :delete_all
   # has_many :users, through: :subscriptions
+  # def to_s
+  #   self.category.name
+  # end
+  # runsacker :by_categorization, proc{ |v|
+  #   data = Category
+  # }
+
 end
