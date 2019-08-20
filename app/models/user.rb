@@ -34,6 +34,13 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+  # ransacker :filter_user,
+  #           :formatter => -> (v) {
+  #             ids = User.where(email: v).pluck(:id);
+  #             ids.present? ? ids : nil
+  #           } do |parent|
+  #   parent.table[:id]
+  # end
 
   # def to_s
   #   self.email

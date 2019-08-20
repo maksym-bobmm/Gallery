@@ -27,7 +27,8 @@ ActiveAdmin.register Log do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  filter :user
-  filter :action, collection: -> { Action.all.pluck(:activity)}
+  # filter :user, collection: User.all.pluck(:email)
+  filter :filter_user_in, as: :select, label: 'user', collection: User.all.pluck(:email)
+  filter :filter_log_in, as: :select, label: 'user action', collection: Action.all.pluck(:activity)
 
 end

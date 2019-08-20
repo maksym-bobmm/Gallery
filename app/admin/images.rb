@@ -29,4 +29,6 @@ ActiveAdmin.register Image do
   #     end
   #   end
   # end
+  remove_filter :comments
+  remove_filter :likes
 end
