@@ -1,5 +1,5 @@
 ActiveAdmin.register Log do
-
+  actions :all, except: :edit
   index do
     selectable_column
     column 'log_id', :id

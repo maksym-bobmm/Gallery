@@ -10,7 +10,7 @@ ActiveAdmin.register_page "download" do
     end
   end
   content do
-    byebug
+    buebug
     render partial: 'download'
     require 'nokogiri' # gem install nokogiri
     require 'open-uri' # already part of your ruby install
