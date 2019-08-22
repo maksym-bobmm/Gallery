@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :categories, dependent: :destroy, foreign_key: 'owner_id'
+  attr_accessor :cached_failed_attempts
   has_many :comments
   has_many :likes, dependent: :delete_all
   has_many :subscriptions, dependent: :delete_all
@@ -9,7 +10,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :confirmable,
          :database_authenticatable,
-         :registerable,
+         :registerable, :lockable,
          :recoverable,
          :rememberable,
          :validatable,
@@ -33,5 +34,9 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def self.logins_before_captcha
+    3
   end
 end

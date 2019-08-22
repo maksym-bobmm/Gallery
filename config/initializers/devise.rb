@@ -192,7 +192,7 @@ Devise.setup do |config|
   # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
   # :both  = Enables both strategies
   # :none  = No unlock strategy. You should handle unlocking by yourself.
-  # config.unlock_strategy = :both
+  # config.unlock_strategy = :none
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
@@ -214,6 +214,12 @@ Devise.setup do |config|
   # change their passwords.
   config.reset_password_within = 6.hours
 
+
+  config.lock_strategy = :failed_attempts
+  config.maximum_attempts = 10
+  config.unlock_keys = [ :email ]
+  config.unlock_strategy = :both
+  config.unlock_in = 1.hours
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.
   # config.sign_in_after_reset_password = true
