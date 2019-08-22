@@ -7,11 +7,12 @@
     -#  = f.hidden_field :img_id, value: params[:id]
     -#  = f.submit 'Like'
     - if already_liked?
-      = link_to image_tag( 'liked.svg', alt: 'Unlike'), like_path, method: :delete
+      = link_to image_tag( 'liked.svg', alt: 'Unlike', id: 'heart'), like_path, method: :delete, remote: true
     -else
-      = link_to image_tag( 'unliked.svg', alt: 'Like'), likes_path, method: :post
+      = link_to image_tag( 'unliked.svg', alt: 'Like', id: 'heart'), likes_path, method: :post, remote: true
     = @likes_count
     = @likes_count == 1 ? 'Like' : 'Likes'
+    = @path_to_img
 - @image.comments.each do |comment|
   %p
     = comment&.body
