@@ -3,30 +3,67 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc { I18n.t("active_admin.dashboard") } do
     div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
-      end
+      # span class: "blank_slate" do
+      #   span I18n.t("active_admin.dashboard_welcome.welcome")
+      #   small I18n.t("active_admin.dashboard_welcome.call_to_action")
+      # end
     end
 
     # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
-  end # content
+    columns do
+      column do
+        panel "Recent Images" do
+          ul class: 'dashboard-images' do
+            Image.last(10).each do |image|
+              ul link_to(image_tag("#{image.path.thumb}", alt: image.path), admin_image_path(image))
+            end
+          end
+        end
+      end
+
+      columns do
+        column do
+          panel "Recent Comments" do
+            ul class: 'dashboard-comments' do
+              Comment.last(5).each do |comment|
+                ul link_to(comment.body, image_path(comment.image_id))
+              end
+            end
+          end
+        end
+
+        column do
+          panel "Recent Categories" do
+            ul class: 'dashboard-categories' do
+              Category.last(5).each do |category|
+                ul link_to(category.name, category_path(category))
+              end
+            end
+          end
+        end
+      end
+    end
+    columns do
+      column do
+        panel "Users Action" do
+          # ul class: 'dashboard-actions' do
+          table_for Log.select('logs.id, logs.url, users.email, actions.activity').joins(:user, :action).find_each do
+             # records.each do |record|
+
+                 # column(:records) { |attributes| attributes.titleize }
+                 column 'log_id', :id
+                 column :url
+                 column :email
+                 column 'action', :activity
+               end
+             br
+            # end
+              # ul link_to(image_tag("#{image.path.thumb}", alt: image.path), admin_image_path(image))
+          end
+        # end
+      end
+    # render Rails.root.join('app', 'views', 'admin_users', 'nokogiri', 'index').to_s
+    end
+  end
 end

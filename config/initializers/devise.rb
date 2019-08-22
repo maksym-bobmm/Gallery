@@ -298,7 +298,7 @@ Devise.setup do |config|
   # end
   #
   # for customisation active admin login view
-  config.scoped_views = true
+  # config.scoped_views = true
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is
