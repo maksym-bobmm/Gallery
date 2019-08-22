@@ -4,15 +4,19 @@ class LikesController < ApplicationController
   after_action  :logging,     only: %i[create destroy]
 
   def create
+    # byebug
     @image.likes.create(user_id: current_user.id)
     increment_images_rating
     redirect_to image_path(@image)
+
   end
 
   def destroy
+    # byebug
     @image.likes.find_by(user_id: current_user.id).destroy
     decrement_images_rating
-    redirect_to image_path(@image)
+    # redirect_to image_path(@image)
+
   end
 
   private
