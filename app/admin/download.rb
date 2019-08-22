@@ -10,17 +10,7 @@ ActiveAdmin.register_page "download" do
     end
   end
   content do
-    buebug
     render partial: 'download'
-    require 'nokogiri' # gem install nokogiri
-    require 'open-uri' # already part of your ruby install
-    qwe = Nokogiri::HTML(open(URL)).css('img/@src')
-    qwe.each do |src|
-      uri = URI.join( URL, src ).to_s # make absolute uri
-      File.open(File.join('images', File.basename(uri)),'wb'){ |f|
-        f.write( open(uri).read )
-      }
-    end
   end
 
   # create do
