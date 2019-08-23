@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy edit update]
 
 
   def index
+    @categories_with_rating = find_categories_rating
   end
 
   def show
@@ -42,5 +45,18 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def find_categories_rating
+    category_with_rating = []
+    Category.find_each do |category|
+      sum = category.images.length
+      category.images.each do |image|
+        sum += image.likes_count
+        sum += image.comments_count
+      end
+      category_with_rating << {category: category, rating: sum}
+    end
+    category_with_rating.sort_by { |hash| hash[:rating] }.reverse
   end
 end

@@ -1,7 +1,7 @@
-!!!
+!!! 5
 = render 'share/menu'
 
-- fill_categories.each do |hash|
+- @categories_with_rating.each do |hash|
   %div.category-list-main
     %p
       - img = find_popular_image(hash.fetch(:category))

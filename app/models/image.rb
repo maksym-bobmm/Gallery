@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Image < ApplicationRecord
   mount_uploader :path, ImageUploader
   belongs_to :category
