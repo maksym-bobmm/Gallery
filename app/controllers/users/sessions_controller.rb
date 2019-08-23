@@ -18,7 +18,7 @@ class Users::SessionsController < Devise::SessionsController
     resource.update cached_failed_attempts: 0, failed_attempts: 0
     categories_path
   end
-  
+
   def after_sign_out_path_for(_resource)
     user_session_path
   end

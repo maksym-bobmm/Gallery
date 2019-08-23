@@ -4,7 +4,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy edit update]
 
-
   def index
     @categories_with_rating = find_categories_rating
   end
@@ -33,8 +32,7 @@ class CategoriesController < ApplicationController
     redirect_to categories_path if category.first.destroy
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     return unless current_user.categories.find(params[:id]).update(name: params[:name])

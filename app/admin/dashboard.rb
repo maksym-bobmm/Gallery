@@ -54,8 +54,7 @@ ActiveAdmin.register_page 'Dashboard' do
             column :url
             column :email
             column 'action', :activity
-           end
-           br
+          end
         end
       end
     end
