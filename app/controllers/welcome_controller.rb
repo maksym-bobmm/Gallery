@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# need to delete
 class WelcomeController < ApplicationController
   # before_action :authenticate_user!
 

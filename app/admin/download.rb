@@ -18,5 +18,4 @@ ActiveAdmin.register_page 'download' do
   # create do
   #
   # end
-
 end

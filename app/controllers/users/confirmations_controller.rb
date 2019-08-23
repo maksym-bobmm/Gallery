@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class for redirect after email confirm
 class Users::ConfirmationsController < Devise::ConfirmationsController
   def show
     super do

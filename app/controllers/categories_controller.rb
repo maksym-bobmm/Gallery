@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# category controller class
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy edit update]
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# likes helper
 module LikesHelper
   def already_liked?
     return false unless user_signed_in?

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class user session
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   prepend_after_action :after_login, only: [:create]
@@ -18,7 +19,7 @@ class Users::SessionsController < Devise::SessionsController
     categories_path
   end
   
-  def after_sign_out_path_for
+  def after_sign_out_path_for(resource)
     user_session_path
   end
 
@@ -43,16 +44,16 @@ class Users::SessionsController < Devise::SessionsController
     respond_with_navigational(resource) { render :new }
   end
 
-  private def adjust_failed_attempts(user)
+  private
+
+  def adjust_failed_attempts(user)
     if user.attributes['cached_failed_attempts'].present? &&
-       user.attributes['failed_attempts'] > user.attributes['cached_failed_attempts']
+              user.attributes['failed_attempts'] > user.attributes['cached_failed_attempts']
       user.update cached_failed_attempts: user.attributes['failed_attempts']
     else
       increment_failed_attempts(user)
     end
   end
-
-  private
 
   def increment_failed_attempts(user)
     user.increment :cached_failed_attempts

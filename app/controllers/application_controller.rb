@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# application controller
 class ApplicationController < ActionController::Base
   prepend_after_action :navigation, only: %i[index show]
 

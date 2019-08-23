@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+# comment controller class
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
-  before_action :get_image, only: [:create]
+  before_action :find_image, only: [:create]
   def new
     @comment = Comment.new
   end
@@ -20,7 +21,7 @@ class CommentsController < ApplicationController
   end
 
 # TODO need refactor
-  def get_image
+  def find_image
     if params[:image_id]
       @image = Image.find(params[:image_id])
     else

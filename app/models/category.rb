@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# category model
 class Category < ApplicationRecord
   belongs_to :user, foreign_key: 'owner_id'
   has_many :images, dependent: :destroy
