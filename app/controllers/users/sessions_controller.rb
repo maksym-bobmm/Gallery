@@ -19,7 +19,7 @@ class Users::SessionsController < Devise::SessionsController
     categories_path
   end
   
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for(_resource)
     user_session_path
   end
 
@@ -47,8 +47,8 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def adjust_failed_attempts(user)
-    if user.attributes['cached_failed_attempts'].present? &&
-              user.attributes['failed_attempts'] > user.attributes['cached_failed_attempts']
+    if    user.attributes['cached_failed_attempts'].present? &&
+          user.attributes['failed_attempts'] > user.attributes['cached_failed_attempts']
       user.update cached_failed_attempts: user.attributes['failed_attempts']
     else
       increment_failed_attempts(user)

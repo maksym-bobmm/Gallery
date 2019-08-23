@@ -12,5 +12,4 @@ class Category < ApplicationRecord
   # runsacker :by_categorization, proc{ |v|
   #   data = Category
   # }
-
 end

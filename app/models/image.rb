@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-#image model
+# image model
 class Image < ApplicationRecord
   mount_uploader :path, ImageUploader
   belongs_to :category

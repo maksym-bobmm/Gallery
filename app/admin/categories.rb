@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Category do
-
   controller do
     def edit
-      render 'admin/category/edit', :layout =>'active_admin'
+      render 'admin/category/edit', layout: 'active_admin'
     end
   end
 

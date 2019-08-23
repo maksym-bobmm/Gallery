@@ -18,7 +18,7 @@ ActiveAdmin.register_page 'Dashboard' do
         panel 'Recent Images' do
           ul class: 'dashboard-images' do
             Image.last(10).each do |image|
-              ul link_to(image_tag("#{image.path.thumb}", alt: image.path), admin_image_path(image))
+              ul link_to(image_tag(image.path.thumb.to_s, alt: image.path), admin_image_path(image))
             end
           end
         end
@@ -49,23 +49,15 @@ ActiveAdmin.register_page 'Dashboard' do
     columns do
       column do
         panel 'Users Action' do
-          # ul class: 'dashboard-actions' do
           table_for Log.select('logs.id, logs.url, users.email, actions.activity').joins(:user, :action).find_each do
-             # records.each do |record|
-
-                 # column(:records) { |attributes| attributes.titleize }
-                 column 'log_id', :id
-                 column :url
-                 column :email
-                 column 'action', :activity
-               end
-             br
-            # end
-              # ul link_to(image_tag("#{image.path.thumb}", alt: image.path), admin_image_path(image))
-          end
-        # end
+            column 'log_id', :id
+            column :url
+            column :email
+            column 'action', :activity
+           end
+           br
+        end
       end
-    # render Rails.root.join('app', 'views', 'admin_users', 'nokogiri', 'index').to_s
     end
   end
 end

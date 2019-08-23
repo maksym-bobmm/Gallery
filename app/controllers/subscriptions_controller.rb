@@ -11,10 +11,10 @@ class SubscriptionsController < ApplicationController
     redirect_to category_path(@category)
   end
 
-   def destroy
-     @category.subscriptions.find_by(user_id: current_user.id).destroy
-     redirect_to category_path(@category)
-   end
+  def destroy
+    @category.subscriptions.find_by(user_id: current_user.id).destroy
+    redirect_to category_path(@category)
+  end
 
   private
 

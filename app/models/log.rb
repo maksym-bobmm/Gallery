@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-#log model
+# log model
 class Log < ApplicationRecord
   belongs_to :user
   belongs_to :action
