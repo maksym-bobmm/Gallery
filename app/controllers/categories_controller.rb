@@ -27,18 +27,18 @@ class CategoriesController < ApplicationController
 
   def destroy
     category = current_user.categories.where(id: params[:id])
-    if category.first.present?
-        redirect_to categories_path if category.first.destroy
-    end
+    return unless category.first.present?
+
+    redirect_to categories_path if category.first.destroy
   end
 
   def edit
   end
 
   def update
-    if current_user.categories.find(params[:id]).update(name: params[:name])
-      redirect_to categories_path
-    end
+    return unless current_user.categories.find(params[:id]).update(name: params[:name])
+
+    redirect_to categories_path
   end
 
   private
@@ -55,7 +55,7 @@ class CategoriesController < ApplicationController
         sum += image.likes_count
         sum += image.comments_count
       end
-      category_with_rating << {category: category, rating: sum}
+      category_with_rating << { category: category, rating: sum }
     end
     category_with_rating.sort_by { |hash| hash[:rating] }.reverse
   end

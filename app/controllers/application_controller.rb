@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  prepend_after_action :navigation, only: [:index, :show]
+  prepend_after_action :navigation, only: %i[index show]
 
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || categories_path

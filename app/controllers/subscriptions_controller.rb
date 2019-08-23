@@ -18,7 +18,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def send_email
-    action = request.parameters[:action] == 'create' ? true : false
+    action = request.parameters[:action] == 'create'
     UserMailer.with(category: @category, user: current_user, subscribe: action).subscriptions.deliver_later
   end
 

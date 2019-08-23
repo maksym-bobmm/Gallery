@@ -26,16 +26,15 @@ class Users::SessionsController < Devise::SessionsController
     flash.clear
 
     user = User.find_by_email(sign_in_params['email'])
-    super and return unless user
+    super && return unless user
 
     adjust_failed_attempts user
 
-    super and return if (user.attributes['failed_attempts'] < User.logins_before_captcha)
-    super and return if user.access_locked? or verify_recaptcha
+    super && return if user.attributes['failed_attempts'] < User.logins_before_captcha
+    super && return if user.access_locked? || verify_recaptcha
 
     # Don't increase failed attempts if Recaptcha was not passed
-    decrement_failed_attempts(user) if recaptcha_present?(params) and
-        !verify_recaptcha
+    decrement_failed_attempts(user) if recaptcha_present?(params) && !verify_recaptcha
 
     # Recaptcha was wrong
     self.resource = resource_class.new(sign_in_params)
@@ -45,7 +44,8 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private def adjust_failed_attempts(user)
-    if user.attributes['cached_failed_attempts'].present? and user.attributes['failed_attempts'] > user.attributes['cached_failed_attempts']
+    if user.attributes['cached_failed_attempts'].present? &&
+       user.attributes['failed_attempts'] > user.attributes['cached_failed_attempts']
       user.update cached_failed_attempts: user.attributes['failed_attempts']
     else
       increment_failed_attempts(user)
@@ -68,24 +68,3 @@ class Users::SessionsController < Devise::SessionsController
     params[:recaptcha_challenge_field]
   end
 end
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
-
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
-
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
-
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end

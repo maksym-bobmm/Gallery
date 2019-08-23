@@ -5,9 +5,9 @@ class ImagesController < ApplicationController
   before_action :set_category
 
   def show
-    @comments = Array.new
+    # @comments = Array.new
     @image = Image.find(params[:id])
-    @comments << Comment.find_by(image_id: @image.id)
+    @comments = Comment.find_by(image_id: @image.id)
     @likes_count = @image.likes.count
     @path_to_img = ActionController::Base.helpers.path_to_image('liked.svg')
   end
