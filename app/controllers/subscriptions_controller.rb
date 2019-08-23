@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# subscription controller class
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!, only: %i[create]
   before_action :find_category, only: %i[create destroy]
@@ -8,15 +11,15 @@ class SubscriptionsController < ApplicationController
     redirect_to category_path(@category)
   end
 
-   def destroy
-     @category.subscriptions.find_by(user_id: current_user.id).destroy
-     redirect_to category_path(@category)
-   end
+  def destroy
+    @category.subscriptions.find_by(user_id: current_user.id).destroy
+    redirect_to category_path(@category)
+  end
 
   private
 
   def send_email
-    action = request.parameters[:action] == 'create' ? true : false
+    action = request.parameters[:action] == 'create'
     UserMailer.with(category: @category, user: current_user, subscribe: action).subscriptions.deliver_later
   end
 

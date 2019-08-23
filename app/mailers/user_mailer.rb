@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# mailer fo email registration, subscriptions
 class UserMailer < ApplicationMailer
   default from: 'notification@example.com'
 
@@ -9,7 +12,7 @@ class UserMailer < ApplicationMailer
 
   def new_image_in_category
     # raise QWE
-    users = User.joins(:subscriptions).where( subscriptions: {category_id: params[:category_id] }).pluck(:email)
+    users = User.joins(:subscriptions).where(subscriptions: { category_id: params[:category_id] }).pluck(:email)
     mail(to: users, subject: 'New Image on you subscriptions')
   end
 

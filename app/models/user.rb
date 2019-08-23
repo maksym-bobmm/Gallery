@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# user model
 class User < ApplicationRecord
   has_many :categories, dependent: :destroy, foreign_key: 'owner_id'
   attr_accessor :cached_failed_attempts
@@ -18,9 +21,8 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
-      end
+      data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
+      user.email = data['email'] if data && user.email.blank?
     end
   end
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# like controller class
 class LikesController < ApplicationController
   before_action :authenticate_user!, only: %i[create]
   before_action :find_image,  only: %i[create destroy]
@@ -9,14 +10,12 @@ class LikesController < ApplicationController
     # byebug
     @image.likes.create(user_id: current_user.id)
     redirect_to image_path(@image)
-
   end
 
   def destroy
     # byebug
     @image.likes.find_by(user_id: current_user.id).destroy
     redirect_to image_path(@image)
-
   end
 
   private

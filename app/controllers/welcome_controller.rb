@@ -1,12 +1,10 @@
+# frozen_string_literal: true
+
+# need to delete
 class WelcomeController < ApplicationController
   # before_action :authenticate_user!
 
-  def index
-  end
-
-  def signIn
-
-  end
+  def index; end
 
   # def authentificate
   #   @welcome = User.new(username: params[:username])
