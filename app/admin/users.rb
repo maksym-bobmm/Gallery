@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register User do
   permit_params :id,  :email, :created_at, :updated_at, :confirmed_at, :confirmation_sent_at, :provider
   # See permitted parameters documentation:

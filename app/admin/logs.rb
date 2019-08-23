@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Log do
   actions :all, except: :edit
   index do

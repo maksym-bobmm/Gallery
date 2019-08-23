@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!, only: %i[create]
   before_action :find_category, only: %i[create destroy]
