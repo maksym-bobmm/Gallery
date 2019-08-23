@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body, :image_id)
   end
 
-# todo need refactor
+# TODO need refactor
   def get_image
     if params[:image_id]
       @image = Image.find(params[:image_id])

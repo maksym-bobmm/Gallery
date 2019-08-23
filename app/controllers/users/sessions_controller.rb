@@ -18,7 +18,7 @@ class Users::SessionsController < Devise::SessionsController
     categories_path
   end
   
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for
     user_session_path
   end
 
@@ -52,17 +52,19 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
-  private def increment_failed_attempts(user)
+  private
+
+  def increment_failed_attempts(user)
     user.increment :cached_failed_attempts
     user.update failed_attempts: user.attributes['cached_failed_attempts']
   end
 
-  private def decrement_failed_attempts(user)
+  def decrement_failed_attempts(user)
     user.decrement :cached_failed_attempts
     user.update failed_attempts: user.attributes['cached_failed_attempts']
   end
 
-  private def recaptcha_present?(params)
+  def recaptcha_present?(params)
     params[:recaptcha_challenge_field]
   end
 end
