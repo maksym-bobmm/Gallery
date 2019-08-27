@@ -1,19 +1,15 @@
--#!!!
-%style
-  =raw Gallery::Application.assets.find_asset('application.css').source
-%ul.menu
-  %li
-    %a(href=root_path) Главная
-  %li
-    %a(href=categories_path) Категории
-  %li
-    %a(href=images_path) Все картинки
-  %li
-    %a(href='') "Что то еще"
-  %li
-    %a(href=admin_root_path) Admin
-  %li
-    %ul
+.container
+  %nav.navbar.navbar-expand-lg.navbar-default.bg-light
+    %a.navbar-brand(href='#') Gallery
+    %ul.navbar-nav
+      %li.active
+        %a(href=root_path) Главная
+      %li
+        %a(href=categories_path) Категории
+      %li
+        %a(href=images_path) Все картинки
+      %li
+        %a(href=admin_root_path) Admin
       %li
         - if user_signed_in?
           = link_to 'Sign Out', destroy_user_session_path, method: :delete
