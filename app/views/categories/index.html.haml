@@ -1,8 +1,8 @@
 !!! 5
 = render 'share/menu'
-
+-#= raise byebug
 - @categories_with_rating.each do |hash|
-  %div.category-list-main
+  %div.category-list-main.container
     %p
       - img = find_popular_image(hash.fetch(:category))
       - if img.present?

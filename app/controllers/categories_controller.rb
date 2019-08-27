@@ -5,7 +5,9 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy edit update]
 
   def index
+    @categories = Category.all.limit(5)
     @categories_with_rating = find_categories_rating
+
   end
 
   def show

@@ -18,3 +18,13 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= stub 'active_admin'
+// $(document).on('mouseenter mouseleave', '.dropdownMenuLink', function(e)
+// {
+//     let toggler = $(this).find('[data-toggle="dropdown"]').first();
+//
+//     if(e.type === 'mouseenter') {
+//         $(toggler).trigger('click', 'open');
+//     } else if ($(this).children('.dropdown-menu.show').length) {
+//         $(toggler).trigger('click', 'close');
+//     }
+// });
