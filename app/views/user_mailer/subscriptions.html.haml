@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %p
+      - if @is_subscribe
+        = "You have successfully subscribed to category \"#{@name}\""
+      - else
+        = "You have successfully unsubscribed from category \"#{@name}\""

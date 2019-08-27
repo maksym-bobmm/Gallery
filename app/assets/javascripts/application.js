@@ -13,11 +13,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require_tree .
-//= stub 'active_admin'
 // $(document).on('mouseenter mouseleave', '.dropdownMenuLink', function(e)
 // {
 //     let toggler = $(this).find('[data-toggle="dropdown"]').first();
