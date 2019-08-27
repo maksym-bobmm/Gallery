@@ -1,17 +1,19 @@
-.container
-  %nav.navbar.navbar-expand-lg.navbar-default.bg-light
-    %a.navbar-brand(href='#') Gallery
-    %ul.navbar-nav
-      %li.active
-        %a(href=root_path) Главная
-      %li
-        %a(href=categories_path) Категории
-      %li
-        %a(href=images_path) Все картинки
-      %li
-        %a(href=admin_root_path) Admin
-      %li
-        - if user_signed_in?
-          = link_to 'Sign Out', destroy_user_session_path, method: :delete
-        - else
-          = link_to 'Sign In', 'users/sign_in'
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary
+  .navbar-collapse.order-0.text-center
+    .navbar-brand Gallery
+    %ul.navbar-nav.ml-auto
+      %li.active.nav-item
+        %a.nav-link(href=root_path) Главная
+      %li.nav-item
+        %a.nav-link(href=categories_path) Категории
+      %li.nav-item
+        %a.nav-link(href=images_path) Все картинки
+      %li.nav-item
+        %a.nav-link(href=admin_root_path) Admin
+  .navbar-collapse.order-1
+    %ul.navbar-nav.ml-auto
+      %li.nav-item
+      - if user_signed_in?
+        = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link text-center text-uppercase'
+      - else
+        = link_to 'Sign In', 'users/sign_in', class: 'nav-link text-center'

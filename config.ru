@@ -4,5 +4,3 @@ require_relative 'config/environment'
 # require 'resque/server'
 # run Rack::URLMap.new "/" => Gallery::Application,  "/resque" => Resque::Server.new
 run Rails.application
-
-
