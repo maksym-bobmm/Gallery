@@ -19,6 +19,8 @@ gem 'resque'
 gem 'resque-web', require: 'resque_web'
 gem 'recaptcha'
 gem 'nokogiri'
+gem 'bootstrap'
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

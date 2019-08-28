@@ -10,15 +10,15 @@
 //             }
 //         });
 //     })
-$(function() {
-    // $.ajax({
-    //     url: "/images/1",
-    //     type: "delete",
-    //     success: function (data, textStatus, jqXHR) {
-    //         alert(textStatus);
-    //     },
-    //     error: function (jqXHR, textStatus, errorThrown) {
-    //     }
-    // });
-    alert(#{@path_to_img})
-});
+// $(function() {
+//     // $.ajax({
+//     //     url: "/images/1",
+//     //     type: "delete",
+//     //     success: function (data, textStatus, jqXHR) {
+//     //         alert(textStatus);
+//     //     },
+//     //     error: function (jqXHR, textStatus, errorThrown) {
+//     //     }
+//     // });
+//     alert(#{@path_to_img})
+// });

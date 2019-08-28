@@ -14,3 +14,16 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+// $(document).on('mouseenter mouseleave', '.dropdownMenuLink', function(e)
+// {
+//     let toggler = $(this).find('[data-toggle="dropdown"]').first();
+//
+//     if(e.type === 'mouseenter') {
+//         $(toggler).trigger('click', 'open');
+//     } else if ($(this).children('.dropdown-menu.show').length) {
+//         $(toggler).trigger('click', 'close');
+//     }
+// });
