@@ -1,0 +1,2 @@
+class ImageLink < ApplicationRecord
+end
