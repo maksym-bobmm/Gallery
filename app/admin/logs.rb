@@ -16,6 +16,6 @@ ActiveAdmin.register Log do
     actions
   end
 
-  filter :filter_user_in, as: :select, label: 'user', collection: User.all.pluck(:email)
-  filter :filter_log_in, as: :select, label: 'user action', collection: Action.all.pluck(:activity)
+  # filter :filter_user_in, as: :select, label: 'user', collection: User.all.pluck(:email)
+  # filter :filter_log_in, as: :select, label: 'user action', collection: Action.all.pluck(:activity)
 end
