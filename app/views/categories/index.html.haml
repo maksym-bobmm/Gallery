@@ -19,19 +19,21 @@
 .row
   .container
     %h3.text-center Список Категорий
+    = link_to 'create category', new_category_path, class: 'text-center'
     .card-columns
       - @categories_with_rating.each do |hash|
         - img = find_popular_image(hash.fetch(:category))
         - if img.present?
-          .card.text-center
-            = raise qwe
-            = link_to image_tag("#{img.path.thumb}", alt: img[:path], style: 'width: 10em; heith: 15em;', class: 'text-center'),
+          .card.text-center.w-auto.ml-20
+            -#= raise qwe
+            = link_to image_tag("#{img.path.thumb}", alt: img[:path],
+                                class: 'text-center resizable'),
                       category_path(hash.fetch(:category)), class: 'card-image-top'
-            .card-body
+            .card-body.card-text
               %h4.card-title.text-center
                 = hash.fetch(:category).name
                 %br
                 - if user_signed_in? && hash.fetch(:category).owner_id == current_user.id
-                  = link_to 'rename', edit_category_path(hash.fetch(:category)), class: 'card-link text-center'
-                  = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-link'
-    = link_to 'create category', new_category_path
+                  = link_to 'rename', edit_category_path(hash.fetch(:category)), class: 'card-link text-center card-text'
+                  = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: 'Are you sure?' },
+                             class: 'card-link card-text'
