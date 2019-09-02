@@ -1,16 +1,17 @@
-.carousel.slide#slider(data-ride='carousel')
-  %ol.carousel-indicators
-    %li.active#carousel-indication1(data-target='#slider' data-slide-to='0')
-    %li#carousel-indication2(data-target='#slider' data-slide-to='1')
-    %li#carousel-indication3(data-target='#slider' data-slide-to='2')
-  .carousel-inner.container
-    .carousel-item.active
-      = image_tag path_to_image(Image.order(:likes_count).first.path), class: 'd-block w-100'
-    .carousel-item
-      = image_tag path_to_image(Image.order(:likes_count).second.path), class: 'd-block w-100'
-    .carousel-item
-      = image_tag path_to_image(Image.order(:likes_count).third.path), class: 'd-block w-100'
-  %a.carousel-control-next(href='#slider' role='button' data-slide='next')
-    %span.carousel-control-next-icon
-  %a.carousel-control-prev.text-danger(href='#slider' role='button' data-slide='prev')
-    %span.carousel-control-prev-icon.text-danger(style='color:red')
+.col-12
+  .carousel.slide#slider(data-ride='carousel')
+    %ol.carousel-indicators
+      %li.active#carousel-indication1(data-target='#slider' data-slide-to='0')
+      %li#carousel-indication2(data-target='#slider' data-slide-to='1')
+      %li#carousel-indication3(data-target='#slider' data-slide-to='2')
+    .carousel-inner.container
+      .carousel-item.active
+        = image_tag path_to_image(Image.order(:likes_count).first.path), class: 'd-block w-100'
+      .carousel-item
+        = image_tag path_to_image(Image.order(:likes_count).second.path), class: 'd-block w-100'
+      .carousel-item
+        = image_tag path_to_image(Image.order(:likes_count).third.path), class: 'd-block w-100'
+    %a.carousel-control-next(href='#slider' role='button' data-slide='next')
+      %span.carousel-control-next-icon
+    %a.carousel-control-prev.text-danger(href='#slider' role='button' data-slide='prev')
+      %span.carousel-control-prev-icon.text-danger(style='color:red')
