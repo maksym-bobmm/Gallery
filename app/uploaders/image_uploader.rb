@@ -25,7 +25,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def move_to_cache
-    true
+    false
   end
 
   def move_to_store
