@@ -12,7 +12,19 @@ Rails.application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+
+  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+        'Cache-Control' => "public, max-age=#{2.days.to_i}"
+    }
+  else
+    config.action_controller.perform_caching = false
+
+    config.cache_store = :null_store
+  end
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
@@ -69,9 +81,17 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'powerful-peak-65522.herokuapp.com' }
   config.action_mailer.default :charset => "utf-8"
-
+  config.action_mailer.smtp_settings = {
+      :address =>"smtp.gmail.com",
+      :port => 587,
+      :domain => "gmail.com",
+      :user_name => ENV.fetch('MAILER_EMAIL'),
+      :password => ENV.fetch('MAILER_PASSWORD'),
+      :authentication => 'plain',
+      :enable_starttls_auto => true
+  }
 
   config.action_mailer.smtp_settings = {
       :address =>"smtp.gmail.com",
@@ -91,7 +111,8 @@ Rails.application.configure do
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners.
-  config.active_support.deprecation = :notify
+  # config.active_support.deprecation = :notify
+  config.active_support.deprecation = :log
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
