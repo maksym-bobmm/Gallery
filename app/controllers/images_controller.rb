@@ -18,7 +18,7 @@ class ImagesController < ApplicationController
   end
 
   def index
-    @images = Image.all.order(:rating).reverse_order
+    @images = Image.all.order(:likes_count).reverse_order
   end
 
   def create
