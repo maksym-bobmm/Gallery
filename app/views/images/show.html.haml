@@ -1,5 +1,5 @@
 .container
-  = image_tag "#{@image.path}.jpg", alt: @image[:path]
+  = image_tag "#{@image.path}", alt: @image[:path]
   %p.menu
     -#= form_with model: @image, url: likes_path(@image), method: :post, local: :yes do |f|
     -#  = f.hidden_field :img_id, value: params[:id]
