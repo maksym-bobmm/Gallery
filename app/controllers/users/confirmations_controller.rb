@@ -8,7 +8,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
   end
 
-  def after_confirmation_path_for
+  def after_confirmation_path_for(_,_)
     categories_path
   end
 end
