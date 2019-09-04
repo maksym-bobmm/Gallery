@@ -1,7 +1,6 @@
 .col-9
-  .container-fluid
-    .card-columns
-      - @images.each do |img|
-        .card.w-auto
-          = link_to image_tag( "#{img.path.thumb}", alt: img[:path], class: 'card-img-top' ),
-                    image_path(img), class: 'stretched-link'
+  .card-columns
+    - @images.each do |img|
+      .card.w-auto
+        = link_to image_tag( "#{img.path.thumb}", alt: img[:path], class: 'card-img-top' ),
+                  image_path(img), class: 'stretched-link'

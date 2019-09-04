@@ -1,39 +1,19 @@
--#- @categories_with_rating.each do |hash|
--#  %div.category-list-main.container
--#    %p
--#      - img = find_popular_image(hash.fetch(:category))
--#      - if img.present?
--#        %p
--#          = hash.fetch(:category).name
--#        = link_to image_tag( "#{img.path.thumb}", alt: img[:path] ), category_path(hash.fetch(:category))
--#      - else
--#        = link_to hash.fetch(:category).name, category_path(hash.fetch(:category))
--#      - if user_signed_in? && hash.fetch(:category).owner_id == current_user.id
--#        %ul.menu
--#          %li
--#            = link_to 'rename', edit_category_path(hash.fetch(:category))
--#          %li
--#            -#%a(href='destroy') delete
--#            = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: 'Are you sure?' }
--#= link_to 'create category', new_category_path
 .col-9
-  .container
-    %h3.text-center Список Категорий
-    = link_to 'create category', new_category_path, class: 'text-center'
-    .card-columns
-      - @categories_with_rating.each do |hash|
-        - img = find_popular_image(hash.fetch(:category))
-        - if img.present?
-          .card.text-center.w-auto.ml-20
-            -#= raise qwe
-            = link_to image_tag("#{img.path.thumb}", alt: img[:path],
-                                class: 'text-center resizable'),
-                      category_path(hash.fetch(:category)), class: 'card-image-top'
-            .card-body.card-text
-              %h4.card-title.text-center
-                = hash.fetch(:category).name
-                %br
-                - if user_signed_in? && hash.fetch(:category).owner_id == current_user.id
-                  = link_to 'rename', edit_category_path(hash.fetch(:category)), class: 'card-link text-center card-text'
-                  = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: 'Are you sure?' },
-                             class: 'card-link card-text'
+  %h3.text-center Список Категорий
+  = link_to 'create category', new_category_path, class: 'text-center'
+  .card-columns
+    - @categories_with_rating.each do |hash|
+      - img = find_popular_image(hash.fetch(:category))
+      - if img.present?
+        .card.text-center.w-auto.ml-20
+          = link_to image_tag("#{img.path.thumb}", alt: img[:path],
+                              class: 'text-center img-fluid'),
+                    category_path(hash.fetch(:category)), class: 'card-image-top'
+          .card-body.card-text
+            %h4.card-title.text-center
+              = hash.fetch(:category).name
+              %br
+              - if user_signed_in? && hash.fetch(:category).owner_id == current_user.id
+                = link_to 'rename', edit_category_path(hash.fetch(:category)), class: 'card-link text-center card-text'
+                = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: 'Are you sure?' },
+                           class: 'card-link card-text'

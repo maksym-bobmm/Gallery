@@ -4,7 +4,7 @@
       %li.active#carousel-indication1(data-target='#slider' data-slide-to='0')
       %li#carousel-indication2(data-target='#slider' data-slide-to='1')
       %li#carousel-indication3(data-target='#slider' data-slide-to='2')
-    .carousel-inner.container
+    .carousel-inner
       .carousel-item.active
         = image_tag path_to_image(Image.order(:likes_count).first.path), class: 'd-block w-100'
       .carousel-item

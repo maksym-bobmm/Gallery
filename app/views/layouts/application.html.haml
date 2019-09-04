@@ -37,5 +37,6 @@
             = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link text-center text-uppercase'
           - else
             = link_to 'Sign In', 'users/sign_in', class: 'nav-link text-center'
-    .row
-      = yield
+    .container-fluid
+      .row
+        = yield
