@@ -11,6 +11,10 @@
         = image_tag path_to_image(Image.order(:likes_count).second.path), class: 'd-block w-100'
       .carousel-item
         = image_tag path_to_image(Image.order(:likes_count).third.path), class: 'd-block w-100'
+        .carousel-item.active
+        = image_tag path_to_image(Image.order(:likes_count).fourth.path), class: 'd-block w-100'
+        .carousel-item.active
+        = image_tag path_to_image(Image.order(:likes_count).fifth.path), class: 'd-block w-100'
     %a.carousel-control-next(href='#slider' role='button' data-slide='next')
       %span.carousel-control-next-icon
     %a.carousel-control-prev.text-danger(href='#slider' role='button' data-slide='prev')
