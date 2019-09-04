@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) || categories_path
   end
 
+  def default_url_options
+    { locale: I18n.locale }
+  end
+
   private
 
   def navigation

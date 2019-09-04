@@ -23,6 +23,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'fog-aws'
+gem 'i18n', '~> 1.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
