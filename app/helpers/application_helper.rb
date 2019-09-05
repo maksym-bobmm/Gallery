@@ -14,4 +14,8 @@ module ApplicationHelper
     end
     category_with_rating.sort_by { |hash| hash[:rating] }.reverse
   end
+
+  def find_locale
+    params[:locale] || I18n.default_locale
+  end
 end

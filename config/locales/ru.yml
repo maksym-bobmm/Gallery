@@ -140,3 +140,26 @@ ru:
       block: "Список"
       grid: "Сетка"
       blog: "Блог"
+  site:
+    menu:
+      title: "Галерея"
+      main: "Главная"
+      categories: "Категории"
+      images: "Все картинки"
+      admin: "Админ"
+    category:
+      rename: "переименовать"
+      delete: "удалить"
+      create: "создать категорию"
+      list: "список категорий"
+      name: "название категории"
+    image:
+      new_comment: "добавить комментарий"
+      like: "лайк"
+      likes: "лайков"
+      unlike: "дизлайк"
+    common:
+      create: "создать"
+      sign_in: "Вход"
+      sign_out: "Выход"
+      sure: "Вы уверены?"

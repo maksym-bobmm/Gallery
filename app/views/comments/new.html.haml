@@ -1,5 +1,5 @@
 = form_with model: @comment, local: true do |f|
-  = f.label :comment
+  = f.label t(:'site.image.new_comment')
   = f.text_field :body
   = f.hidden_field :image_id, value:  params[:image_id]
-  = f.submit :submit
+  = f.submit t(:'site.common.create')

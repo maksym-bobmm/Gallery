@@ -1,6 +1,7 @@
 .col-9
-  %h3.text-center Список Категорий
-  = link_to 'create category', new_category_path, class: 'text-center'
+  %h3.text-center
+    = t(:'site.category.list')
+  = link_to t(:'site.category.create'), new_category_path, class: 'text-center'
   .card-columns
     - @categories_with_rating.each do |hash|
       - img = find_popular_image(hash.fetch(:category))
@@ -15,5 +16,5 @@
               %br
               - if user_signed_in? && hash.fetch(:category).owner_id == current_user.id
                 = link_to 'rename', edit_category_path(hash.fetch(:category)), class: 'card-link text-center card-text'
-                = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: 'Are you sure?' },
+                = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: t(:'site.common.sure') },
                            class: 'card-link card-text'

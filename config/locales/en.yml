@@ -192,3 +192,26 @@ en:
       block: "List"
       grid: "Grid"
       blog: "Blog"
+  site:
+    menu:
+      title: "Gallery"
+      main: "Main"
+      categories: "Categories"
+      images: "All images"
+      admin: "Admin"
+    category:
+      rename: "rename"
+      delete: "delete"
+      create: "create category"
+      list: "category list"
+      name: "category name"
+    image:
+      new_comment: "add comment"
+      like: "like"
+      likes: "likes"
+      unlike: "unlike"
+    common:
+      create: "create"
+      sign_in: "Sign in"
+      sign_out: "Sign out"
+      sure: "Are you sure?"

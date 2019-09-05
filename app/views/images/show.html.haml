@@ -1,19 +1,16 @@
 .container
   = image_tag "#{@image.path}", alt: @image[:path]
   %p.menu
-    -#= form_with model: @image, url: likes_path(@image), method: :post, local: :yes do |f|
-    -#  = f.hidden_field :img_id, value: params[:id]
-    -#  = f.submit 'Like'
     - if already_liked?
-      = link_to image_tag( 'liked.svg', alt: 'Unlike', id: 'heart'), like_path, method: :delete, remote: true
+      = link_to image_tag( 'liked.svg', alt: t(:'site.image.unlike'), id: 'heart'), like_path, method: :delete, remote: true
     -else
-      = link_to image_tag( 'unliked.svg', alt: 'Like', id: 'heart'), likes_path, method: :post, remote: true
+      = link_to image_tag( 'unliked.svg', alt: t(:'site.image.like'), id: 'heart'), likes_path, method: :post, remote: true
     = @likes_count
-    = @likes_count == 1 ? 'Like' : 'Likes'
+    = @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
     -#= @path_to_img
 - @image.comments.each do |comment|
   %p
     = comment&.body
 
 
-= link_to 'new comment', new_comment_path(image_id: params[:id])
+= link_to t(:'site.image.new_comment'), new_comment_path(image_id: params[:id])
