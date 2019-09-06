@@ -1,7 +1,16 @@
-.col-9
-  %h3.text-center
-    = t(:'site.category.list')
-  = link_to t(:'site.category.create'), new_category_path, class: 'text-center'
+.col-12
+  %h3.text-center= t(:'site.category.list')
+.col-12.col-md-9.text-center
+  .container
+    = link_to t(:'site.category.create'), '#createCategory', class: 'btn btn-primary',
+              'data-toggle': 'collapse', role: 'button'
+    #createCategory.collapse
+      .form-group.container.mt-2
+        = form_with model: @category, local: true do |f|
+          = f.label t(:'site.category.name')
+          = f.text_field :name
+          = f.submit t(:'site.common.create'), class: 'btn btn-primary'
+
   .card-columns
     - @categories_with_rating.each do |hash|
       - img = find_popular_image(hash.fetch(:category))
@@ -18,3 +27,19 @@
                 = link_to 'rename', edit_category_path(hash.fetch(:category)), class: 'card-link text-center card-text'
                 = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: t(:'site.common.sure') },
                            class: 'card-link card-text'
+.col-0.col-md-3
+  -#%button.btn.btn-group{'data-toggle': 'collapse', type: 'button', 'date-target': '#sidebarCategories'}
+  -##sidebarCategories.collapse
+  %ul.list-group
+    - @categories_with_rating.each do |hash|
+      %li.list-group-item.list-group-item-action.text-center
+        = link_to hash.fetch(:category).name, category_path(hash.fetch(:category)), class: 'stretched-link'
+
+
+  -#= image_tag "#{@image.path}", alt: @image[:path], class: 'w-100',
+  -#    'data-target': '#imageFullScreen', 'data-toggle': 'modal', type: 'button'
+  -##imageFullScreen.modal.fade{role: 'dialog', tabindex: '-1'}
+  -#  .modal-dialog.modal-dialog-centered.text-center.modal-lg{role: 'document'}
+  -#    .modal-content.w-auto
+  -#      .modal-body
+  -#        = image_tag "#{@image.path}", alt: @image[:path], 'data-dismiss': 'modal', class: 'img-fluid'
