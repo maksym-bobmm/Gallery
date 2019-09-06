@@ -36,9 +36,9 @@
             = link_to image_tag("#{find_locale}.png", alt: params[:locale], width: 40), '#',
                       role: 'button', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle'
             .dropdown-menu.bg-secondary.w-auto
-              = link_to image_tag('en.png', alt: 'en', width: 40), url_for(locale: 'en'),
+              = link_to image_tag('en.png', alt: 'en', width: 40), locales_path(locale: 'en'), method: :put, :controller => :locales, action: :update,
                         class: 'dropdown-item bg-secondary text-white'
-              = link_to image_tag('ru.png', alt: 'ru', width: 40), url_for(locale: 'ru'),
+              = link_to image_tag('ru.png', alt: 'ru', width: 40), locales_path(locale: 'ru'), method: :put, :controller => :locales, action: :update,
                         class: 'dropdown-item bg-secondary text-white'
           - if user_signed_in?
             = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete,
