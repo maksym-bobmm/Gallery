@@ -14,7 +14,7 @@
           = resource.class.human_attribute_name('remember_me')
     - if User.find_by_email(resource.email)
       - if User.find_by_email(resource.email).failed_attempts >= User.logins_before_captcha
-        .text-center
+        .text-center.d-flex.justify-content-center
           = recaptcha_tags
     .form-group.text-center.justify-content-sm-center
       = f.submit  t('.sign_in'), class: 'btn btn-primary'
