@@ -1,5 +1,5 @@
 - @category.images.each do |image|
-  = link_to(image_tag( "#{image.path.thumb}", alt: image[:path]), "#{images_path}/#{image.id}")
+  = link_to(image_tag( "#{image.path.thumb}", alt: image[:path]), image_path(image))
 %p
   - if subscribed?
     = link_to 'unsubscribe', subscription_path, method: :delete, class: 'link-button'

@@ -16,6 +16,6 @@ module ApplicationHelper
   end
 
   def find_locale
-    params[:locale] || I18n.default_locale
+    current_user&.locale || params[:locale] || I18n.default_locale
   end
 end

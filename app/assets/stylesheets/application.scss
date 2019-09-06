@@ -17,9 +17,35 @@
  */
 @import "images";
 @import "welcome";
+// for change menu color
 .navbar-dark{
   color: #B00100;
 }
+// for decrease language dropdown menu width
 .dropdown-menu {
   min-width: 0.3rem;
+}
+.modal-body {
+  //max-width: 100%;
+  //max-height: 100%;
+  //overflow-x: auto;
+  //overflow-y: auto;
+  //for remove border from modal window
+  padding: unset;
+}
+
+// for center and fullscreen bootstrap modal window
+.modal-dialog {
+  width: max-content;
+  height: max-content;
+  margin: auto;
+  padding: 0;
+  max-width: 100%;
+}
+// for center and fullscreen bootstrap modal window
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+  background: none;
 }

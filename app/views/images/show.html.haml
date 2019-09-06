@@ -1,16 +1,24 @@
-.container
-  = image_tag "#{@image.path}", alt: @image[:path]
+.col-12.col-sm-9
+  = image_tag "#{@image.path}", alt: @image[:path], class: 'w-100',
+              'data-target': '#imageFullScreen', 'data-toggle': 'modal', type: 'button'
+  #imageFullScreen.modal.fade{role: 'dialog', tabindex: '-1'}
+    .modal-dialog.modal-dialog-centered.text-center.modal-lg{role: 'document'}
+      .modal-content.w-auto
+        .modal-body
+          = image_tag "#{@image.path}", alt: @image[:path], 'data-dismiss': 'modal', class: 'img-fluid'
+
+.container-fluid.col-0.col-sm-3
   %p.menu
     - if already_liked?
-      = link_to image_tag( 'liked.svg', alt: t(:'site.image.unlike'), id: 'heart'), like_path, method: :delete, remote: true
+      = link_to image_tag( 'liked.svg', alt: t(:'site.image.unlike'), id: 'heart'),
+                like_path, method: :delete, remote: true
     -else
-      = link_to image_tag( 'unliked.svg', alt: t(:'site.image.like'), id: 'heart'), likes_path, method: :post, remote: true
+      = link_to image_tag( 'unliked.svg', alt: t(:'site.image.like'), id: 'heart'),
+                likes_path, method: :post, remote: true
     = @likes_count
     = @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
     -#= @path_to_img
 - @image.comments.each do |comment|
   %p
     = comment&.body
-
-
-= link_to t(:'site.image.new_comment'), new_comment_path(image_id: params[:id])
+  = link_to t(:'site.image.new_comment'), new_comment_path(image_id: params[:id])
