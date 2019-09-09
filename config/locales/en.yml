@@ -219,3 +219,9 @@ en:
       sign_out: "Sign out"
       sure: "Are you sure?"
       add: "Add"
+  views:
+    pagination:
+      previous: "Previous"
+      next: "Next"
+      first: "First"
+      last: "Last"

@@ -167,3 +167,9 @@ ru:
       sign_out: "Выход"
       sure: "Вы уверены?"
       add: "Добавить"
+  views:
+    pagination:
+      previous: "Предыдущая"
+      next: "Следующая"
+      first: "Первая"
+      last: "Последняя"

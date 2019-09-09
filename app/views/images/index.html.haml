@@ -4,4 +4,6 @@
       .card.w-auto
         = link_to image_tag( "#{img.path.thumb}", alt: img[:path], class: 'card-img-top' ),
                   image_path(img), class: 'stretched-link'
+  .container.d-flex.justify-content-center
+    = paginate @images, theme: 'twitter-bootstrap-4'
 = render 'share/sidebar'
