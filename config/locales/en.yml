@@ -205,13 +205,17 @@ en:
       create: "create category"
       list: "category list"
       name: "category name"
+      empty: "empty category"
     image:
       new_comment: "add comment"
       like: "like"
       likes: "likes"
       unlike: "unlike"
+      add: "Add image"
+      comment: "There are no comments yet... Add the first!"
     common:
       create: "create"
       sign_in: "Sign in"
       sign_out: "Sign out"
       sure: "Are you sure?"
+      add: "Add"

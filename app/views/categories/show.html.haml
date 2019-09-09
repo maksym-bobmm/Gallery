@@ -1,15 +1,25 @@
-- @category.images.each do |image|
-  = link_to(image_tag( "#{image.path.thumb}", alt: image[:path]), image_path(image))
-%p
-  - if subscribed?
-    = link_to 'unsubscribe', subscription_path, method: :delete, class: 'link-button'
-  - else
-    = link_to 'subscribe', subscriptions_path, method: :post, class: 'link-button'
-  -#= form_with model: @category, url: subscriptions_path, method: :post, local: :yes do |f|
-  -#  = f.hidden_field :category_id, value: params[:id]
-  -#  = f.submit @subscription_exist? 'unsubscribe' : 'subscribe'
-%p
-  = form_with model: @image, url: images_path, local: true do |f|
-    = f.file_field :path
-    = f.hidden_field :cat_id, value:  params[:id]
-    = f.submit
+.col-12.col-md-9.text-center
+  .container.mb-5
+    %h1.mr-5{style: 'display:inline'}= @category.name
+    %span
+      - if subscribed?
+        = link_to 'unsubscribe', subscription_path, method: :delete, class: 'btn btn-secondary d-table-cell'
+      - else
+        = link_to 'subscribe', subscriptions_path, method: :post, class: 'btn btn-secondary d-table-cell'
+    %br
+    = link_to t(:'site.image.add'), '#createCategory', class: 'btn btn-primary w-auto wt-3',
+      'data-toggle': 'collapse', role: 'button'
+    #createCategory.collapse
+      .form-group.container.mt-2
+        = form_with model: @image, url: images_path, local: true do |f|
+          = f.file_field :path
+          = f.hidden_field :cat_id, value:  params[:id]
+          = f.submit t(:'site.common.add'), class: 'btn btn-primary'
+  - @category.images.each do |image|
+    = link_to(image_tag( "#{image.path.thumb}", alt: image[:path], class: 'p-1'), image_path(image))
+  -#.qwe
+  -#  = form_with model: @image, url: images_path, local: true do |f|
+  -#    = f.file_field :path
+  -#    = f.hidden_field :cat_id, value:  params[:id]
+  -#    = f.submit
+= render'share/sidebar'

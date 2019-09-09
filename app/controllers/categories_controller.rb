@@ -3,10 +3,9 @@
 # category controller class
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy edit update]
+  before_action :sort_category, only: %i[index show]
 
-  def index
-    @categories_with_rating = helpers.find_categories_rating  # application_helper
-  end
+  def index; end
 
   def show
     @category = Category.find(params[:id])
@@ -45,4 +44,6 @@ class CategoriesController < ApplicationController
   def category_params
     params.permit(:name)
   end
+
+
 end

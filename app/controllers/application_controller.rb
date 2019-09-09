@@ -3,6 +3,7 @@
 # application controller
 class ApplicationController < ActionController::Base
   prepend_after_action :navigation, only: %i[index show]
+  before_action :sort_category, only: %i[index show]
   around_action :switch_locale
 
   def after_sign_in_path_for(resource)
@@ -18,6 +19,9 @@ class ApplicationController < ActionController::Base
     I18n.with_locale(locale, &action)
   end
 
+  def sort_category
+    @categories_with_rating = helpers.find_categories_rating  # application_helper
+  end
   private
 
   def navigation

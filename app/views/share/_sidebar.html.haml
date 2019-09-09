@@ -1,0 +1,7 @@
+.col-0.col-md-3
+  %button.btn.btn-primary{'data-toggle': 'collapse', type: 'button', 'data-target': '#sidebarCategories'}
+  #sidebarCategories.collapse.show
+    %ul.list-group
+      - @categories_with_rating.each do |hash|
+        %li.list-group-item.list-group-item-action.text-center
+          = link_to hash.fetch(:category).name, category_path(hash.fetch(:category)), class: 'stretched-link'

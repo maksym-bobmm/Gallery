@@ -1,27 +1,25 @@
 // Place all the styles related to the Category controller here.
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-ul.menu{
-  list-style: none; /*убираем маркеры списка*/
-  //margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
-  padding-left: 0px; /*убираем левый отступ, равный 40px*/
-  li {
-    display: inline-block;
-  }
+//ul.menu{
+//  list-style: none; /*убираем маркеры списка*/
+//  //margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+//  padding-left: 0px; /*убираем левый отступ, равный 40px*/
+//  li {
+//    display: inline-block;
+//  }
+//}
+//div.category-list-main{
+//  margin-left: 15px;
+//}
+//
+.rectangle {
+  height: auto;
+  width: 270px;
+  height: 270px;
+  background-color: #555;
 }
-div.category-list-main{
-  margin-left: 15px;
-}
-
-a.link-button {
-  font: bold 11px Arial;
-  text-decoration: none;
-  background-color: #EEEEEE;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
+p.rectangle{
+  color: white;
 }
 

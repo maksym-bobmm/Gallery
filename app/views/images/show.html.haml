@@ -7,8 +7,17 @@
         .modal-body
           = image_tag "#{@image.path}", alt: @image[:path], 'data-dismiss': 'modal', class: 'img-fluid'
 
-.container-fluid.col-0.col-sm-3
-  %p.menu
+.container-fluid.col-12.col-sm-3
+  - if @image.comments.size == 0
+    %p= t(:'site.image.comment')
+  %button.btn.btn-info
+    - text = already_liked? ? t(:'site.image.unlike') : t(:'site.image.like')
+    - method = already_liked? ? :delete : :post
+    - path = already_liked? ? like_path : likes_path
+    = link_to text, path, method: method, remote: true, class: 'stretched-link text-decoration-none text-dark'
+    -#= @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
+    %span.badge.badge-light= @likes_count
+  %p.menu.pt-5
     - if already_liked?
       = link_to image_tag( 'liked.svg', alt: t(:'site.image.unlike'), id: 'heart'),
                 like_path, method: :delete, remote: true
