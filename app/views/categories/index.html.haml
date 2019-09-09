@@ -9,25 +9,25 @@
         = f.label t(:'site.category.name')
         = f.text_field :name
         = f.submit t(:'site.common.create'), class: 'btn btn-primary'
-  .col-12.col-sm-6.col-md-4
-    .card-columns.mt-5
-      - @categories_with_rating.each do |hash|
-        - img = find_popular_image(hash.fetch(:category))
-        .card.text-center.w-auto.ml-20{style: 'background: linear-gradient(45deg, lightyellow, lightgray);'}
-          - if img.present?
-            = link_to image_tag("#{img.path.thumb}", alt: img[:path],
-                                class: 'text-center img-fluid m-2'),
-                      category_path(hash.fetch(:category)), class: 'card-image-top'
-          - else
-            = link_to(category_path(hash.fetch(:category)), class: 'text-decoration-none') do
-              .rectangle.d-table-cell.align-middle
-                %p.text-white= t(:'site.category.empty')
-          .card-body.card-text.p-10
-            %h4.card-title.text-center.mb-0
-              = hash.fetch(:category).name
-              %br
-              - if user_signed_in? && hash.fetch(:category).owner_id == current_user.id
-                = link_to 'rename', edit_category_path(hash.fetch(:category)), class: 'card-link text-center card-text'
-                = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: t(:'site.common.sure') },
-                           class: 'card-link card-text'
+  -#.row
+  .card-columns.mt-5
+    - @categories_with_rating.each do |hash|
+      - img = find_popular_image(hash.fetch(:category))
+      .card.text-center.w-auto.mx-auto{style: 'background: linear-gradient(45deg, lightyellow, lightgray);'}
+        - if img.present?
+          = link_to image_tag("#{img.path.thumb}", alt: img[:path],
+                              class: 'text-center img-fluid m-2'),
+                    category_path(hash.fetch(:category)), class: 'card-image-top rounded'
+        - else
+          = link_to(category_path(hash.fetch(:category)), class: 'text-decoration-none') do
+            .rectangle.d-table-cell.align-middle
+              %p.text-white= t(:'site.category.empty')
+        .card-body.card-text.m-10
+          %h4.card-title.text-center.mb-0
+            = hash.fetch(:category).name
+            %br
+            - if user_signed_in? && hash.fetch(:category).owner_id == current_user.id
+              = link_to 'rename', edit_category_path(hash.fetch(:category)), class: 'card-link text-center card-text'
+              = link_to 'delete', hash.fetch(:category), method: :delete, data: { confirm: t(:'site.common.sure') },
+                         class: 'card-link card-text'
 = render('share/sidebar')
