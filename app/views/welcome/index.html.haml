@@ -4,17 +4,19 @@
       %li.active#carousel-indication1(data-target='#slider' data-slide-to='0')
       %li#carousel-indication2(data-target='#slider' data-slide-to='1')
       %li#carousel-indication3(data-target='#slider' data-slide-to='2')
+      %li#carousel-indication4(data-target='#slider' data-slide-to='3')
+      %li#carousel-indication5(data-target='#slider' data-slide-to='4')
     .carousel-inner
       .carousel-item.active
-        = image_tag path_to_image(Image.order(:likes_count).first.path), class: 'd-block w-100'
+        = image_tag path_to_image(Image.order(:likes_count).reverse.first.path), class: 'd-block w-100'
       .carousel-item
-        = image_tag path_to_image(Image.order(:likes_count).second.path), class: 'd-block w-100'
+        = image_tag path_to_image(Image.order(:likes_count).reverse.second.path), class: 'd-block w-100'
       .carousel-item
-        = image_tag path_to_image(Image.order(:likes_count).third.path), class: 'd-block w-100'
-        .carousel-item.active
-        = image_tag path_to_image(Image.order(:likes_count).fourth.path), class: 'd-block w-100'
-        .carousel-item.active
-        = image_tag path_to_image(Image.order(:likes_count).fifth.path), class: 'd-block w-100'
+        = image_tag path_to_image(Image.order(:likes_count).reverse.third.path), class: 'd-block w-100'
+      .carousel-item
+        = image_tag path_to_image(Image.order(:likes_count).reverse.fourth.path), class: 'd-block w-100'
+      .carousel-item
+        = image_tag path_to_image(Image.order(:likes_count).reverse.fifth.path), class: 'd-block w-100'
     %a.carousel-control-next(href='#slider' role='button' data-slide='next')
       %span.carousel-control-next-icon
     %a.carousel-control-prev.text-danger(href='#slider' role='button' data-slide='prev')

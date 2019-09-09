@@ -10,14 +10,15 @@
         = f.text_field :name
         = f.submit t(:'site.common.create'), class: 'btn btn-primary'
   -#.row
-  .card-columns.mt-5
+  -#.mt-5.col
+  .card-deck
     - @categories_with_rating.each do |hash|
       - img = find_popular_image(hash.fetch(:category))
       .card.text-center.w-auto.mx-auto{style: 'background: linear-gradient(45deg, lightyellow, lightgray);'}
         - if img.present?
           = link_to image_tag("#{img.path.thumb}", alt: img[:path],
-                              class: 'text-center img-fluid m-2'),
-                    category_path(hash.fetch(:category)), class: 'card-image-top rounded'
+                              class: 'text-center img-adjusted'),
+                    category_path(hash.fetch(:category)), class: 'card-image-top m-2'
         - else
           = link_to(category_path(hash.fetch(:category)), class: 'text-decoration-none') do
             .rectangle.d-table-cell.align-middle
