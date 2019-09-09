@@ -9,10 +9,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
-    %nav.navbar.navbar-expand-md.navbar-dark.bg-secondary
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary
       .navbar-collapse.order-0.text-center
-        .navbar-brand
-          = t(:'site.menu.title')
+        .navbar-brand= t(:'site.menu.title')
         %ul.navbar-nav.ml-auto
           %li.active.nav-item
             %a.nav-link(href=root_path)= t(:'site.menu.main')
@@ -20,8 +19,8 @@
             %a.nav-link.pr-0(href=categories_path)= t(:'site.menu.categories')
 
           %li.nav-item.dropdown.pr-2
-            %a.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown')
-            .dropdown-menu.bg-secondary
+            %a.nav-link.dropdown-toggle.text-center(href='#' role='button' data-toggle='dropdown')
+            .dropdown-menu.bg-secondary.text-center
               - find_categories_rating.first(5).each do |category|
                 = link_to category[:category].name, category_path(category[:category]),
                           class: 'dropdown-item bg-secondary text-white'
@@ -34,12 +33,13 @@
         %ul.navbar-nav.ml-auto
           %li.nav-item.dropdown.pr-3
             = link_to image_tag("#{find_locale}.png", alt: params[:locale], width: 40), '#',
-                      role: 'button', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle'
+                      role: 'button', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle text-center'
             .dropdown-menu.bg-secondary.w-auto
               - %w[en ru].each do |lang|
                 - unless find_locale == lang
                   = link_to image_tag(lang + '.png', alt: lang, width: 40), locales_path(locale: lang), method: :put,
-                            controller: :locales, action: :update, class: 'dropdown-item bg-secondary text-white'
+                            controller: :locales, action: :update,
+                            class: 'dropdown-item bg-secondary text-white text-center'
           - if user_signed_in?
             = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete,
                       class: 'nav-link text-center text-uppercase'
