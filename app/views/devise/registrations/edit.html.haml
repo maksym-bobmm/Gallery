@@ -25,6 +25,9 @@
     .form-group.text-center
       = f.label t(:'views.register.birthdate')
       = f.date_field :birthdate, class: 'form-control'
+      .form-group.text-center
+      = f.label t(:'views.register.avatar'), class: 'text-center'
+      = f.file_field :avatar, class: 'form-control'
     .form-group.text-center
       = f.submit t('.update'), class: 'btn btn-primary'
   %p.text-center

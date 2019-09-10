@@ -2,8 +2,8 @@
 
 # user model
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   has_many :categories, dependent: :destroy, foreign_key: 'owner_id'
-  # attr_accessor :cached_failed_attempts
   has_many :comments
   has_many :likes, dependent: :delete_all
   has_many :subscriptions, dependent: :delete_all

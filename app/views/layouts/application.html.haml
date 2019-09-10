@@ -40,8 +40,15 @@
                   = link_to image_tag(lang + '.png', alt: lang, width: 40), locales_path(locale: lang), method: :put,
                             controller: :locales, action: :update,
                             class: 'dropdown-item bg-secondary text-white text-center'
-          %li.nav-item
-            = link_to 'edit', edit_user_registration_path
+          - if user_signed_in?
+            %li.nav-item.dropdown.pr-3
+              = link_to image_tag(avatar_to_display, alt: 'profile', width: 30), '#',
+                        role: 'button', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle text-center'
+              .dropdown-menu.bg-secondary.w-auto
+                = link_to t(:'views.register.profile'), edit_user_registration_path,
+                          class: 'nav-link text-center bg-secondary dropdown-item'
+                = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete,
+                          class: 'nav-link text-center bg-secondary dropdown-item'
           %li.nav-item
             - if user_signed_in?
               = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete,

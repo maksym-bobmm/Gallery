@@ -14,15 +14,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{model.category_id}"
-    # 'https://drive.google.com/drive/folders/1RoX9hn2kEhEd2-9pmRbK86U5hBSBZLk2'
   end
 
   version :thumb do
     process resize_to_fill: [280, 280]
-  end
-
-  version :avatar, from_version: :thumb do
-    process resize_to_fit: [80, 80]
   end
 
   def move_to_cache

@@ -18,4 +18,8 @@ module ApplicationHelper
   def find_locale
     current_user&.locale || params[:locale] || I18n.default_locale
   end
+
+  def avatar_to_display
+    current_user.avatar.present? ? current_user.avatar.to_s : 'avatar'
+  end
 end
