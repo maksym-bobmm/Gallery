@@ -225,3 +225,9 @@ en:
       next: "Next"
       first: "First"
       last: "Last"
+    register:
+      name: "Name"
+      lastname: "Surname"
+      birthdate: "Birthdate"
+      back: "back"
+      edit: "Edit user"

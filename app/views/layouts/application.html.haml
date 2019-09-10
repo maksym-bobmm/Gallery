@@ -40,11 +40,14 @@
                   = link_to image_tag(lang + '.png', alt: lang, width: 40), locales_path(locale: lang), method: :put,
                             controller: :locales, action: :update,
                             class: 'dropdown-item bg-secondary text-white text-center'
-          - if user_signed_in?
-            = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete,
-                      class: 'nav-link text-center text-uppercase'
-          - else
-            = link_to t(:'site.common.sign_in'), new_user_session_path, class: 'nav-link text-center'
+          %li.nav-item
+            = link_to 'edit', edit_user_registration_path
+          %li.nav-item
+            - if user_signed_in?
+              = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete,
+                        class: 'nav-link text-center text-uppercase'
+            - else
+              = link_to t(:'site.common.sign_in'), new_user_session_path, class: 'nav-link text-center'
     - if notice.present? || alert.present?
       %p.notice.text-center= notice
       %p.alert.text-center= alert
