@@ -45,8 +45,9 @@
                       class: 'nav-link text-center text-uppercase'
           - else
             = link_to t(:'site.common.sign_in'), new_user_session_path, class: 'nav-link text-center'
-    %p.notice.text-center= notice
-    %p.alert.text-center= alert
+    - if notice.present? || alert.present?
+      %p.notice.text-center= notice
+      %p.alert.text-center= alert
     .container-fluid
       .row
         = yield
