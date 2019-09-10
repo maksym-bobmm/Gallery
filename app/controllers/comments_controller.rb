@@ -11,13 +11,13 @@ class CommentsController < ApplicationController
   def create
     current_user.comments.create!(comment_params)
     Log.create(user_id: current_user.id, url: request.referer, created_at: Time.now, action_id: 3)
-    redirect_to "#{images_path}/#{params[:comment][:image_id]}"
+    redirect_to image_path(params[:image_id])
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :image_id)
+    params.permit(:body, :image_id)
   end
 
   # TODO: NEED REFACTOR

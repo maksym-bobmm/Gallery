@@ -1,4 +1,4 @@
-.col-12.col-sm-9
+.col-12.col-sm-9.mt-5
   = image_tag "#{@image.path}", alt: @image[:path], class: 'w-100',
               'data-target': '#imageFullScreen', 'data-toggle': 'modal', type: 'button'
   #imageFullScreen.modal.fade{role: 'dialog', tabindex: '-1'}
@@ -7,17 +7,8 @@
         .modal-body
           = image_tag "#{@image.path}", alt: @image[:path], 'data-dismiss': 'modal', class: 'img-fluid'
 
-.container-fluid.col-12.col-sm-3
-  - if @image.comments.size == 0
-    %p= t(:'site.image.comment')
-  %button.btn.btn-info
-    - text = already_liked? ? t(:'site.image.unlike') : t(:'site.image.like')
-    - method = already_liked? ? :delete : :post
-    - path = already_liked? ? like_path : likes_path
-    = link_to text, path, method: method, remote: true, class: 'stretched-link text-decoration-none text-dark'
-    -#= @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
-    %span.badge.badge-light= @likes_count
-  %p.menu.pt-5
+.container-fluid.col-12.col-sm-3.mt-5
+  %p.menu.pt-5.text-center
     - if already_liked?
       = link_to image_tag( 'liked.svg', alt: t(:'site.image.unlike'), id: 'heart'),
                 like_path, method: :delete, remote: true
@@ -26,8 +17,30 @@
                 likes_path, method: :post, remote: true
     = @likes_count
     = @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
-    -#= @path_to_img
-- @image.comments.each do |comment|
-  %p
-    = comment&.body
-  = link_to t(:'site.image.new_comment'), new_comment_path(image_id: params[:id])
+
+  - if @image.comments.size == 0
+    %p= t(:'site.image.comment')
+  - else
+    - @image.comments.each do |comment|
+      .row
+        -#= byebug
+        .col-2
+          = image_tag comment.user.avatar.to_s, alt: 'avatar', width: 30
+        .col-10.d-inline-block
+          = comment.created_at.strftime "%F %R"
+          %p= comment&.body
+
+  -#%button.btn.btn-info
+  -#  - text = already_liked? ? t(:'site.image.unlike') : t(:'site.image.like')
+  -#  - method = already_liked? ? :delete : :post
+  -#  - path = already_liked? ? like_path : likes_path
+  -#  = link_to text, path, method: method, remote: true, class: 'stretched-link text-decoration-none text-dark'
+    -#= @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
+    %span.badge.badge-light= @likes_count
+  %p.menu.pt-5
+    = form_with model: @comment, url: comments_path, local: true do |f|
+      = f.label t(:'site.image.new_comment'), class: 'text-center'
+      = f.text_area_tag :body
+      = f.hidden_field :image_id, value: @image.id
+      = f.submit t(:'site.common.create')
+  -#= link_to t(:'site.image.new_comment'), new_comment_path(image_id: params[:id])
