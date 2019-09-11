@@ -172,6 +172,7 @@ ru:
       images: "Изображений"
       likes: "Лайков"
       comments: "Комментариев"
+      stat: "Статистика сайта"
   views:
     pagination:
       previous: "Предыдущая"
