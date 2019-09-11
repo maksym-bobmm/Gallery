@@ -7,17 +7,13 @@
       %li#carousel-indication4(data-target='#slider' data-slide-to='3')
       %li#carousel-indication5(data-target='#slider' data-slide-to='4')
     .carousel-inner
-      .carousel-item.active
-        = image_tag path_to_image(Image.order(:likes_count).reverse.first.path), class: 'd-block w-100'
-      .carousel-item
-        = image_tag path_to_image(Image.order(:likes_count).reverse.second.path), class: 'd-block w-100'
-      .carousel-item
-        = image_tag path_to_image(Image.order(:likes_count).reverse.third.path), class: 'd-block w-100'
-      .carousel-item
-        = image_tag path_to_image(Image.order(:likes_count).reverse.fourth.path), class: 'd-block w-100'
-      .carousel-item
-        = image_tag path_to_image(Image.order(:likes_count).reverse.fifth.path), class: 'd-block w-100'
-    %a.carousel-control-next(href='#slider' role='button' data-slide='next')
+      - find_popular_images.each_with_index do |image, index|
+        - if index == 0
+          .carousel-item.active
+        - else
+          .carousel-item
+            = image_tag path_to_image(image.path), class: 'd-block w-100'
+    %a.carousel-control-next.carousel-next-bg(href='#slider' role='button' data-slide='next')
       %span.carousel-control-next-icon
-    %a.carousel-control-prev.text-danger(href='#slider' role='button' data-slide='prev')
+    %a.carousel-control-prev.text-danger.carousel-prev-bg(href='#slider' role='button' data-slide='prev')
       %span.carousel-control-prev-icon.text-danger(style='color:red')

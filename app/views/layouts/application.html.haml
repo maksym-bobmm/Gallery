@@ -9,6 +9,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
+    -# Header
     %nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary
       .navbar-collapse.order-0.text-center
         .navbar-brand= t(:'site.menu.title')
@@ -58,6 +59,23 @@
     - if notice.present? || alert.present?
       %p.notice.text-center= notice
       %p.alert.text-center= alert
+    -# end of header
+
     .container-fluid
       .row
         = yield
+
+    -# footer
+    %footer.page-footer.font-small.bg-color.red
+      .container.text-center
+        .row
+          .col-md-12.mt-5
+            = link_to image_tag('facebook.svg', width: 40), 'www.facebook.com'
+            = link_to image_tag('twitter.svg', width: 40), 'www.twitter.com'
+            = link_to image_tag('instagram.svg', width: 40), 'www.instagram.com'
+            = link_to image_tag('vk.svg', width: 40), 'www.vk.ru'
+        .footer-copyright
+          %span © 2019 Copyright:
+          %a{href: 'https://powerful-peak-65522.herokuapp.com'} https://powerful-peak-65522.herokuapp.com
+
+    -# end of footer

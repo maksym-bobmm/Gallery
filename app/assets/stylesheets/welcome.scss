@@ -35,3 +35,9 @@
 //    column-count: 1;
 //  }
 //}
+.carousel-next-bg:hover{
+  background: linear-gradient(45deg, gray, transparent);
+}
+.carousel-prev-bg:hover{
+  background: linear-gradient(45deg, transparent, gray);
+}
