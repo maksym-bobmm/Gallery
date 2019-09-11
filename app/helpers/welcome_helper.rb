@@ -14,4 +14,20 @@ module WelcomeHelper
     end
     result_arr
   end
+
+  def count_categories
+    Category.all.size
+  end
+
+  def count_images
+    Image.all.size
+  end
+
+  def count_likes
+    Like.all.size
+  end
+
+  def count_comments
+    Comment.all.size
+  end
 end

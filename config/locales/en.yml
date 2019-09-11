@@ -219,6 +219,11 @@ en:
       sign_out: "Sign out"
       sure: "Are you sure?"
       add: "Add"
+    stat:
+      categories: "Categories"
+      images: "Images"
+      likes: "Likes"
+      comments: "Comments"
   views:
     pagination:
       previous: "Previous"
@@ -233,3 +238,5 @@ en:
       edit: "Edit user"
       avatar: "Avatar"
       profile: "Profile"
+
+

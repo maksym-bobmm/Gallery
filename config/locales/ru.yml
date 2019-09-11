@@ -167,6 +167,11 @@ ru:
       sign_out: "Выход"
       sure: "Вы уверены?"
       add: "Добавить"
+    stat:
+      categories: "Категорий"
+      images: "Изображений"
+      likes: "Лайков"
+      comments: "Комментариев"
   views:
     pagination:
       previous: "Предыдущая"
