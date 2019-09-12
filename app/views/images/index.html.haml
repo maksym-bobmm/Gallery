@@ -1,9 +1,20 @@
-.col-9
-  .card-columns
+-#.col-12.col-lg-9
+-#  .card-columns
+-#    - @images.each do |img|
+-#      .card.w-auto
+-#        = link_to image_tag( "#{img.path.thumb}", alt: img[:path], class: 'card-img-top' ),
+-#                  image_path(img), class: 'stretched-link'
+-#  .container.d-flex.justify-content-center
+-#    = paginate @images, theme: 'twitter-bootstrap-4'
+-#= render 'share/sidebar'
+
+
+.col-12.col-lg-9
+  .row
     - @images.each do |img|
-      .card.w-auto
-        = link_to image_tag( "#{img.path.thumb}", alt: img[:path], class: 'card-img-top' ),
-                  image_path(img), class: 'stretched-link'
+      .qwe{style: 'flex-grow: auto;'}
+        = link_to image_tag( "#{img.path.thumb}", alt: img[:path], style: ' object-fit: fill;' ),
+                  image_path(img), style: ''
   .container.d-flex.justify-content-center
     = paginate @images, theme: 'twitter-bootstrap-4'
 = render 'share/sidebar'
