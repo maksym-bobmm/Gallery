@@ -49,34 +49,35 @@
     -#      = count_comments
     -#    .stat-name
     -#      = t(:'site.stat.comments')
-  .qwe
-    %h2.text-center.text-warning= t(:'site.stat.stat')
-    .row.w-100
-      .col.column-v-center
-        .card.bg-info.text-center.card-container
-          .card-body.vsize-50
-            %h5.card-header.counting{'data-count': count_categories}
-              = count_categories
-            %h5.card-text
-              = t(:'site.stat.categories')
-      .col.column-v-center
-        .card.bg-info.text-center.card-container
-          .card-body.vsize-50
-            %h5.card-header.counting{'data-count': count_images}
-              = count_images
-            %h5.card-text
-              = t(:'site.stat.images')
-      .col.column-v-center
-        .card.bg-info.text-center.card-container
-          .card-body.vsize-50
-            %h5.card-header.counting{'data-count': count_likes}
-              = count_likes
-            %h5.card-text
-              = t(:'site.stat.likes')
-      .col.column-v-center
-        .card.bg-info.text-center.card-container
-          .card-body.vsize-50
-            %h5.card-header.counting{'data-count': count_comments}
-              = count_comments
-            %h5.card-text
-              = t(:'site.stat.comments')
+
+
+  .row.w-100.img-background
+    %h2.text-center.w-100.stat-title.text-warning= t(:'site.stat.stat')
+    .col.column-v-center
+      .card.bg-info.text-center.card-container
+        .card-body.vsize-50
+          %h5.card-header.counting{'data-count': count_categories}
+            = count_categories
+          %h5.card-text
+            = t(:'site.stat.categories')
+    .col.column-v-center
+      .card.bg-info.text-center.card-container
+        .card-body.vsize-50
+          %h5.card-header.counting{'data-count': count_images}
+            = count_images
+          %h5.card-text
+            = t(:'site.stat.images')
+    .col.column-v-center
+      .card.bg-info.text-center.card-container
+        .card-body.vsize-50
+          %h5.card-header.counting{'data-count': count_likes}
+            = count_likes
+          %h5.card-text
+            = t(:'site.stat.likes')
+    .col.column-v-center
+      .card.bg-info.text-center.card-container
+        .card-body.vsize-50
+          %h5.card-header.counting{'data-count': count_comments}
+            = count_comments
+          %h5.card-text
+            = t(:'site.stat.comments')
