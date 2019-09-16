@@ -27,6 +27,13 @@ gem 'i18n', '~> 1.6'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'bootstrap4-kaminari-views', '~> 1.0', '>= 1.0.1'
+gem 'figaro'
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-passenger', '>= 0.1.1'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
+gem 'capistrano-figaro-yml', '~> 1.0.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
