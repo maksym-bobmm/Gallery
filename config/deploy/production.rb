@@ -1,8 +1,8 @@
-role :app, %w{deploy_user@18.196.0.219}
-role :web, %w{deploy_user@18.196.0.219}
-role :db,  %w{deploy_user@18.196.0.219}
+role :app, %w{ubuntu@18.196.0.219}
+role :web, %w{ubuntu@18.196.0.219}
+role :db,  %w{ubuntu@18.196.0.219}
 set :ssh_options, {
-    keys: %w(~ demo.pem),
+    keys: %w(~/demo.pem),
     forward_agent: false,
     auth_methods: %w(publickey password)
 }

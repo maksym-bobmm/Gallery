@@ -2,7 +2,7 @@
 lock "~> 3.11.1"
 
 set :application, "gallery"
-set :repo_url, "https://github.com/maksym-bobmm/Gallery.git"
+set :repo_url, "git@github.com:maksym-bobmm/Gallery.git"
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 set :rvm_ruby_version, '2.6.3'
 set :passenger_restart_with_touch, true
