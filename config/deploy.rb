@@ -4,7 +4,7 @@ lock "~> 3.11.1"
 set :application, "gallery"
 set :rails_env, 'production'
 set :repo_url, "git@github.com:maksym-bobmm/Gallery.git"
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'assets/images/categories')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'assets/images/categories/*')
 set :rvm_ruby_version, '2.6.3'
 set :passenger_restart_with_touch, true
 set :ssh_options, { :verbose => :debug }
