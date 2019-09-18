@@ -1,6 +1,6 @@
 namespace :task do
   task :insert => :environment do
-    folder_path = File.join(Rails.root, 'assets', 'images', 'categories/')
+    folder_path = File.join(Rails.root, 'app', 'assets', 'images', 'categories/')
     Dir.entries(folder_path).reject{|f| f=~/^(\.|\.\.)$/}.each do |item|
       unless item.to_i.to_s == item # Not numeric name
         category = Category.create!(owner_id: 1, name: item)
