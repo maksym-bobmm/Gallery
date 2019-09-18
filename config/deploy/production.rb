@@ -2,8 +2,8 @@ role :app, %w{ubuntu@18.196.0.219}
 role :web, %w{ubuntu@18.196.0.219}
 role :db,  %w{ubuntu@18.196.0.219}
 set :ssh_options, {
-    keys: %w(~/demo.pem),
-    forward_agent: false,
+    # keys: %w(~/demo.pem),
+    forward_agent: true,
     auth_methods: %w(publickey password)
 }
 # server-based syntax
