@@ -8,7 +8,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :rvm_ruby_version, '2.6.3'
 set :passenger_restart_with_touch, true
 set :ssh_options, { :verbose => :debug }
-set :branch, 'dev'
+set :branch, 'amazon'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
