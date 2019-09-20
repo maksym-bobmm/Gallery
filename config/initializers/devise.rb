@@ -307,6 +307,6 @@ Devise.setup do |config|
   # config.omniauth :facebook, "APP_ID", "APP_SECRET"
   # url = Rails.env.production? ? 'https://powerful-peak-65522.herokuapp.com' : 'http://localhost:3000'
   url = 'https://ec2-18-196-0-219.eu-central-1.compute.amazonaws.com'
-  config.omniauth :facebook, ENV.fetch('FACEBOOK_APPID'), ENV.fetch('FACEBOOK_SECRET'),
+  config.omniauth :facebook, Figaro.env.FACEBOOK_APPID, Figaro.env.FACEBOOK_SECRET,
                   callback_url: "#{url}/users/auth/facebook/callback"
 end
