@@ -81,7 +81,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'ec2-18-196-0-219.eu-central-1.compute.amazonaws.com' }
+  config.action_mailer.default_url_options = { host: Figaro.env.EMAIL_DEFAULT_URL }
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
       :address =>"smtp.gmail.com",
