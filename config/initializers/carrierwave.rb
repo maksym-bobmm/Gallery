@@ -2,7 +2,7 @@ CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'
   config.fog_credentials = {
       provider: 'AWS',                             # required
-      aws_access_key_id: Figaro.env.S3_KEY ,           # required
+      aws_access_key_id: Figaro.env.S3_KEY,           # required
       aws_secret_access_key: Figaro.env.S3_SECRET,     # required
       region: Figaro.env.S3_REGION                        # optional, defaults to 'us-east-1'
   }
