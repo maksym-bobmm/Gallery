@@ -44,8 +44,8 @@ Rails.application.configure do
       :address =>"smtp.gmail.com",
       :port => 587,
       :domain => "gmail.com",
-      :user_name => ENV.fetch('MAILER_EMAIL'),
-      :password => ENV.fetch('MAILER_PASSWORD'),
+      :user_name => Figaro.env.MAILER_EMAIL,
+      :password => Figaro.env.MAILER_PASSWORD,
       :authentication => 'plain',
       :enable_starttls_auto => true
   }
