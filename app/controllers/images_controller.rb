@@ -23,7 +23,7 @@ class ImagesController < ApplicationController
 
   def create
     @category.images.create(image_params) unless image_params.empty?
-    # Resque.enqueue(EmailJob, @category.id)
+    Resque.enqueue(EmailJob, @category.id)
     # UserMailer.with(category: @category).new_image_in_category.deliver_later
     redirect_to @category
   end
