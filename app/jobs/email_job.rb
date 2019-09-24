@@ -5,7 +5,7 @@ class EmailJob
   @queue = :email
 
   def self.perform(category_id)
-    UserMailer.with(category_id: category_id).new_image_in_category.deliver_later
+    UserMailer.with(category_id: category_id).new_image_in_category.deliver
     # TODO: DO THE SAME WITH THIS FORMAT
     # ActionMailer::Base.mail(to: 'maksym.bobmm@gmail.com', subject: 'New Image on your subscriptions') do |format|
     #   format.text { render plain: "Welcome" }
