@@ -3,7 +3,7 @@
 # user model
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
-  # validates_presence_of :first_name
+  validates_presence_of :email #:first_name
   has_many :categories, dependent: :destroy, foreign_key: 'owner_id'
   has_many :comments
   has_many :likes, dependent: :delete_all

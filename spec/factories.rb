@@ -7,11 +7,24 @@ FactoryBot.define do
   factory :category do
     user
     name {'test'}
+
+    factory :category_id do
+      before(:create) do |category|
+        create(:user, id: category.owner_id)
+      end
+    end
   end
   factory :image do
     category
     path { Rails.root.join('app', 'assets', 'images', 'categories', 'cars', '239145_main.jpg').open }
+
+    factory :image_id do
+      before(:create) do |img|
+        create(:category, id: img.category_id)
+      end
+    end
   end
+
   factory :comment do
     user
     image
