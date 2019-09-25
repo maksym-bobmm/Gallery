@@ -34,6 +34,7 @@ gem 'capistrano-passenger', '>= 0.1.1'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'capistrano-figaro-yml', '~> 1.0.2'
+gem 'faker'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
