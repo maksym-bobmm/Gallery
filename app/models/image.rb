@@ -2,6 +2,7 @@
 
 # image model
 class Image < ApplicationRecord
+  validates_presence_of :path
   mount_uploader :path, ImageUploader
   paginates_per 10
   belongs_to :category
