@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class for change site locale
 class LocalesController < ApplicationController
   def update
     if user_signed_in?

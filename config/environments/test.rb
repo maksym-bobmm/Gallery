@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
-  # your test database is "scratch space" for the test suite and is wiped
+  # your test database is 'scratch space' for the test suite and is wiped
   # and recreated between test runs. Don't rely on the data there!
   config.cache_classes = true
 
@@ -32,6 +34,22 @@ Rails.application.configure do
   config.active_storage.service = :test
 
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: Figaro.env.EMAIL_DEFAULT_URL }
+  config.action_mailer.default charset: 'utf-8'
+
+  config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'gmail.com',
+      user_name: Figaro.env.MAILER_EMAIL,
+      password: Figaro.env.MAILER_PASSWORD,
+      authentication: 'plain',
+      enable_starttls_auto: true
+  }
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
