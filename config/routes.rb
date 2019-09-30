@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions',
                                               confirmations: 'users/confirmations' }
   resources :categories
-  resources :images,        except: %i[edit update delete]
-  resources :comments,       only: %i[new create]
+  resources :images,        except: %i[new edit update destroy]
+  resources :comments,      only: %i[new create]
   resources :likes,         only: %i[create destroy]
   resources :subscriptions, only: %i[create destroy]
   resource  :locales,       only: %i[update]

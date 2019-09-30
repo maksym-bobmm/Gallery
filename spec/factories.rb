@@ -13,7 +13,7 @@ FactoryBot.define do
     name { 'test' }
 
       factory :category_with_owner_id do
-        before(:create) { |category| create(:user, id: category.owner_id) }
+        before(:create) { |category| User.find_by(id: category.owner_id) || create(:user, id: category.owner_id) }
       end
   end
 
@@ -48,6 +48,11 @@ FactoryBot.define do
       factory :subscription_with_category_id do
         before(:create) { |subscription| create(:category, id: subscription.category_id) }
       end
+    # factory :subscription_with_user_id_category_id do
+    #   before(:create) do |subscription|
+    #     if(User.find_by(id: subscription.user_id) && )
+    #   end
+    # end
   end
 
   factory :like do

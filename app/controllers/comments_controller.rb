@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   def create
     current_user.comments.create!(comment_params)
     Log.create(user_id: current_user.id, url: request.referer, created_at: Time.now, action_id: 3)
-    redirect_to image_path(params[:image_id])
+    redirect_to image_path(@image)
   end
 
   private

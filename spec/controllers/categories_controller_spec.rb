@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/shared/controller_helpers'
 
 RSpec.describe CategoriesController, type: :controller do
   subject { create(:category) }
@@ -13,27 +14,27 @@ RSpec.describe CategoriesController, type: :controller do
     end
     it 'should redirect to sign in on category#new' do
       get :new
-      assert_response :redirect
+      assert_redirect_and_redirected_to_sign_in
     end
     it 'should redirect to sign in on category#create' do
       post :create
-      assert_response :redirect
+      assert_redirect_and_redirected_to_sign_in
     end
     it 'should redirect to sign in on category#destroy' do
       delete :destroy, params: { id: subject.id }
-      assert_response :redirect
+      assert_redirect_and_redirected_to_sign_in
     end
     it 'should redirect to sign in on category#edit' do
       get :edit, params: { id: subject.id }
-      assert_response :redirect
+      assert_redirect_and_redirected_to_sign_in
     end
     it 'should redirect to sign in on category#update with patch method' do
       patch :update, params: { id: subject.id }
-      assert_response :redirect
+      assert_redirect_and_redirected_to_sign_in
     end
     it 'should redirect to sign in on category#update with put method' do
       put :update, params: { id: subject.id }
-      assert_response :redirect
+      assert_redirect_and_redirected_to_sign_in
     end
   end
   context 'test that signed in user' do
@@ -54,7 +55,7 @@ RSpec.describe CategoriesController, type: :controller do
       assert_response :success
     end
     it 'should get success on category#create' do
-      post :create
+      post :create, params: { name: Faker::Lorem.word }
       assert_response :redirect
       assert_redirected_to categories_path
     end
