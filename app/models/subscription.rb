@@ -2,6 +2,7 @@
 
 # subscription model
 class Subscription < ApplicationRecord
+  validates_presence_of :user, :category
   belongs_to :user
   belongs_to :category
 

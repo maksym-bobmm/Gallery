@@ -214,10 +214,9 @@ Devise.setup do |config|
   # change their passwords.
   config.reset_password_within = 6.hours
 
-
   config.lock_strategy = :failed_attempts
   config.maximum_attempts = 10
-  config.unlock_keys = [ :email ]
+  config.unlock_keys = [:email]
   config.unlock_strategy = :both
   config.unlock_in = 1.hours
   # When set to false, does not sign a user in automatically after their password is

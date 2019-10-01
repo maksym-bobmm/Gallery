@@ -3,7 +3,7 @@
 # image controller class
 class ImagesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
-  before_action :set_category
+  before_action :find_category,      only: %i[create]
 
   def show
     # @comments = Array.new
@@ -13,9 +13,9 @@ class ImagesController < ApplicationController
     @path_to_img = ActionController::Base.helpers.path_to_image('liked.svg')
   end
 
-  def new
-    @image = Image.new
-  end
+  # def new
+  #   @image = Image.new
+  # end
 
   def index
     @images = Image.all.order(:likes_count).reverse_order.page(params[:page]).per(12)
@@ -34,7 +34,7 @@ class ImagesController < ApplicationController
     params.permit(:path, :name, :filename, :picture)
   end
 
-  def set_category
+  def find_category
     @category = Category.find(params[:cat_id]) if params[:cat_id]
   end
 end
