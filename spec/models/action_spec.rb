@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Action, type: :model do
+  subject { create(:action) }
+  let(:permitted_activities) { ['navigation', 'likes', 'comments', 'user sign in', 'user sign out'] }
   context 'validation test' do
-    subject { create(:action) }
-    let(:permitted_activities) { ['navigation', 'likes', 'comments', 'user sign in', 'user sign out'] }
     it 'ensures that action valid with valid attributes' do
       expect(subject.valid?).to be true
     end
@@ -26,6 +26,14 @@ RSpec.describe Action, type: :model do
       permitted_activities.each do |action|
         expect { Action.find_by(activity: action) }.to_not raise_error
       end
+    end
+  end
+  context 'method' do
+    it 'to_s is a string' do
+      expect(subject.to_s.class).to be String
+    end
+    it 'to_s returns value is included in the permitted_activities' do
+      expect(permitted_activities).to include(subject.to_s)
     end
   end
 end

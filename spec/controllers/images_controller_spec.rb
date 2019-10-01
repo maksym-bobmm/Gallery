@@ -43,4 +43,9 @@ RSpec.describe ImagesController, type: :controller do
       assert_response :success
     end
   end
+  context 'method' do
+    it 'to_s is a string' do
+      expect(image.to_s.class).to be String
+    end
+  end
 end

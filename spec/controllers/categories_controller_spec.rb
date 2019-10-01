@@ -21,7 +21,7 @@ RSpec.describe CategoriesController, type: :controller do
       assert_redirect_and_redirected_to_sign_in
     end
     it 'should redirect to sign in on category#destroy' do
-      delete :destroy, params: { id: subject.id }
+      delete :destroy, params: { id: subject.id}
       assert_redirect_and_redirected_to_sign_in
     end
     it 'should redirect to sign in on category#edit' do
@@ -55,7 +55,7 @@ RSpec.describe CategoriesController, type: :controller do
     #   assert_response :success
     # end
     it 'should get success on category#create' do
-      post :create, params: { name: Faker::Lorem.word }
+      post :create, params: { name: Faker::Lorem.word, fake: 123 }
       assert_response :redirect
       assert_redirected_to categories_path
     end

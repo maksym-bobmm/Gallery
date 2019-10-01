@@ -9,6 +9,6 @@ class Image < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :delete_all
   def to_s
-    path
+    path.to_s
   end
 end
