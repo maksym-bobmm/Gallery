@@ -12,10 +12,10 @@ RSpec.describe CategoriesController, type: :controller do
       get :show, params: { id: subject.id }
       assert_response :success
     end
-    it 'should redirect to sign in on category#new' do
-      get :new
-      assert_redirect_and_redirected_to_sign_in
-    end
+    # it 'should redirect to sign in on category#new' do
+    #   get :new
+    #   assert_redirect_and_redirected_to_sign_in
+    # end
     it 'should redirect to sign in on category#create' do
       post :create
       assert_redirect_and_redirected_to_sign_in
@@ -50,10 +50,10 @@ RSpec.describe CategoriesController, type: :controller do
       get :show, params: { id: subject.id }
       assert_response :success
     end
-    it 'should get success on category#new' do
-      get :new
-      assert_response :success
-    end
+    # it 'should get success on category#new' do
+    #   get :new
+    #   assert_response :success
+    # end
     it 'should get success on category#create' do
       post :create, params: { name: Faker::Lorem.word }
       assert_response :redirect
@@ -80,4 +80,10 @@ RSpec.describe CategoriesController, type: :controller do
       assert_redirected_to categories_path
     end
   end
+  # context 'has not null instance variable' do
+  #   it '@category on category#show' do
+  #     expect(@controller.instance_variable_get(:@category)).to wont_be_nil
+  #     expect(@controller.instance_variable_get(:@subscription_exist)).to wont_be_nil
+  #   end
+  # end
 end

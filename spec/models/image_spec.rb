@@ -27,12 +27,12 @@ RSpec.describe Image, type: :model do
     it 'ensures that likes does not exist after drop image' do
       create(:like_with_image_id, image_id: id)
       Image.find(id).destroy
-      expect(Like.where(image_id: id).count).to eq(0)
+      expect(Like.where(image_id: id).count).to be_zero
     end
     it 'ensures that comments does not exist after drop image' do
       create(:comment_with_image_id, image_id: id)
       Image.find(id).destroy
-      expect(Comment.where(image_id: id).count).to eq(0)
+      expect(Comment.where(image_id: id).count).to be_zero
     end
   end
 end

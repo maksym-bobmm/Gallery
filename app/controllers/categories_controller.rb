@@ -8,13 +8,14 @@ class CategoriesController < ApplicationController
   def index; end
 
   def show
+    # byebug
     @category = Category.find(params[:id])
     @subscription_exist = current_user.subscriptions.find_by(category_id: @category.id).present? if user_signed_in?
   end
 
-  def new
-    @category = Category.new
-  end
+  # def new
+  #   @category = Category.new(name: 'test')
+  # end
 
   def create
     if current_user.categories.create!(name: category_params[:name])

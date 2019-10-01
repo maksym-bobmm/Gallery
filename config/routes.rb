@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions',
                                               confirmations: 'users/confirmations' }
-  resources :categories
+  resources :categories,    except: %i[new]
   resources :images,        except: %i[new edit update destroy]
   resources :comments,      only: %i[new create]
   resources :likes,         only: %i[create destroy]

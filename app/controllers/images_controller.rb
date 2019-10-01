@@ -3,7 +3,7 @@
 # image controller class
 class ImagesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
-  before_action :find_category,       only: %i[create]
+  before_action :find_category,      only: %i[create]
 
   def show
     # @comments = Array.new

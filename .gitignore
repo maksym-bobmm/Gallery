@@ -34,3 +34,5 @@ config/database.yml
 /config/application.yml
 # Ignore temp folter for images creating on tests
 public/test_images/
+#Ignore simplecov gem folder
+coverage/
