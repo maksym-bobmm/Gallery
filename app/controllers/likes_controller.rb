@@ -26,7 +26,7 @@ class LikesController < ApplicationController
 
   def find_image
     id = category_params[:img_id] || Rails.application.routes.recognize_path(request.referrer)[:id]
-    @image = Image.find(id)
+    @image = Image.friendly.find(id)
     # @image = Image.find(Rails.application.routes.recognize_path(request.referrer)[:id])
   end
 

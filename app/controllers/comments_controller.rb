@@ -23,6 +23,6 @@ class CommentsController < ApplicationController
   # TODO: NEED REFACTOR
   def find_image
     img_id = params[:image_id] || params[:comment][:image_id]
-    @image = Image.find(img_id)
+    @image = Image.friendly.find(img_id)
   end
 end

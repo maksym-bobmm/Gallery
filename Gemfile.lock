@@ -172,6 +172,8 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    friendly_id (5.3.0)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.1.1)
@@ -472,6 +474,7 @@ DEPENDENCIES
   faker
   figaro
   fog-aws
+  friendly_id
   haml
   haml-rails (~> 2.0)
   i18n (~> 1.6)
@@ -505,4 +508,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

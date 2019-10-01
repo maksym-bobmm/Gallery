@@ -36,7 +36,7 @@ ActiveAdmin.register Image do
       else
         img.path = params[:image][:path]
       end
-      img.category = Category.find(params[:image][:category_id]) if params[:image][:category_id].present?
+      img.category = Category.friendly.find(params[:image][:category_id]) if params[:image][:category_id].present?
       img.save
       redirect_to admin_image_path(img)
     end

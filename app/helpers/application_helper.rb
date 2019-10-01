@@ -4,7 +4,7 @@
 module ApplicationHelper
   def find_categories_rating
     category_with_rating = []
-    Category.find_each do |category|
+    Category.friendly.find_each do |category|
       sum = category.images.length
       category.images.each do |image|
         sum += image.likes_count
