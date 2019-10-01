@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
   def navigation
     return unless user_signed_in?
-    return if request.referrer&.include? 'admin'
+    return if request.url&.include? 'admin'
 
     Log.create(user_id: current_user.id, url: url_for, created_at: Time.now, action_id: 1)
   end

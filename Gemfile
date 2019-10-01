@@ -36,6 +36,7 @@ gem 'capistrano-passenger', '>= 0.1.1'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'capistrano-figaro-yml', '~> 1.0.2'
+gem 'faker'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -84,7 +85,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'simplecov', require: false
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   # gem 'chromedriver-helper'

@@ -2,9 +2,9 @@
 
 # subscription controller class
 class SubscriptionsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create]
-  before_action :find_category, only: %i[create destroy]
-  after_action  :send_email,    only: %i[create destroy]
+  before_action :authenticate_user!, only: %i[create destroy]
+  before_action :find_category,      only: %i[create destroy]
+  after_action  :send_email,         only: %i[create destroy]
 
   def create
     @category.subscriptions.create(user_id: current_user.id)
@@ -24,6 +24,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def find_category
-    @category = Category.find Rails.application.routes.recognize_path(request.referrer)[:id]
+    @category = Category.find_by(id: params['id']) ||
+                Category.find(Rails.application.routes.recognize_path(request.referrer)[:id])
   end
 end
