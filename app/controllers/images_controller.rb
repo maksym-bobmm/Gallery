@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
 
   def show
     # @comments = Array.new
-    @image = Image.find(params[:id])
+    @image = Image.friendly.find(params[:id])
     @comments = Comment.find_by(image_id: @image.id)
     @likes_count = @image.likes.count
     @path_to_img = ActionController::Base.helpers.path_to_image('liked.svg')
@@ -35,6 +35,6 @@ class ImagesController < ApplicationController
   end
 
   def set_category
-    @category = Category.find(params[:cat_id]) if params[:cat_id]
+    @category = Category.friendly.find(params[:cat_id]) if params[:cat_id]
   end
 end

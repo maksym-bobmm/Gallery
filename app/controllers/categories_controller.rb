@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   def index; end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
     @subscription_exist = current_user.subscriptions.find_by(category_id: @category.id).present? if user_signed_in?
   end
 
@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def update
-    return unless current_user.categories.find(params[:id]).update(name: params[:name])
+    return unless current_user.categories.friendly.find(params[:id]).update(name: params[:name])
 
     redirect_to categories_path
   end

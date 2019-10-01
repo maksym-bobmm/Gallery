@@ -24,6 +24,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def find_category
-    @category = Category.find Rails.application.routes.recognize_path(request.referrer)[:id]
+    @category = Category.friendly.find Rails.application.routes.recognize_path(request.referrer)[:id]
   end
 end
