@@ -5,7 +5,7 @@ RSpec.describe ImagesController, type: :controller do
   subject { create(:image) }
   let(:image) { create(:image) }
   context 'test that not signed in user' do
-    it 'get success on image#index' do
+    it 'gets success on image#index' do
       get :index
       assert_response :success
     end
@@ -13,11 +13,11 @@ RSpec.describe ImagesController, type: :controller do
     #   get :new
     #   assert_redirect_and_redirected_to_sign_in
     # end
-    it 'get redirect to sign_in page on image#create' do
+    it 'redirects to sign_in page on image#create' do
       post :create
       assert_redirect_and_redirected_to_sign_in
     end
-    it 'get success on image#show' do
+    it 'gets success on image#show' do
       get :show, params: { id: subject.id }
       assert_response :success
     end
@@ -25,7 +25,7 @@ RSpec.describe ImagesController, type: :controller do
   context 'test signed in user' do
     let(:user) { create(:user) }
     before(:each) { sign_in user }
-    it 'get success on image#index' do
+    it 'gets success on image#index' do
       get :index
       assert_response :success
     end
@@ -33,18 +33,18 @@ RSpec.describe ImagesController, type: :controller do
     #   get :new
     #   assert_response :success
     # end
-    it 'get redirect on image#create' do
+    it 'redirects on image#create' do
       post :create, params: { cat_id: image.category }
       assert_response :redirect
       assert_redirected_to @controller.instance_variable_get(:@category)
     end
-    it 'get success on image#show' do
+    it 'gets success on image#show' do
       get :show, params: { id: subject.id }
       assert_response :success
     end
   end
   context 'method' do
-    it 'to_s is a string' do
+    it 'to_s returns a string' do
       expect(image.to_s.class).to be String
     end
   end

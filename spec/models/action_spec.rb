@@ -29,10 +29,10 @@ RSpec.describe Action, type: :model do
     end
   end
   context 'method' do
-    it 'to_s is a string' do
+    it 'to_s returns a string' do
       expect(subject.to_s.class).to be String
     end
-    it 'to_s returns value is included in the permitted_activities' do
+    it 'to_s returns value that included in the permitted_activities' do
       expect(permitted_activities).to include(subject.to_s)
     end
   end

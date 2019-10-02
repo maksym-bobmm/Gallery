@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :switch_locale
 
+  private
+
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || categories_path
   end
@@ -29,8 +31,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
     devise_parameter_sanitizer.permit(:account_update, keys: added_attrs)
   end
-
-  private
 
   def navigation
     return unless user_signed_in?

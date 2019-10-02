@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   context 'validation test' do
     subject { create(:category) }
-    it 'valid with valid attributes' do
+    it 'is valid with valid attributes' do
       expect(subject).to be_valid
     end
     it 'ensures that owner_id exist' do
