@@ -13,14 +13,8 @@
   .row
     - @images.each do |img|
       .qwe{style: 'flex-grow: auto;'}
-        = image_tag img.path.thumb.to_s, alt: img[:path], style: ' object-fit: fill;',
-          'data-target': '#imageFullScreen', 'data-toggle': 'modal', type: 'button', 'data-id': img.id, onclick: "ChangeImagePath(this)"
-    #imageFullScreen.modal.fade{role: 'dialog', tabindex: '-1'}
-      .modal-dialog.modal-dialog-centered.text-center.modal-lg{role: 'document'}
-        .modal-content.w-auto
-          .modal-body
-            -#= byebug
-            = image_tag('', alt: 'qwe', 'data-dismiss': 'modal', class: 'img-fluid', id: 'modalPlace')
+        = link_to image_tag( "#{img.path.thumb}", alt: img[:path], style: ' object-fit: fill;' ),
+                  image_path(img), style: ''
   .container.d-flex.justify-content-center
     = paginate @images, theme: 'twitter-bootstrap-4'
 = render 'share/sidebar'

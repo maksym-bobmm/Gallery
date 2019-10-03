@@ -22,13 +22,3 @@
 //     // });
 //     alert(#{@path_to_img})
 // });
-
-// function myFunction(){
-//     $('#myModal').modal(options)
-// }
-function ChangeImagePath(el) {
-    var src = el.src;
-    src_full = src.replace('thumb_', '');
-    var modalImg = document.getElementById("modalPlace");
-    modalImg.src = src_full;
-}
