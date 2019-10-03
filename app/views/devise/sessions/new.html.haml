@@ -3,13 +3,13 @@
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .form-group.text-center
       = f.label :email
-      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', name: 'sign_in-email'
+      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', id: 'sign_in-email'
     .form-group.text-center
-      = f.label :password, name: 'sign_in[:pass]'
-      = f.password_field :password, autocomplete: 'current-password', class: 'form-control', name: 'sign_in-pass'
+      = f.label :password
+      = f.password_field :password, autocomplete: 'current-password', class: 'form-control', id: 'sign_in-pass'
     - if devise_mapping.rememberable?
       .form-group.form-check.text-center
-        = f.check_box :remember_me, class: 'form-check-input', name: 'sign_in-remember'
+        = f.check_box :remember_me, class: 'form-check-input', id: 'sign_in-remember'
         = f.label :remember_me, class: 'form-check-label text-center' do
           = resource.class.human_attribute_name('remember_me')
     - if User.find_by_email(resource.email)
@@ -17,6 +17,6 @@
         .text-center.d-flex.justify-content-center
           = recaptcha_tags
     .form-group.text-center.justify-content-sm-center
-      = f.submit  t('.sign_in'), class: 'btn btn-primary', name: 'sign_in-button'
+      = f.submit  t('.sign_in'), class: 'btn btn-primary', id: 'sign_in-button'
   .text-center
     = render 'devise/shared/links'
