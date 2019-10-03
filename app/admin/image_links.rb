@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register ImageLink do
   config.filters = false
   permit_params do
@@ -22,8 +24,8 @@ ActiveAdmin.register ImageLink do
       qwe = asd.css('img/@src')
       qwe.each do |src|
         if src.value[/.+(jpg|jpeg)$/].present?
-          uri = URI.join( url, src ).to_s # make absolute uri
-          div link_to image_tag(uri), new_admin_image_path(:remote_path_url => "#{uri}")
+          uri = URI.join(url, src).to_s # make absolute uri
+          div link_to image_tag(uri), new_admin_image_path(remote_path_url: uri.to_s)
         end
       end
     end
