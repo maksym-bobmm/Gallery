@@ -8,6 +8,11 @@ class Category < ApplicationRecord
   belongs_to :user, foreign_key: 'owner_id'
   has_many :images, dependent: :destroy
   has_many :subscriptions, dependent: :delete_all
+
+  # def should_generate_new_friendly_id?
+  #   title_changed?
+  # end
+
   # def to_s
   #   self.category.name
   # end

@@ -56,13 +56,11 @@ RSpec.describe CategoriesController, type: :controller do
     # end
     it 'gets success on category#create' do
       post :create, params: { name: Faker::Lorem.word, fake: 123 }
-      assert_response :redirect
-      assert_redirected_to categories_path
+      assert_redirect_and_redirected_to categories_path
     end
     it 'gets success on category#destroy' do
       delete :destroy, params: { id: subject.id }
-      assert_response :redirect
-      assert_redirected_to categories_path
+      assert_redirect_and_redirected_to categories_path
     end
     it 'gets success on category#edit' do
       get :edit, params: { id: subject.id }
@@ -70,13 +68,11 @@ RSpec.describe CategoriesController, type: :controller do
     end
     it 'gets success on category#update with PATCH method' do
       patch :update, params: { id: subject.id, name: Faker::Lorem.word }
-      assert_response :redirect
-      assert_redirected_to categories_path
+      assert_redirect_and_redirected_to categories_path
     end
     it 'gets success on category#update with PUT method' do
       put :update, params: { id: subject.id, name: Faker::Lorem.word }
-      assert_response :redirect
-      assert_redirected_to categories_path
+      assert_redirect_and_redirected_to categories_path
     end
   end
   # context 'has not null instance variable' do
