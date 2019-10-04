@@ -213,6 +213,7 @@ en:
       unlike: "unlike"
       add: "Add image"
       comment: "There are no comments yet... Add the first!"
+      list: "Images"
     common:
       create: "create"
       sign_in: "Sign in"

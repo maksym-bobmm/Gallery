@@ -46,13 +46,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  Capybara.register_driver :selenium do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
-  end
   Capybara.configure do |config|
     # seconds
     config.default_max_wait_time = 10
-    config.default_driver = :selenium
+    config.default_driver = :selenium_chrome_headless
   end
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
