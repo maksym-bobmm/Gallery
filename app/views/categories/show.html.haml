@@ -3,9 +3,11 @@
     %h1.mr-5{style: 'display:inline'}= @category.name
     %span
       - if subscribed?
-        = link_to 'unsubscribe', subscription_path, method: :delete, class: 'btn btn-secondary d-table-cell'
+        = link_to 'unsubscribe', subscription_path, method: :delete, class: 'btn btn-secondary d-table-cell',
+                  id: 'category-unsubscribe'
       - else
-        = link_to 'subscribe', subscriptions_path, method: :post, class: 'btn btn-secondary d-table-cell'
+        = link_to 'subscribe', subscriptions_path, method: :post, class: 'btn btn-secondary d-table-cell',
+                  id: 'category-subscribe'
     %br
     = link_to t(:'site.image.add'), '#createCategory', class: 'btn btn-primary w-auto wt-3 mt-3',
       'data-toggle': 'collapse', role: 'button', id: 'image-button_collapse'
