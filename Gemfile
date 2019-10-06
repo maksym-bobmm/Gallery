@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -34,6 +36,8 @@ gem 'capistrano-passenger', '>= 0.1.1'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'capistrano-figaro-yml', '~> 1.0.2'
+gem 'faker'
+gem 'friendly_id'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -65,7 +69,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  # For tests and rails console
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
 end
 
 group :development do
@@ -76,14 +83,17 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'simplecov', require: false
+  gem 'webdrivers'
   gem 'selenium-webdriver'
+  gem 'capybara'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
+  gem 'rspec'
+  gem 'database_cleaner', '~> 1.7'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

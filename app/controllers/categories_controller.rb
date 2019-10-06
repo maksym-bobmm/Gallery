@@ -8,13 +8,13 @@ class CategoriesController < ApplicationController
   def index; end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
     @subscription_exist = current_user.subscriptions.find_by(category_id: @category.id).present? if user_signed_in?
   end
 
-  def new
-    @category = Category.new
-  end
+  # def new
+  #   @category = Category.new(name: 'test')
+  # end
 
   def create
     if current_user.categories.create(name: category_params[:name])
@@ -25,16 +25,20 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    category = current_user.categories.where(id: params[:id])
-    return unless category.first.present?
-
-    redirect_to categories_path if category.first.destroy
+    begin
+      current_user.categories.friendly.find(params[:id]).destroy
+    rescue ActiveRecord::RecordNotFound
+      redirect_to categories_path(error: 'no instance')
+    rescue
+      redirect_to categories_path(error: 'undefined error')
+    end
+    redirect_to categories_path
   end
 
   def edit; end
 
   def update
-    return unless current_user.categories.find(params[:id]).update(name: params[:name])
+    return unless current_user.categories.friendly.find(params[:id]).update(name: params[:name])
 
     redirect_to categories_path
   end
@@ -44,6 +48,4 @@ class CategoriesController < ApplicationController
   def category_params
     params.permit(:name)
   end
-
-
 end

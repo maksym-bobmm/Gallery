@@ -2,6 +2,8 @@
 
 # log model
 class Log < ApplicationRecord
+  validates_presence_of :action, :user
+  validates :url, format: { with: /\Ahttp[s]?.*/ }, presence: true
   belongs_to :user
   belongs_to :action
 

@@ -1,10 +1,12 @@
-role :app, %w{ubuntu@18.196.0.219}
-role :web, %w{ubuntu@18.196.0.219}
-role :db,  %w{ubuntu@18.196.0.219}
+# frozen_string_literal: true
+
+role :app, %w[ubuntu@ec2-18-195-52-225.eu-central-1.compute.amazonaws.com]
+role :web, %w[ubuntu@ec2-18-195-52-225.eu-central-1.compute.amazonaws.com]
+role :db,  %w[ubuntu@ec2-18-195-52-225.eu-central-1.compute.amazonaws.com]
 set :ssh_options, {
     # keys: %w(~/demo.pem),
     forward_agent: true,
-    auth_methods: %w(publickey password)
+    auth_methods: %w[publickey password]
 }
 # server-based syntax
 # ======================
@@ -14,8 +16,6 @@ set :ssh_options, {
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
-
 
 # role-based syntax
 # ==================
@@ -29,8 +29,6 @@ set :ssh_options, {
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -38,8 +36,6 @@ set :ssh_options, {
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================
