@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-role :app, %w[ubuntu@18.196.0.219]
-role :web, %w[ubuntu@18.196.0.219]
-role :db,  %w[ubuntu@18.196.0.219]
+role :app, %w[ubuntu@ec2-18-195-52-225.eu-central-1.compute.amazonaws.com]
+role :web, %w[ubuntu@ec2-18-195-52-225.eu-central-1.compute.amazonaws.com]
+role :db,  %w[ubuntu@ec2-18-195-52-225.eu-central-1.compute.amazonaws.com]
 set :ssh_options, {
     # keys: %w(~/demo.pem),
     forward_agent: true,
