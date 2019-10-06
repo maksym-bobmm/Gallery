@@ -17,4 +17,7 @@ class Image < ApplicationRecord
   def name
     path.to_s.match(/\/[a-zA-Z0-_.\-]*\z/)
   end
+  # def should_generate_new_friendly_id?
+  #   title_changed?
+  # end
 end

@@ -35,8 +35,7 @@ RSpec.describe ImagesController, type: :controller do
     # end
     it 'redirects on image#create' do
       post :create, params: { cat_id: image.category }
-      assert_response :redirect
-      assert_redirected_to @controller.instance_variable_get(:@category)
+      assert_redirect_and_redirected_to @controller.instance_variable_get(:@category)
     end
     it 'gets success on image#show' do
       get :show, params: { id: subject.id }

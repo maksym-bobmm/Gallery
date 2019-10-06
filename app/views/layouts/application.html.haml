@@ -16,47 +16,47 @@
         .navbar-brand= t(:'site.menu.title')
         %ul.navbar-nav.ml-auto
           %li.active.nav-item
-            %a.nav-link(href=root_path)= t(:'site.menu.main')
+            %a.nav-link(href=root_path id='menu-main')= t(:'site.menu.main')
           %li.nav-item
-            %a.nav-link.pr-0(href=categories_path)= t(:'site.menu.categories')
+            %a.nav-link.pr-0(href=categories_path id='menu-categories')= t(:'site.menu.categories')
 
           %li.nav-item.dropdown.pr-2
-            %a.nav-link.dropdown-toggle.text-center(href='#' role='button' data-toggle='dropdown')
+            %a.nav-link.dropdown-toggle.text-center(href='#' role='button' data-toggle='dropdown' id='menu-category_list_main')
             .dropdown-menu.bg-secondary.text-center
-              - find_categories_rating.first(5).each do |category|
+              - find_categories_rating.first(5).each_with_index do |category, index|
                 = link_to category[:category].name, category_path(category[:category]),
-                          class: 'dropdown-item bg-secondary text-white'
+                          class: 'dropdown-item bg-secondary text-white', id: "menu-category_list_#{index}"
           %li.nav-item
-            %a.nav-link.pl-0(href=images_path)= t(:'site.menu.images')
+            %a.nav-link.pl-0(href=images_path id='menu-images')= t(:'site.menu.images')
           %li.nav-item
             %a.nav-link(href=admin_root_path)= t(:'site.menu.admin')
 
       .navbar-collapse.order-1
         %ul.navbar-nav.ml-auto
           %li.nav-item.dropdown.pr-3
-            = link_to image_tag("#{find_locale}.png", alt: params[:locale], width: 40), '#',
+            = link_to image_tag("#{find_locale}.png", alt: params[:locale], width: 40), '#', id: 'menu-locale_main',
                       role: 'button', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle text-center'
             .dropdown-menu.bg-secondary.w-auto
-              - %w[en ru].each do |lang|
+              - %w[en ru].each_with_index do |lang, index|
                 - unless find_locale == lang
                   = link_to image_tag(lang + '.png', alt: lang, width: 40), locales_path(locale: lang), method: :put,
-                            controller: :locales, action: :update,
+                            controller: :locales, action: :update, id: "menu-locale_#{index}",
                             class: 'dropdown-item bg-secondary text-white text-center'
           - if user_signed_in?
             %li.nav-item.dropdown.pr-3
-              = link_to image_tag(avatar_to_display, alt: 'profile', width: 30), '#',
+              = link_to image_tag(avatar_to_display, alt: 'profile', width: 30), '#', id: 'menu-profile_main',
                         role: 'button', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle text-center'
               .dropdown-menu.bg-secondary.w-auto
-                = link_to t(:'views.register.profile'), edit_user_registration_path,
+                = link_to t(:'views.register.profile'), edit_user_registration_path, id: 'menu-profile_profile',
                           class: 'nav-link text-center bg-secondary dropdown-item'
-                = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete,
+                = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete, id: 'menu-profile-sign_out',
                           class: 'nav-link text-center bg-secondary dropdown-item'
           %li.nav-item
             - if user_signed_in?
-              = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete,
+              = link_to t(:'site.common.sign_out'), destroy_user_session_path, method: :delete, id: 'menu-sign_out',
                         class: 'nav-link text-center text-uppercase'
             - else
-              = link_to t(:'site.common.sign_in'), new_user_session_path, class: 'nav-link text-center'
+              = link_to t(:'site.common.sign_in'), new_user_session_path, class: 'nav-link text-center', id: 'menu-sign_in'
     - if notice.present? || alert.present?
       %p.notice.text-center= notice
       %p.alert.text-center= alert

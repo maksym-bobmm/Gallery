@@ -4,9 +4,11 @@
 module WelcomeHelper
   def find_popular_images
     images = Image.order(:likes_count).reverse
+    return if images.empty?
+
     index = 0
     result_arr = []
-    while result_arr.size < 5
+    while result_arr.size < images.size
       result_arr << images[index] if images[index].path.width > images[index].path.height
       index += 1
     end

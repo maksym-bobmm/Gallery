@@ -3,18 +3,20 @@
     %h1.mr-5{style: 'display:inline'}= @category.name
     %span
       - if subscribed?
-        = link_to 'unsubscribe', subscription_path, method: :delete, class: 'btn btn-secondary d-table-cell'
+        = link_to 'unsubscribe', subscription_path, method: :delete, class: 'btn btn-secondary d-table-cell',
+                  id: 'category-unsubscribe'
       - else
-        = link_to 'subscribe', subscriptions_path, method: :post, class: 'btn btn-secondary d-table-cell'
+        = link_to 'subscribe', subscriptions_path, method: :post, class: 'btn btn-secondary d-table-cell',
+                  id: 'category-subscribe'
     %br
     = link_to t(:'site.image.add'), '#createCategory', class: 'btn btn-primary w-auto wt-3 mt-3',
-      'data-toggle': 'collapse', role: 'button'
+      'data-toggle': 'collapse', role: 'button', id: 'image-button_collapse'
     #createCategory.collapse
       .form-group.container.mt-2
         = form_with model: @image, url: images_path, local: true do |f|
-          = f.file_field :path
+          = f.file_field :path, id: 'image-file_pick'
           = f.hidden_field :cat_id, value:  params[:id]
-          = f.submit t(:'site.common.add'), class: 'btn btn-primary'
+          = f.submit t(:'site.common.add'), class: 'btn btn-primary', id: 'image-add_button'
   - @category.images.each do |image|
     = link_to(image_tag( "#{image.path.thumb}", alt: image[:path], class: 'p-1'), image_path(image))
   -#.qwe

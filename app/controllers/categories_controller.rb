@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
   # end
 
   def create
-    if current_user.categories.create!(name: category_params[:name])
+    if current_user.categories.create(name: category_params[:name])
       redirect_to categories_path
     else
       redirect_to new_category_path
@@ -25,10 +25,14 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    category = current_user.categories.where(id: params[:id])
-    return unless category.first.present?
-
-    redirect_to categories_path if category.first.destroy!
+    begin
+      current_user.categories.friendly.find(params[:id]).destroy
+    rescue ActiveRecord::RecordNotFound
+      redirect_to categories_path(error: 'no instance')
+    rescue
+      redirect_to categories_path(error: 'undefined error')
+    end
+    redirect_to categories_path
   end
 
   def edit; end
