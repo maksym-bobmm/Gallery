@@ -6,13 +6,13 @@ RSpec.feature "Subscription tests check that", type: :feature do
     let(:category) { create(:category) }
     before(:each) { sign_in user }
     it 'can subscribe on category' do
-      visit image_path(category)
+      visit category_path(category)
       click_link 'category-subscribe'
 
       assert_text 'unsubscribe'
     end
     it 'can unsubscribe from category' do
-      visit image_path(category)
+      visit category_path(category)
       click_link 'category-unsubscribe'
 
       assert_text 'subscribe'

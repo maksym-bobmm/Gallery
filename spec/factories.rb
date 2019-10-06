@@ -72,7 +72,7 @@ FactoryBot.define do
 
   factory :log do
     user
-    Action.find_by(id: [*1..5].sample) || action
+    action { Action.find_by(id: [*1..5].sample) || action }
     url { 'http://localhost:3000/images?locale=en' }
   end
 end
