@@ -8,7 +8,8 @@ module CategoriesHelper
 
   def subscribed?
     return false unless user_signed_in?
-
-    current_user.subscriptions.where(category_id: params[:id]).exists?
+    # byebug
+    # current_user.subscriptions.where(category_id: params[:id]).exists?
+    Category.friendly.find(params['id']).subscriptions.where(user_id: current_user.id).exists?
   end
 end
