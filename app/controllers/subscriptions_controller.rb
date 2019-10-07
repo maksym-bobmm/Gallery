@@ -7,6 +7,9 @@ class SubscriptionsController < ApplicationController
   after_action  :send_email,         only: %i[create destroy]
 
   def create
+    byebug
+    return if @category.subscriptions.find_by(user_id: current_user.id)
+
     @category.subscriptions.create(user_id: current_user.id)
     redirect_to category_path(@category)
   end
