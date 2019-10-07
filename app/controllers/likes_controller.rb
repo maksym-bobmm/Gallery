@@ -7,7 +7,8 @@ class LikesController < ApplicationController
   after_action  :logging,     only: %i[create destroy]
 
   def create
-    # byebug
+    return if @image.likes.find_by(user_id: current_user.id)
+
     @image.likes.create(user_id: current_user.id)
     redirect_to image_path(@image)
   end
