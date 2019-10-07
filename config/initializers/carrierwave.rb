@@ -16,6 +16,8 @@ CarrierWave.configure do |config|
 
   if Rails.env.production?
     config.storage = :fog
+  elsif Rails.env.development?
+    config.storage = :file
   else
     config.storage = :file
     config.enable_processing = false
