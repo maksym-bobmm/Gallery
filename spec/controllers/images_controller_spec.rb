@@ -48,7 +48,7 @@ RSpec.describe ImagesController, type: :controller do
   end
   context 'test checks that' do
     context 'images#show variable' do
-      before(:each) { get :show, params: { id: image.id } }
+      before(:each) { |test| get :show, params: { id: image.id } unless test.metadata[:signing_in] }
       it '@image isn`t nil`' do
         expect(@controller.instance_variable_get(:@image)).to_not be_nil
       end
@@ -57,6 +57,20 @@ RSpec.describe ImagesController, type: :controller do
       end
       it '@path_to_img isn`t nil`' do
         expect(@controller.instance_variable_get(:@image)).to_not be_nil
+      end
+      it '@like_exist is true if like exist', :signing_in do
+        sign_in image.category.user
+        create(:like, image_id: image.id, user_id: image.category.user.id)
+        get :show, params: { id: image.id }
+        expect(@controller.instance_variable_get(:@like_exist)).to be true
+      end
+      it '@like_exist is false if like not exist', :signing_in do
+        sign_in image.category.user
+        get :show, params: { id: image.id }
+        expect(@controller.instance_variable_get(:@like_exist)).to be false
+      end
+      it '@like_exist is false if user not signed in' do
+        expect(@controller.instance_variable_get(:@like_exist)).to be false
       end
     end
 
