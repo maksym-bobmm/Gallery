@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'support/shared/controller_helpers'
 
 RSpec.describe ImagesController, type: :controller do
-  subject { create(:image) }
   let(:image) { create(:image) }
   context 'test that not signed in user' do
     it 'gets success on image#index' do
@@ -18,7 +17,7 @@ RSpec.describe ImagesController, type: :controller do
       assert_redirect_and_redirected_to_sign_in
     end
     it 'gets success on image#show' do
-      get :show, params: { id: subject.id }
+      get :show, params: { id: image.id }
       assert_response :success
     end
   end
@@ -38,7 +37,7 @@ RSpec.describe ImagesController, type: :controller do
       assert_redirect_and_redirected_to @controller.instance_variable_get(:@category)
     end
     it 'gets success on image#show' do
-      get :show, params: { id: subject.id }
+      get :show, params: { id: image.id }
       assert_response :success
     end
   end
@@ -46,5 +45,20 @@ RSpec.describe ImagesController, type: :controller do
     it 'to_s returns a string' do
       expect(image.to_s.class).to be String
     end
+  end
+  context 'test checks that' do
+    context 'images#show variable' do
+      before(:each) { get :show, params: { id: image.id } }
+      it '@image isn`t nil`' do
+        expect(@controller.instance_variable_get(:@image)).to_not be_nil
+      end
+      it '@likes_count is >= 0' do
+        expect(@controller.instance_variable_get(:@likes_count)).to be >= 0
+      end
+      it '@path_to_img isn`t nil`' do
+        expect(@controller.instance_variable_get(:@image)).to_not be_nil
+      end
+    end
+
   end
 end
