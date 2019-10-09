@@ -3,6 +3,7 @@
 # application helper
 module ApplicationHelper
   def find_categories_rating
+    Rails.logger.debug "\033[32mSTART-OOOOOOOOOOOOOOOOOOOOOO application helper\033[0m"
     category_with_rating = []
     Category.friendly.find_each do |category|
       sum = category.images.length
@@ -12,6 +13,8 @@ module ApplicationHelper
       end
       category_with_rating << { category: category, rating: sum }
     end
+    Rails.logger.debug "\033[32mEND-OOOOOOOOOOOOOOOOOOOOOOOO application helper\033[0m"
+    byebug
     category_with_rating.sort_by { |hash| hash[:rating] }.reverse
   end
 
