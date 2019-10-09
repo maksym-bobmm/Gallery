@@ -1,14 +1,14 @@
 .col-12
-  - if find_popular_images&.size&.positive?
+  - if @top_popular_images&.size&.positive?
     .carousel.slide#slider(data-ride='carousel')
       %ol.carousel-indicators
-        - find_popular_images.each_with_index do |_, index|
+        - @top_popular_images.each_with_index do |_, index|
           - if index == 0
             %li.active(data-target='#slider' data-slide-to=index)
           - else
             %li(data-target='#slider' data-slide-to=index)
       .carousel-inner
-        - find_popular_images.each_with_index do |image, index|
+        - @top_popular_images.each_with_index do |image, index|
           - if index == 0
             .carousel-item.active
               = image_tag path_to_image(image.path), class: 'd-block w-100'
@@ -25,28 +25,28 @@
     .col.column-v-center.bl
       .card.bg-info.text-center.card-container
         .card-body.vsize-50
-          %h5.card-header.counting.number{'data-count': count_categories, id: 'statistics-categories'}
-            = count_categories
+          %h5.card-header.counting.number{'data-count': @categories_count, id: 'statistics-categories'}
+            = @categories_count
           %h5.card-text.text
             = t(:'site.stat.categories')
     .col.column-v-center.bl
       .card.bg-info.text-center.card-container
         .card-body.vsize-50
-          %h5.card-header.counting.number{'data-count': count_images, id: 'statistics-images'}
-            = count_images
+          %h5.card-header.counting.number{'data-count': @images_count, id: 'statistics-images'}
+            = @images_count
           %h5.card-text.text
             = t(:'site.stat.images')
     .col.column-v-center.bl
       .card.bg-info.text-center.card-container
         .card-body.vsize-50
-          %h5.card-header.counting.number{'data-count': count_likes, id: 'statistics-likes'}
-            = count_likes
+          %h5.card-header.counting.number{'data-count': @likes_count, id: 'statistics-likes'}
+            = @likes_count
           %h5.card-text.text
             = t(:'site.stat.likes')
     .col.column-v-center.bl
       .card.bg-info.text-center.card-container
         .card-body.vsize-50
-          %h5.card-header.counting.number{'data-count': count_comments, id: 'statistics-comments'}
-            = count_comments
+          %h5.card-header.counting.number{'data-count': @comments_count, id: 'statistics-comments'}
+            = @comments_count
           %h5.card-text.text
             = t(:'site.stat.comments')

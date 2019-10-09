@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   resources :subscriptions, only: %i[create destroy]
   resource  :locales,       only: %i[update]
   root 'welcome#index'
-  mount Resque::Server.new, at: '/resque'
+  mount Resque::Server.new, at: '/resque' unless Rails.env.production?
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
