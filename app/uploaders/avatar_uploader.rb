@@ -10,11 +10,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [50, 50]
 
   def move_to_cache
-    true
+    false
   end
 
   def move_to_store
-    true
+    false
   end
 
   def extension_whitelist

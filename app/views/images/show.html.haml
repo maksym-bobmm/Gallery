@@ -1,4 +1,5 @@
 .col-12.col-sm-9.mt-5
+  = Rails.logger.fatal 'ImagesView#show, @categories_with_rating is present' if Rails.logger.level == 4 && @categories_with_rating.present?
   = image_tag "#{@image.path}", alt: @image[:path], class: 'w-100',
               'data-target': '#imageFullScreen', 'data-toggle': 'modal', type: 'button'
   #imageFullScreen.modal.fade{role: 'dialog', tabindex: '-1'}
@@ -23,7 +24,6 @@
   - else
     - @image.comments.each do |comment|
       .row
-        -#= byebug
         .col-2
           = image_tag comment.user.avatar.to_s, alt: 'avatar', width: 30
         .col-10.d-inline-block

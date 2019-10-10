@@ -50,7 +50,7 @@ class User < ApplicationRecord
   #   parent.table[:id]
   # end
 
-  # def to_s
-  #   self.email
-  # end
+  def to_s
+    self.email
+  end
 end

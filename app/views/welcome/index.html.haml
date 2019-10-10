@@ -1,4 +1,6 @@
 .col-12
+  = Rails.logger.fatal 'WelcomeView#index' if Rails.logger.level == 4
+  = Rails.logger.fatal 'WelcomeView#index, @categories_with_rating is present' if Rails.logger.level == 4 && @categories_with_rating.present?
   - if @top_popular_images&.size&.positive?
     .carousel.slide#slider(data-ride='carousel')
       %ol.carousel-indicators

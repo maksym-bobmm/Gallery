@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
   # before_action :authenticate_user!
 
   def index
+    Rails.logger.fatal 'WelcomeController#index'
     @top_popular_images = find_popular_images
     @categories_count = Category.all.size
     @images_count = Image.all.size
@@ -14,8 +15,9 @@ class WelcomeController < ApplicationController
 
   private
 
-  # TODO check why only 4 images in array. Expect 5
+  # FIXME check why only 4 images in array. Expect 5
   def find_popular_images
+    Rails.logger.fatal 'WelcomeController#find_popular_images'
     Rails.logger.info "\033[32mSTART-AAAAAAAAAA!! Its searching popular images withing ALL ones\033[0m"
     images = Image.order(likes_count: :desc).limit(5)
     return if images.empty?
@@ -27,7 +29,6 @@ class WelcomeController < ApplicationController
       index += 1
     end
     Rails.logger.info "\033[32mEND-AAAAAAAAAA!! Its searching popular images withing ALL ones\033[0m"
-    # byebug
     result_arr
   end
 end

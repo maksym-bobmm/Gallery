@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.feature "Subscription tests checks that", type: :feature do
   let(:category) { create(:category) }
   context 'unsigned in user' do
-    scenario 'gets sign_in page after subsribe try' do
+    scenario 'gets sign_in page after subscribe try' do
       visit category_path(category)
+      Rails.logger.fatal 'before click' # if Rails.logger.level == 4
       click_link 'category-subscribe'
 
       assert_text 'Sign in'

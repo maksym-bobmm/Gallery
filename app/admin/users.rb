@@ -29,6 +29,5 @@ ActiveAdmin.register User do
   filter :email
   filter :created_at
   filter :updated_at
-  # byebug
   filter :provider
 end
