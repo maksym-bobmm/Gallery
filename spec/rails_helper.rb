@@ -40,7 +40,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
-  config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Devise::Test::ControllerHelpers, type: :helper
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -48,9 +48,10 @@ RSpec.configure do |config|
 
   Capybara.configure do |config|
     # seconds
-    config.default_max_wait_time = 10
+    config.default_max_wait_time = 5
     config.default_driver = :selenium_chrome_headless
   end
+  Capybara.server = :puma, { Silent: true }
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

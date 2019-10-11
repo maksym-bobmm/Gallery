@@ -16,6 +16,10 @@ RSpec.describe Like, type: :model do
       subject.image_id = nil
       expect(subject.valid?).to be false
     end
+    it 'ensures that user can set only one like' do
+      second_like = build(:like, user_id: subject.user.id, image_id: subject.user.id)
+      expect { second_like.save! }.to raise_error ActiveRecord::RecordInvalid
+    end
   end
 
   context 'associations test' do

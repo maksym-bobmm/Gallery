@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :user, aliases: %i[admin admin_user] do
+  factory :admin, class: AdminUser do
+    email { Faker::Internet.email }
+    password { 'password' }
+  end
+  factory :user do
     email { Faker::Internet.email }
     password { 'password' }
     password_confirmation { 'password' }
     confirmed_at { Time.now }
+
+      factory :user_with_avatar do
+        avatar { Rails.root.join('app', 'assets', 'images', 'categories', 'cars', '239145_main.jpg').open }
+      end
   end
 
   factory :category do
@@ -72,7 +80,7 @@ FactoryBot.define do
 
   factory :log do
     user
-    Action.find_by(id: [*1..5].sample) || action
+    action { Action.find_by(id: [*1..5].sample) || association(:action) }
     url { 'http://localhost:3000/images?locale=en' }
   end
 end

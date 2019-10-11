@@ -5,16 +5,21 @@ class LikesController < ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
   before_action :find_image,  only: %i[create destroy]
   after_action  :logging,     only: %i[create destroy]
+  # after_action :set_likes_count_to_redis, only: %i[create destroy]
 
   def create
-    # byebug
-    @image.likes.create(user_id: current_user.id)
+    return if @image.likes.find_by(user_id: current_user.id)
+
+    if @image.likes.create(user_id: current_user.id)
+      set_likes_count_to_redis
+    end
     redirect_to image_path(@image)
   end
 
   def destroy
-    # byebug
-    @image.likes.find_by(user_id: current_user.id).destroy
+    if @image.likes.find_by(user_id: current_user.id).destroy
+      set_likes_count_to_redis
+    end
     redirect_to image_path(@image)
   end
 
@@ -33,4 +38,9 @@ class LikesController < ApplicationController
   def category_params
     params.permit(:img_id)
   end
+
+  def set_likes_count_to_redis
+    Redis.new.set("image:#{@image.id}:likes_count", @image.likes_count, ex: 180)
+  end
+
 end

@@ -16,6 +16,10 @@ RSpec.describe Subscription, type: :model do
       subject.category_id = nil
       expect(subject.valid?).to be false
     end
+    it 'ensures that user can add only one subscription to category' do
+      second_subscription = build(:subscription, user_id: subject.user.id, category_id: subject.category.id)
+      expect { second_subscription.save! }.to raise_error ActiveRecord::RecordInvalid
+    end
   end
 
   context 'associations test' do

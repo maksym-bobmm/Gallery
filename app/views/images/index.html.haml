@@ -10,6 +10,7 @@
 
 
 .col-12.col-lg-9
+  = Rails.logger.fatal 'ImagesView#index, @categories_with_rating is present' if Rails.logger.level == 4 && @categories_with_rating.present?
   %h3.text-center= t(:'site.image.list')
   .row
     - @images.each do |img|
