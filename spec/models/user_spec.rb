@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  subject { create(:user) }
   context 'validation test' do
-    subject { create(:user) }
     it 'is valid with valid attributes' do
       expect(subject.valid?).to be true
     end
@@ -32,6 +32,14 @@ RSpec.describe User, type: :model do
     it 'ensures that user have a category after create one' do
       create(:category_with_owner_id, id: id, owner_id: id)
       expect { User.find(id).categories.find(id) }.to_not raise_error
+    end
+  end
+  context 'method' do
+    it 'to_s must return string' do
+      expect(subject.to_s.class).to be String
+    end
+    it 'to_s must be an email format' do
+      expect(subject.to_s).to match /\w{1}[\w\d]+\.?[\w\d]+@{1}\w+\.\w+/
     end
   end
 end

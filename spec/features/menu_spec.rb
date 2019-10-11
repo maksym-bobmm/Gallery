@@ -4,12 +4,12 @@ RSpec.feature 'Menu test', type: :feature do
   context 'check links' do
     let(:user) { create(:user) }
     before(:each) { sign_in user }
-    scenario 'category' do
+    scenario 'categories' do
       visit '/'
       click_link 'menu-categories'
       assert_text 'category list'
     end
-    scenario 'category' do
+    scenario 'category from popular categories list' do
       category = create(:category)
       visit '/'
       click_link 'menu-category_list_main'

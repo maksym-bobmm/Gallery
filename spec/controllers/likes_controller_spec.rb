@@ -19,12 +19,18 @@ RSpec.describe LikesController, type: :controller do
     context 'test signed in user' do
       before(:each) { sign_in user }
       it 'redirects to image on likes#create' do
+        subject.destroy
         post :create, params: { img_id: image.id }
         assert_redirect_and_redirected_to image_path(image)
       end
       it 'redirects on likes#destroy' do
         delete :destroy, params: { id: subject.id, img_id: image.id }
         assert_redirect_and_redirected_to image_path(image)
+      end
+      it 'does not add new like record if an exist one' do
+        expect do
+          post :create, params: { img_id: image.id }
+        end.to_not change(Like, :count)
       end
     end
 end

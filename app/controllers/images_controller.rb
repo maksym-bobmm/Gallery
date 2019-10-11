@@ -1,16 +1,23 @@
 # frozen_string_literal: true
 
 # image controller class
+require 'redis'
 class ImagesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
   before_action :find_category,      only: %i[create]
 
   def show
-    # @comments = Array.new
+    redis = Redis.new
     @image = Image.friendly.find(params[:id])
-    @comments = Comment.find_by(image_id: @image.id)
-    @likes_count = @image.likes.count
+    @likes_count = redis.get("image:#{@image.id}:likes_count") || @image.likes.size
     @path_to_img = ActionController::Base.helpers.path_to_image('liked.svg')
+    @like_exist =
+        if user_signed_in?
+          Image.friendly.find(params['id']).likes.where(user_id: current_user.id).exists?
+        else
+          false
+        end
+
   end
 
   # def new
@@ -18,7 +25,7 @@ class ImagesController < ApplicationController
   # end
 
   def index
-    @images = Image.all.order(:likes_count).reverse_order.page(params[:page]).per(12)
+    @images = Image.all.order(likes_count: :desc).page(params[:page]).per(12)
   end
 
   def create

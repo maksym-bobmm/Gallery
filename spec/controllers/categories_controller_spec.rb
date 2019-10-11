@@ -3,7 +3,7 @@ require 'support/shared/controller_helpers'
 
 RSpec.describe CategoriesController, type: :controller do
   subject { create(:category) }
-  context 'test that unsigned in user' do
+  context 'test checks that unsigned in user' do
     it 'gets success on category#index page' do
       get :index
       assert_response :success
@@ -37,7 +37,7 @@ RSpec.describe CategoriesController, type: :controller do
       assert_redirect_and_redirected_to_sign_in
     end
   end
-  context 'test that signed in user' do
+  context 'test checks that signed in user' do
     let(:user) { subject.user }
     before(:each) { sign_in user }
     after(:each) { sign_out user }
@@ -75,10 +75,26 @@ RSpec.describe CategoriesController, type: :controller do
       assert_redirect_and_redirected_to categories_path
     end
   end
-  # context 'has not null instance variable' do
-  #   it '@category on category#show' do
-  #     expect(@controller.instance_variable_get(:@category)).to wont_be_nil
-  #     expect(@controller.instance_variable_get(:@subscription_exist)).to wont_be_nil
-  #   end
-  # end
+  context 'test checks that instance variable' do
+    it '@category isn`t nil on category#show' do
+      get :show, params: { id: subject.id }
+      expect(@controller.instance_variable_get(:@category)).not_to be_nil
+      # expect(@controller.instance_variable_get(:@subscription_exist)).to wont_be_nil
+    end
+    it '@subscription_exist is true if subscription exist' do
+      sign_in subject.user
+      create(:subscription, category_id: subject.id, user_id: subject.user.id)
+      get :show, params: { id: subject.id }
+      expect(@controller.instance_variable_get(:@subscription_exist)).to be true
+    end
+    it '@subscription_exist is false if subscription does not exist' do
+      sign_in subject.user
+      get :show, params: { id: subject.id }
+      expect(@controller.instance_variable_get(:@subscription_exist)).to be false
+    end
+    it '@subscription_exist is false if user not signed in' do
+      get :show, params: { id: subject.id }
+      expect(@controller.instance_variable_get(:@subscription_exist)).to be false
+    end
+  end
 end

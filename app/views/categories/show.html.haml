@@ -2,7 +2,7 @@
   .container.mb-5
     %h1.mr-5{style: 'display:inline'}= @category.name
     %span
-      - if subscribed?
+      - if @subscription_exist
         = link_to 'unsubscribe', subscription_path, method: :delete, class: 'btn btn-secondary d-table-cell',
                   id: 'category-unsubscribe'
       - else
@@ -18,10 +18,5 @@
           = f.hidden_field :cat_id, value:  params[:id]
           = f.submit t(:'site.common.add'), class: 'btn btn-primary', id: 'image-add_button'
   - @category.images.each do |image|
-    = link_to(image_tag( "#{image.path.thumb}", alt: image[:path], class: 'p-1'), image_path(image))
-  -#.qwe
-  -#  = form_with model: @image, url: images_path, local: true do |f|
-  -#    = f.file_field :path
-  -#    = f.hidden_field :cat_id, value:  params[:id]
-  -#    = f.submit
+    = link_to(image_tag(image.path.thumb.to_s, alt: image[:path], class: 'p-1'), image_path(image))
 = render'share/sidebar'

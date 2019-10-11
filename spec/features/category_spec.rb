@@ -19,8 +19,6 @@ RSpec.feature "Categories", type: :feature do
     scenario 'deleted by signed in user' do
       visit 'categories/'
       click_link 'delete'
-      # byebug
-      # page.accept_confirm { visit 'categories/' }
       page.driver.browser.switch_to.alert.accept
 
       expect(page).to_not have_content category.name

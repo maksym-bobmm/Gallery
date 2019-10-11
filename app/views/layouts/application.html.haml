@@ -11,6 +11,8 @@
   %body
     -# Header
     -#.container-fluid
+    = Rails.logger.fatal 'layouts/application' if Rails.logger.level == 4
+    = Rails.logger.fatal 'layouts/application, @categories_with_rating is present' if Rails.logger.level == 4 && @categories_with_rating.present?
     %nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary
       .navbar-collapse.order-0.text-center
         .navbar-brand= t(:'site.menu.title')
