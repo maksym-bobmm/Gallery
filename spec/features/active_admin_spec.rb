@@ -59,9 +59,8 @@ RSpec.feature "ActiveAdmins", type: :feature do
     before(:each) { sign_in admin }
     it 'filter can filter by user' do
       visit admin_categories_path
-      user = category.user
-      select category.user.email, from: 'q[resource_type_eq]'
-      click 'Filter'
+      select text = category.user.email, from: 'q_owner_id'
+      click_link 'Filter'
 
       within '#main_content' do
         assert_text category.user.email

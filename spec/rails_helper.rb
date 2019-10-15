@@ -49,7 +49,7 @@ RSpec.configure do |config|
   Capybara.configure do |config|
     # seconds
     config.default_max_wait_time = 5
-    config.default_driver = :selenium_chrome
+    config.default_driver = :selenium_chrome_headless
   end
   Capybara.server = :puma, { Silent: true }
   # RSpec Rails can automatically mix in different behaviours to your tests
