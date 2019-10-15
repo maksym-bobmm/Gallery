@@ -45,9 +45,9 @@ class ApplicationController < ActionController::Base
 
   def find_categories_rating
     Rails.logger.fatal 'ApplicationHelper#find_categories_rating' if Rails.logger.level == 4
-    Rails.logger.debug "\033[32mSTART-OOOOOOOOOOOOOOOOOOOOOO application helper\033[0m"
+    Rails.logger.debug "\033[32mSTART application_controller#find_categories_rating\033[0m"
     category_with_rating = []
-    Category.friendly.find_each do |category|
+    Category.friendly.includes(:images).find_each do |category|
       sum = category.images.length
       category.images.each do |image|
         sum += image.likes_count
@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
       end
       category_with_rating << { category: category, rating: sum }
     end
-    Rails.logger.debug "\033[32mEND-OOOOOOOOOOOOOOOOOOOOOOOO application helper\033[0m"
+    Rails.logger.debug "\033[32mEND application_controller#find_categories_rating\033[0m"
     category_with_rating.sort_by { |hash| hash[:rating] }.reverse
   end
 end
