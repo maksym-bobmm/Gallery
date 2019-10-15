@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "ActiveAdmins", type: :feature do
-  context 'test checks that' do
+  context 'test checks that menu`s' do
     let(:admin) { create(:admin) }
     before(:each) { sign_in admin }
     it 'dashboard page can be accessed' do
@@ -50,6 +50,20 @@ RSpec.feature "ActiveAdmins", type: :feature do
       visit admin_users_path
       within '#title_bar' do
         assert_text 'Users'
+      end
+    end
+  end
+  context 'test checks that category' do
+    let!(:category) { create(:category) }
+    let(:admin) { create(:admin) }
+    before(:each) { sign_in admin }
+    it 'filter can filter by user' do
+      visit admin_categories_path
+      select text = category.user.email, from: 'q_owner_id'
+      click_link 'Filter'
+
+      within '#main_content' do
+        assert_text category.user.email
       end
     end
   end

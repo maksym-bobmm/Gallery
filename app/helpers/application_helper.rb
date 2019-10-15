@@ -4,17 +4,17 @@
 module ApplicationHelper
   def find_categories_rating
     Rails.logger.fatal 'ApplicationHelper#find_categories_rating' if Rails.logger.level == 4
-    Rails.logger.debug "\033[32mSTART-OOOOOOOOOOOOOOOOOOOOOO application helper\033[0m"
+    Rails.logger.debug "\033[32mSTART application_helper#find_categories_rating\033[0m"
     category_with_rating = []
-    Category.friendly.find_each do |category|
+    Category.friendly.includes(:images).find_each do |category|
         sum = find_category_rating(category)
         category_with_rating << { category: category, rating: sum }
     end
-    Rails.logger.debug "\033[32mEND-OOOOOOOOOOOOOOOOOOOOOOOO application helper\033[0m"
+    Rails.logger.debug "\033[32mEND application_helper#find_categories_rating\033[0m"
     category_with_rating.sort_by { |hash| hash[:rating] }.reverse
   end
   def find_category_rating(category)
-    sum = category.images.length
+    sum = category.images.size
     category.images.each do |image|
       sum += image.likes_count
       sum += image.comments_count
