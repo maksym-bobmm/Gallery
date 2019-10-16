@@ -5,9 +5,15 @@ class ApplicationController < ActionController::Base
   prepend_after_action :navigation, only: %i[index show]
   before_action :sort_category, only: %i[index show]
   before_action :configure_permitted_parameters, if: :devise_controller?
-  around_action :switch_locale
+  around_action :switch_locale, if: :not_admin_page?
 
   private
+
+  def not_admin_page?
+    return false if /\/admin\//.match? request.url
+
+    true
+  end
 
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || categories_path
@@ -21,6 +27,7 @@ class ApplicationController < ActionController::Base
   def switch_locale(&action)
     Rails.logger.fatal 'ApplicationController#switch_locale' if Rails.logger.level == 4
     locale = current_user&.locale || params[:locale] || I18n.default_locale
+
     I18n.with_locale(locale, &action)
   end
 
