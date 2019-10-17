@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
       expect(subject.to_s.class).to be String
     end
     it 'to_s must be an email format' do
-      expect(subject.to_s).to match /\w{1}[\w\d]+\.?[\w\d]+@{1}\w+\.\w+/
+      expect(subject.to_s).to match /\w{1}[\w\d]*\.?[\w\d]+@{1}\w+\.\w+/
     end
   end
 end
