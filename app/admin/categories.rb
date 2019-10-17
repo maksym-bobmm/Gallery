@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Category do
-  controller do
-    def edit
-      render 'admin/category/edit', layout: 'active_admin'
-    end
-  end
-
+  # controller do
+  #   def edit
+  #     render 'admin/category/edit', layout: 'active_admin'
+  #   end
+  # end
+  permit_params :name, :owner_id
   index do
     selectable_column
     column 'category_id', :id

@@ -22,7 +22,8 @@ class SubscriptionsController < ApplicationController
 
   def send_email
     action = request.parameters[:action] == 'create'
-    UserMailer.with(category: @category, user: current_user, subscribe: action).subscriptions.deliver_later
+    Resque.enqueue(SubscriptionJob, @category, current_user, action)
+    # UserMailer.with(category: @category, user: current_user, subscribe: action).subscriptions.deliver_later
   end
 
   def find_category

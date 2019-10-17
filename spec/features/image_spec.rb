@@ -8,7 +8,6 @@ RSpec.feature "Image tests checks that", type: :feature do
       visit 'categories/test'
       click_link 'image-button_collapse'
       attach_file('image-file_pick', Rails.root.join('app', 'assets', 'images', 'categories', 'cars', '239145_main.jpg'))
-      sleep 10
 
       assert_text 'Sign in'
     end

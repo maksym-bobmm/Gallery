@@ -15,6 +15,7 @@ ActiveAdmin.register Log do
     column(:action) { |log| log.action.activity }
     actions
   end
+  permit_params :user_id, :action_id, :url
 
   # filter :filter_user_in, as: :select, label: 'user', collection: User.all.pluck(:email)
   # filter :filter_log_in, as: :select, label: 'user action', collection: Action.all.pluck(:activity)

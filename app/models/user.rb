@@ -49,6 +49,9 @@ class User < ApplicationRecord
   #           } do |parent|
   #   parent.table[:id]
   # end
+  def permitted_params
+    params.permit!
+  end
 
   def to_s
     self.email
