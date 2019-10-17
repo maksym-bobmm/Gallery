@@ -80,10 +80,22 @@ RSpec.feature "ActiveAdmins", type: :feature do
         assert_no_text category_name
       end
     end
-    xit 'can be edited from a list' do
+    it 'can be edited from a list' do
       category_name = Faker::Lorem.word
       category = create(:category, name: category_name)
       visit admin_categories_path
+      within(:table_row, [category.name]) do
+        click_link class: 'edit_link'
+      end
+      select category.user.email, from: 'category_owner_id'
+      byebug
+      fill_in 'category_name', with: "#{category_name}2"
+      click_link_or_button 'Update Category'
+
+      within '#main_content' do
+        assert_text "#{category_name}2"
+        assert_no_text category_name
+      end
     end
     it 'filter can filter by user' do
       visit admin_categories_path
