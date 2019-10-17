@@ -2,25 +2,33 @@
 
 # like controller class
 class LikesController < ApplicationController
-  before_action :authenticate_user!, only: %i[create destroy]
-  before_action :find_image,  only: %i[create destroy]
-  after_action  :logging,     only: %i[create destroy]
+  before_action :authenticate_user!,  only: %i[create destroy]
+  before_action :find_image,          only: %i[create destroy]
+  after_action  :logging,             only: %i[create destroy]
+  after_action  :redirect_after_like, only: %i[create destroy]
   # after_action :set_likes_count_to_redis, only: %i[create destroy]
 
   def create
+    # byebug
     return if @image.likes.find_by(user_id: current_user.id)
 
     if @image.likes.create(user_id: current_user.id)
       set_likes_count_to_redis
     end
-    redirect_to image_path(@image)
+    redirect_to image_path(@image) unless request.xhr?
+    # byebug
+    # render json: image_url( 'unliked.svg', alt: t(:'site.image.like'))
+    render json: { image_path: image_url( 'unliked.svg', alt: t(:'site.image.like')) }
+               # link_to(image_tag( 'unliked.svg', alt: t(:'site.image.like'), id: 'heart'), likes_path, method: :post, remote: true, id: 'image-like_link')
   end
 
   def destroy
     if @image.likes.find_by(user_id: current_user.id).destroy
       set_likes_count_to_redis
     end
-    redirect_to image_path(@image)
+    redirect_to image_path(@image) unless request.xhr?
+    render json: { image_path:  image_url( 'unliked.svg', alt: t(:'site.image.like')) }
+        # like_path, method: :delete, remote: true, id: 'image-unlike_link')
   end
 
   private
@@ -41,6 +49,10 @@ class LikesController < ApplicationController
 
   def set_likes_count_to_redis
     Redis.new.set("image:#{@image.id}:likes_count", @image.likes_count, ex: 180)
+  end
+
+  def redirect_after_like
+
   end
 
 end

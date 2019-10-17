@@ -12,10 +12,10 @@
   %p.menu.pt-5.text-center
     - if @like_exist
       = link_to image_tag( 'liked.svg', alt: t(:'site.image.unlike'), id: 'heart'),
-                like_path, method: :delete, remote: true, id: 'image-unlike_link'
+                like_path, method: :delete, remote: true, id: 'image-unlike_link', class: 'ajax'
     -else
       = link_to image_tag( 'unliked.svg', alt: t(:'site.image.like'), id: 'heart'),
-                likes_path, method: :post, remote: true, id: 'image-like_link'
+                likes_path, method: :post, remote: true, id: 'image-like_link', class: 'ajax'
     = @likes_count
     = @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
 
