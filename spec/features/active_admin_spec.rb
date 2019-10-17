@@ -57,6 +57,34 @@ RSpec.feature "ActiveAdmins", type: :feature do
     let!(:category) { create(:category) }
     let(:admin) { create(:admin) }
     before(:each) { sign_in admin }
+    it 'can be created' do
+      user = create(:user)
+      category_name = Faker::Lorem.word
+      visit admin_categories_path
+      click_link 'New Category'
+      select user.email, from: 'category_owner_id'
+      fill_in 'category_name', with: category_name
+      click_link_or_button 'Create Category'
+
+      assert_text 'Category was successfully created.'
+    end
+    it 'can be deleted from a list' do
+      category_name = Faker::Lorem.word
+      category = create(:category, name: category_name)
+      visit admin_categories_path
+      within(:table_row, [category.name]) do
+        click_link class: 'delete_link'
+        page.driver.browser.switch_to.alert.accept
+      end
+      within '#main_content' do
+        assert_no_text category_name
+      end
+    end
+    xit 'can be edited from a list' do
+      category_name = Faker::Lorem.word
+      category = create(:category, name: category_name)
+      visit admin_categories_path
+    end
     it 'filter can filter by user' do
       visit admin_categories_path
       select category.user.email, from: 'q_owner_id'
