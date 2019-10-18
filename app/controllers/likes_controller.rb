@@ -9,26 +9,26 @@ class LikesController < ApplicationController
   # after_action :set_likes_count_to_redis, only: %i[create destroy]
 
   def create
-    # byebug
     return if @image.likes.find_by(user_id: current_user.id)
-
-    if @image.likes.create(user_id: current_user.id)
-      set_likes_count_to_redis
-    end
+    like = @image.likes.create(user_id: current_user.id)
+    set_likes_count_to_redis if like
     redirect_to image_path(@image) unless request.xhr?
-    # byebug
-    # render json: image_url( 'unliked.svg', alt: t(:'site.image.like'))
-    render json: { image_path: image_url( 'unliked.svg', alt: t(:'site.image.like')) }
-               # link_to(image_tag( 'unliked.svg', alt: t(:'site.image.like'), id: 'heart'), likes_path, method: :post, remote: true, id: 'image-like_link')
+
+    render json: { image_path: helpers.link_for_unlike(@image) }
   end
 
   def destroy
     if @image.likes.find_by(user_id: current_user.id).destroy
       set_likes_count_to_redis
     end
-    redirect_to image_path(@image) unless request.xhr?
-    render json: { image_path:  image_url( 'unliked.svg', alt: t(:'site.image.like')) }
-        # like_path, method: :delete, remote: true, id: 'image-unlike_link')
+    if request.xhr?
+      render json: { image_path: helpers.link_for_like }
+    else
+      redirect_to image_path(@image)
+    end
+
+
+
   end
 
   private
