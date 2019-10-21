@@ -9,20 +9,17 @@ class ImagesController < ApplicationController
   def show
     redis = Redis.new
     @image = Image.friendly.find(params[:id])
+
     @likes_count = redis.get("image:#{@image.id}:likes_count") || @image.likes.size
     @path_to_img = ActionController::Base.helpers.path_to_image('liked.svg')
     @like_exist =
         if user_signed_in?
-          Image.friendly.find(params['id']).likes.where(user_id: current_user.id).exists?
+          @image.likes.where(user_id: current_user.id).exists?
         else
           false
         end
 
   end
-
-  # def new
-  #   @image = Image.new
-  # end
 
   def index
     @images = Image.all.order(likes_count: :desc).page(params[:page]).per(12)
