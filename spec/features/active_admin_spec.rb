@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.feature "ActiveAdmins", type: :feature do
@@ -82,18 +84,19 @@ RSpec.feature "ActiveAdmins", type: :feature do
     end
     it 'can be edited from a list' do
       category_name = Faker::Lorem.word
+      new_category_name = Faker::Lorem.word
       category = create(:category, name: category_name)
       visit admin_categories_path
       within(:table_row, [category.name]) do
         click_link class: 'edit_link'
       end
       select category.user.email, from: 'category_owner_id'
-      byebug
-      fill_in 'category_name', with: "#{category_name}2"
+      fill_in 'category_name', with: new_category_name
       click_link_or_button 'Update Category'
+      visit admin_categories_path
 
       within '#main_content' do
-        assert_text "#{category_name}2"
+        assert_text new_category_name
         assert_no_text category_name
       end
     end

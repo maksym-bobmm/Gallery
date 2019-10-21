@@ -10,16 +10,12 @@ class LikesController < ApplicationController
   def create
     return if @image.likes.find_by(user_id: current_user.id)
 
-    if @image.likes.create(user_id: current_user.id)
-      set_likes_count_to_redis
-    end
+    set_likes_count_to_redis if @image.likes.create(user_id: current_user.id)
     redirect_to image_path(@image)
   end
 
   def destroy
-    if @image.likes.find_by(user_id: current_user.id).destroy
-      set_likes_count_to_redis
-    end
+    set_likes_count_to_redis if @image.likes.find_by(user_id: current_user.id).destroy
     redirect_to image_path(@image)
   end
 
@@ -42,5 +38,4 @@ class LikesController < ApplicationController
   def set_likes_count_to_redis
     Redis.new.set("image:#{@image.id}:likes_count", @image.likes_count, ex: 180)
   end
-
 end

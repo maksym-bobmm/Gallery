@@ -1,3 +1,5 @@
+
+
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
@@ -36,7 +38,7 @@ RSpec.describe ApplicationHelper, type: :helper do
       category.reload
       expect(helper.find_category_rating(category)).to eq(1)
     end
-    # OPTIMIZE this test
+    # OPTIMIZE: THIS TEST
     it '\'find_category_rating\' helper returns correct rating with few images/likes/comments' do
       5.times { create(:image, category_id: category.id) }
       5.times do
