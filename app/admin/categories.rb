@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Category do
-  # controller do
-  #   def edit
-  #     render 'admin/category/edit', layout: 'active_admin'
-  #   end
-  # end
   permit_params :name, :owner_id
   index do
     selectable_column
@@ -17,9 +12,5 @@ ActiveAdmin.register Category do
   end
 
   preserve_default_filters!
-  # filter :owner_id, as: :select, label: 'user2' # ,
-                                      # collection: (User.joins(:categories).pluck(:email).where(owner_id: :owner_id))
-
   remove_filter :subscriptions
-  # filter :users, as User.all.email
 end

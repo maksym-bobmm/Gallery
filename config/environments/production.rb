@@ -20,7 +20,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-        'Cache-Control' => "public, max-age=#{ 2.days.to_i }"
+      'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -84,13 +84,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Figaro.env.EMAIL_DEFAULT_URL }
   config.action_mailer.default charset: 'utf-8'
   config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      port: 587,
-      domain: 'gmail.com',
-      user_name: Figaro.env.MAILER_EMAIL,
-      password: Figaro.env.MAILER_PASSWORD,
-      authentication: 'plain',
-      enable_starttls_auto: true
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    user_name: Figaro.env.MAILER_EMAIL,
+    password: Figaro.env.MAILER_PASSWORD,
+    authentication: 'plain',
+    enable_starttls_auto: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.

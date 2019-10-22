@@ -2,25 +2,36 @@
 
 # like controller class
 class LikesController < ApplicationController
-  before_action :authenticate_user!, only: %i[create destroy]
-  before_action :find_image,  only: %i[create destroy]
-  after_action  :logging,     only: %i[create destroy]
+  before_action :authenticate_user!,  only: %i[create destroy]
+  before_action :find_image,          only: %i[create destroy]
+  after_action  :logging,             only: %i[create destroy]
   # after_action :set_likes_count_to_redis, only: %i[create destroy]
 
   def create
     return if @image.likes.find_by(user_id: current_user.id)
 
-    if @image.likes.create(user_id: current_user.id)
-      set_likes_count_to_redis
+    set_likes_count_to_redis if @image.likes.create(user_id: current_user.id)
+
+    if request.xhr?
+      render json: { link_with_image_tags: helpers.link_for_unlike(@image), likes_count: @image.likes_count,
+                     likes_word: @image.likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes') }
+    else
+      redirect_to image_path(@image)
     end
-    redirect_to image_path(@image)
   end
 
   def destroy
-    if @image.likes.find_by(user_id: current_user.id).destroy
-      set_likes_count_to_redis
+    like =  @image.likes.find_by(user_id: current_user.id)
+    return unless like
+
+    set_likes_count_to_redis if like.destroy
+
+    if request.xhr?
+      render json: { link_with_image_tags: helpers.link_for_like, likes_count: @image.likes_count,
+                     likes_word: @image.likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes') }
+    else
+      redirect_to image_path(@image)
     end
-    redirect_to image_path(@image)
   end
 
   private
@@ -42,5 +53,4 @@ class LikesController < ApplicationController
   def set_likes_count_to_redis
     Redis.new.set("image:#{@image.id}:likes_count", @image.likes_count, ex: 180)
   end
-
 end

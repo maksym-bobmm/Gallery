@@ -5,14 +5,12 @@ class ApplicationController < ActionController::Base
   prepend_after_action :navigation, only: %i[index show]
   before_action :sort_category, only: %i[index show]
   before_action :configure_permitted_parameters, if: :devise_controller?
-  around_action :switch_locale, if: :not_admin_page?
+  around_action :switch_locale, unless: :admin_page?
 
   private
 
-  def not_admin_page?
-    return false if /\/admin\//.match? request.url
-
-    true
+  def admin_page?
+    %r{\/admin\/}.match? request.url
   end
 
   def after_sign_in_path_for(resource)
@@ -33,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def sort_category
     Rails.logger.fatal 'ApplicationController#sort_category!' if Rails.logger.level == 4
-    @categories_with_rating = find_categories_rating  # application_helper
+    @categories_with_rating = find_categories_rating # application_helper
   end
 
   def configure_permitted_parameters

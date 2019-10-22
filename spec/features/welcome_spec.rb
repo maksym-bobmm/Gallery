@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Welcomes", type: :feature do
+RSpec.feature 'Welcomes', type: :feature do
   context 'page statistics' do
     it 'categories counter change after add one' do
       visit '/'

@@ -29,14 +29,14 @@ ActiveAdmin.register User do
       input :password_confirmation
       input :confirmed_at, as: :datepicker,
             datepicker_options: {
-                min_date: "1900-01-01",
+                min_date: '1900-01-01',
                 max_date: 'now',
                 change_year: true
             }
       input :birthdate, as: :datepicker,
             datepicker_options: {
-                min_date: "1900-01-01",
-                max_date: "+5Y",
+                min_date: '1900-01-01',
+                max_date: '+5Y',
                 change_year: true
             }
 

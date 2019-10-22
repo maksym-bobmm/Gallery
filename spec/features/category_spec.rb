@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Categories", type: :feature do
+RSpec.feature 'Categories', type: :feature do
   let(:user) { create(:user) }
   let(:category_name) { Faker::Lorem.word }
   before(:each) { sign_in user }
