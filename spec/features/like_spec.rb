@@ -15,7 +15,6 @@ RSpec.feature 'Like tests checks that', type: :feature do
     before(:each) { sign_in image.category.user }
     xit 'can set like (need to fix test for ajax)' do
       visit image_path(image)
-      byebug
       click_link 'image-like_link'
 
       expect(has_no_link?('image-like_link')).to be true
