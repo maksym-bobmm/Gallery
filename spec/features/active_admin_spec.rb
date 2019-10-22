@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature "ActiveAdmins", type: :feature do
+RSpec.feature 'ActiveAdmins', type: :feature do
   context 'test checks that menu`s' do
     let(:admin) { create(:admin) }
     before(:each) { sign_in admin }

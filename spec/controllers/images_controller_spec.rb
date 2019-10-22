@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'support/shared/controller_helpers'
 
@@ -73,6 +75,5 @@ RSpec.describe ImagesController, type: :controller do
         expect(@controller.instance_variable_get(:@like_exist)).to be false
       end
     end
-
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature "Users", type: :feature do
+RSpec.feature 'Users', type: :feature do
   # let(:user) { create(:user) }
   context 'can' do
     let(:email) { 'gallery@mailinator.com' }
@@ -22,5 +22,4 @@ RSpec.feature "Users", type: :feature do
       expect(page).to have_content('Sign in')
     end
   end
-
 end

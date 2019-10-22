@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'open-uri'
 ActiveAdmin.register ImageLink do
   config.filters = false
   permit_params do

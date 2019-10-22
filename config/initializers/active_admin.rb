@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 ActiveAdmin.setup do |config|
-
   ActiveAdmin::ResourceController.class_eval do
     def find_resource
       resource_class.is_a?(FriendlyId) ? scoped_collection.friendly.find(params[:id]) : scoped_collection.find(params[:id])

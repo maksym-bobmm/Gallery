@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature "Image tests checks that", type: :feature do
+RSpec.feature 'Image tests checks that', type: :feature do
   subject { create(:user) }
   let!(:category) { create(:category, name: 'test') }
   context 'unsigned in user' do
@@ -23,6 +23,5 @@ RSpec.feature "Image tests checks that", type: :feature do
 
       expect { click_button 'image-add_button' }.to change(Image, :count).by 1
     end
-
   end
 end

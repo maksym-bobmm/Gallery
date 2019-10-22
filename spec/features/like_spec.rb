@@ -2,18 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.feature "Like tests checks that", type: :feature do
+RSpec.feature 'Like tests checks that', type: :feature do
   let(:image) { create(:image) }
   context 'unsigned in user' do
     it 'gets sign_in page after try to set like' do
       visit image_path(image)
       click_link 'image-like_link'
-
       assert_text 'Sign in'
     end
   end
   context 'signed in user' do
-
     before(:each) { sign_in image.category.user }
     it 'can set like' do
       visit image_path(image)
