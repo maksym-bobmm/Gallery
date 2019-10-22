@@ -8,16 +8,15 @@
         .modal-body
           = image_tag "#{@image.path}", alt: @image[:path], 'data-dismiss': 'modal', class: 'img-fluid'
 
-.container-fluid.col-12.col-sm-3.mt-5
+%div.container-fluid.col-12.col-sm-3.mt-5{'data-turbolinks': 'false'}
   %p.menu.pt-5.text-center
     - if @like_exist
-      = link_to image_tag( 'liked.svg', alt: t(:'site.image.unlike'), id: 'heart'),
-                like_path, method: :delete, remote: true, id: 'image-unlike_link'
-    -else
-      = link_to image_tag( 'unliked.svg', alt: t(:'site.image.like'), id: 'heart'),
-                likes_path, method: :post, remote: true, id: 'image-like_link'
-    = @likes_count
-    = @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
+      = link_for_unlike(@image)
+    - else
+      = link_for_like
+    %span#likesCount
+      = @likes_count
+      = @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
 
   - if @image.comments.size == 0
     %p= t(:'site.image.comment')

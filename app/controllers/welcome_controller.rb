@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
 
   private
 
-  # FIXME check why only 4 images in array. Expect 5
+  # FIXME: CHECK WHY ONLY 4 IMAGES IN ARRAY. EXPECT 5
   def find_popular_images
     Rails.logger.fatal 'WelcomeController#find_popular_images'
     Rails.logger.info "\033[32mSTART WelcomeController#find_popular_images\033[0m"

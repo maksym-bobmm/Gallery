@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Subscription tests checks that", type: :feature do
+RSpec.feature 'Subscription tests checks that', type: :feature do
   let(:category) { create(:category) }
   context 'unsigned in user' do
     scenario 'gets sign_in page after subscribe try' do
@@ -25,6 +27,5 @@ RSpec.feature "Subscription tests checks that", type: :feature do
 
       assert_text 'subscribe'
     end
-
   end
 end

@@ -8,9 +8,9 @@ class Log < ApplicationRecord
   belongs_to :action
 
   ransacker :filter_log,
-            formatter: ->(v) {
-              ids = Log.where(action_id: Action.find_by(activity: v).id).pluck(:id)
-              ids.present? ? ids : nil
+    formatter: ->(v) {
+      ids = Log.where(action_id: Action.find_by(activity: v).id).pluck(:id)
+      ids.present? ? ids : nil
     } do |parent|
     parent.table[:id]
   end

@@ -7,12 +7,13 @@ module ApplicationHelper
     Rails.logger.debug "\033[32mSTART application_helper#find_categories_rating\033[0m"
     category_with_rating = []
     Category.friendly.includes(:images).find_each do |category|
-        sum = find_category_rating(category)
-        category_with_rating << { category: category, rating: sum }
+      sum = find_category_rating(category)
+      category_with_rating << { category: category, rating: sum }
     end
     Rails.logger.debug "\033[32mEND application_helper#find_categories_rating\033[0m"
     category_with_rating.sort_by { |hash| hash[:rating] }.reverse
   end
+
   def find_category_rating(category)
     sum = category.images.size
     category.images.each do |image|
@@ -31,6 +32,7 @@ module ApplicationHelper
     Rails.logger.fatal 'ApplicationHelper#avatar_to_display' if Rails.logger.level == 4
     current_user.avatar.to_s.present? ? current_user.avatar.to_s : 'avatar'
   end
+
   def empty_helper_test
     Rails.logger.fatal 'ApplicationHelper#empty_helper_test' if Rails.logger.level == 4
   end

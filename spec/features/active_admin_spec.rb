@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "ActiveAdmins", type: :feature do
+RSpec.feature 'ActiveAdmins', type: :feature do
   context 'test checks that menu`s' do
     let(:admin) { create(:admin) }
     before(:each) { sign_in admin }
@@ -80,10 +82,23 @@ RSpec.feature "ActiveAdmins", type: :feature do
         assert_no_text category_name
       end
     end
-    xit 'can be edited from a list' do
+    it 'can be edited from a list' do
       category_name = Faker::Lorem.word
+      new_category_name = Faker::Lorem.word
       category = create(:category, name: category_name)
       visit admin_categories_path
+      within(:table_row, [category.name]) do
+        click_link class: 'edit_link'
+      end
+      select category.user.email, from: 'category_owner_id'
+      fill_in 'category_name', with: new_category_name
+      click_link_or_button 'Update Category'
+      visit admin_categories_path
+
+      within '#main_content' do
+        assert_text new_category_name
+        assert_no_text category_name
+      end
     end
     it 'filter can filter by user' do
       visit admin_categories_path

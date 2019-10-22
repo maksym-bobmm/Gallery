@@ -42,6 +42,7 @@ class User < ApplicationRecord
   def self.logins_before_captcha
     3
   end
+
   # ransacker :filter_user,
   #           :formatter => -> (v) {
   #             ids = User.where(email: v).pluck(:id);
@@ -49,11 +50,12 @@ class User < ApplicationRecord
   #           } do |parent|
   #   parent.table[:id]
   # end
+  #
   def permitted_params
     params.permit!
   end
 
   def to_s
-    self.email
+    email
   end
 end

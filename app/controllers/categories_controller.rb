@@ -9,12 +9,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.friendly.find(params[:id])
-    @subscription_exist =
-        if user_signed_in?
-          @category.subscriptions.find_by(user_id: current_user.id).present?
-        else
-          false
-        end
+    @subscription_exist = user_signed_in? ? @category.subscriptions.find_by(user_id: current_user.id).present? : false
   end
 
   def create

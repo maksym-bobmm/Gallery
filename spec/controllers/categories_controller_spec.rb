@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'support/shared/controller_helpers'
 
@@ -21,7 +23,7 @@ RSpec.describe CategoriesController, type: :controller do
       assert_redirect_and_redirected_to_sign_in
     end
     it 'redirects to sign in on category#destroy' do
-      delete :destroy, params: { id: subject.id}
+      delete :destroy, params: { id: subject.id }
       assert_redirect_and_redirected_to_sign_in
     end
     it 'redirects to sign in on category#edit' do
@@ -46,7 +48,6 @@ RSpec.describe CategoriesController, type: :controller do
       assert_response :success
     end
     it 'gets success on category#show page' do
-
       get :show, params: { id: subject.id }
       assert_response :success
     end

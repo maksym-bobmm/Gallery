@@ -1,5 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
+require 'rails_helper'
 # Specs in this file have access to a helper object that includes
 # the ApplicationHelper. For example:
 #
@@ -36,7 +37,7 @@ RSpec.describe ApplicationHelper, type: :helper do
       category.reload
       expect(helper.find_category_rating(category)).to eq(1)
     end
-    # OPTIMIZE this test
+    # OPTIMIZE: THIS TEST
     it '\'find_category_rating\' helper returns correct rating with few images/likes/comments' do
       5.times { create(:image, category_id: category.id) }
       5.times do
@@ -70,12 +71,12 @@ RSpec.describe ApplicationHelper, type: :helper do
     it 'avatar_to_display helper returns \'avatar\' if user doesnt have avatar' do
       user = create(:user)
       sign_in user
-      expect(helper.avatar_to_display).to eql'avatar'
+      expect(helper.avatar_to_display).to eql 'avatar'
     end
     it 'avatar_to_display helper returns an avatar if user have one' do
       user = create(:user_with_avatar)
       sign_in user
-      expect(helper.avatar_to_display).to match /\A.*\.\w+\z/
+      expect(helper.avatar_to_display).to match(/\A.*\.\w+\z/)
     end
     it 'find_locale helper returns default value if it isn`t set in user and params' do
       expect(helper.find_locale.to_s).to eq('en')
@@ -91,6 +92,5 @@ RSpec.describe ApplicationHelper, type: :helper do
       allow(helper).to receive(:current_user).and_return(user)
       expect(helper.find_locale.to_s).to eq('ru')
     end
-
   end
 end
