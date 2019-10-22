@@ -52,7 +52,9 @@ RSpec.describe Like, type: :model do
       it { should belong_to(:image).counter_cache(true) }
     end
     context 'validation' do
-      xit { should validate_uniqueness_of(:user_id).scoped_to([:image_id]) }
+      let!(:like) { create(:like) }
+      it { should validate_uniqueness_of(:user_id).scoped_to(:image_id).
+                  with_message('is already sets like to this image') }
     end
   end
 end

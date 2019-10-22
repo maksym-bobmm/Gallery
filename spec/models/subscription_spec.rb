@@ -56,7 +56,11 @@ RSpec.describe Subscription, type: :model do
       %i[user category].each do |field|
         it { should validate_presence_of field }
       end
-      xit { should validate_uniqueness_of }
+      it do
+        create(:subscription)
+        should validate_uniqueness_of(:user_id).scoped_to(:category_id).
+                with_message('is already subscribed to the category')
+      end
     end
   end
 end
