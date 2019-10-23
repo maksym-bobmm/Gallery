@@ -49,6 +49,12 @@ RSpec.describe Image, type: :model do
     end
     context 'validation' do
       it { should validate_presence_of :path }
+      %i[likes_count comments_count].each do |field|
+        it { should validate_numericality_of(field).is_greater_than_or_equal_to(0) }
+        it { should allow_value(1).for(field) }
+        it { should allow_value(0).for(field) }
+        it { should_not allow_value(-1).for(field) }
+      end
     end
   end
 end

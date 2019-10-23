@@ -9,7 +9,7 @@ Rails.application.routes.draw do
                                               confirmations: 'users/confirmations' }
   resources :categories,    except: %i[new]
   resources :images,        except: %i[new edit update destroy]
-  resources :comments,      only: %i[new create]
+  resources :comments,      only: %i[create]
   resources :likes,         only: %i[create destroy]
   resources :subscriptions, only: %i[create destroy]
   resource  :locales,       only: %i[update]

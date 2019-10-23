@@ -11,13 +11,10 @@ class LikesController < ApplicationController
     return if @image.likes.find_by(user_id: current_user.id)
 
     set_likes_count_to_redis if @image.likes.create(user_id: current_user.id)
+    redirect_to image_path(@image) and return unless request.xhr?
 
-    if request.xhr?
-      render json: { link_with_image_tags: helpers.link_for_unlike(@image), likes_count: @image.likes_count,
-                     likes_word: @image.likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes') }
-    else
-      redirect_to image_path(@image)
-    end
+    render json: { link_with_image_tags: helpers.link_for_unlike(@image), likes_count: @image.likes_count,
+                   likes_word: @image.likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes') }
   end
 
   def destroy
@@ -25,13 +22,10 @@ class LikesController < ApplicationController
     return unless like
 
     set_likes_count_to_redis if like.destroy
+    redirect_to image_path(@image) and return unless request.xhr?
 
-    if request.xhr?
-      render json: { link_with_image_tags: helpers.link_for_like, likes_count: @image.likes_count,
-                     likes_word: @image.likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes') }
-    else
-      redirect_to image_path(@image)
-    end
+    render json: { link_with_image_tags: helpers.link_for_like, likes_count: @image.likes_count,
+                   likes_word: @image.likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes') }
   end
 
   private
