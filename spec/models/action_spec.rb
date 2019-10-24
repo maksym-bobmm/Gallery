@@ -41,16 +41,16 @@ RSpec.describe Action, type: :model do
   describe  do
     context 'columns' do
       %i[id activity].each do |field|
-        it { should have_db_column field }
+        it { is_expected.to have_db_column field }
       end
     end
     context 'associations' do
-      it { should have_many :logs }
+      it { is_expected.to have_many :logs }
     end
     context 'validation' do
       %i[activity].each do |field|
-        it { should validate_presence_of field }
-        it { should validate_inclusion_of(field).in_array(permitted_activities) }
+        it { is_expected.to validate_presence_of field }
+        it { is_expected.to validate_inclusion_of(field).in_array(permitted_activities) }
       end
     end
   end

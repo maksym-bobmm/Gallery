@@ -43,19 +43,19 @@ RSpec.describe Log, type: :model do
   describe  do
     context 'columns' do
       %i[id user_id url created_at action_id].each do |field|
-        it { should have_db_column field }
+        it { is_expected.to have_db_column field }
       end
     end
     context 'associations' do
       %i[user action].each do |association|
-        it { should belong_to association }
+        it { is_expected.to belong_to association }
       end
     end
     context 'validation' do
       %i[user action url].each do |field|
-        it { should validate_presence_of field }
+        it { is_expected.to validate_presence_of field }
       end
-      it { should allow_value('http://localhost:3000/images?locale=en').for(:url) }
+      it { is_expected.to allow_value('http://localhost:3000/images?locale=en').for(:url) }
     end
   end
 end

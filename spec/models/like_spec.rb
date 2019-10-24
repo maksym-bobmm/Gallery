@@ -44,16 +44,16 @@ RSpec.describe Like, type: :model do
   describe  do
     context 'columns' do
       %i[id user_id image_id].each do |field|
-        it { should have_db_column field }
+        it { is_expected.to have_db_column field }
       end
     end
     context 'association' do
-      it { should belong_to :user }
-      it { should belong_to(:image).counter_cache(true) }
+      it { is_expected.to belong_to :user }
+      it { is_expected.to belong_to(:image).counter_cache(true) }
     end
     context 'validation' do
       let!(:like) { create(:like) }
-      it { should validate_uniqueness_of(:user_id).scoped_to(:image_id).
+      it { is_expected.to validate_uniqueness_of(:user_id).scoped_to(:image_id).
                   with_message('is already sets like to this image') }
     end
   end

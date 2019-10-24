@@ -39,21 +39,21 @@ RSpec.describe Image, type: :model do
   describe  do
     context 'columns' do
       %i[id path created_at category_id likes_count comments_count slug].each do |field|
-        it { should have_db_column field }
+        it { is_expected.to have_db_column field }
       end
     end
     context 'associations' do
-      it { should have_many(:comments).dependent(:destroy) }
-      it { should have_many(:likes).dependent(:delete_all) }
-      it { should belong_to :category }
+      it { is_expected.to have_many(:comments).dependent(:destroy) }
+      it { is_expected.to have_many(:likes).dependent(:delete_all) }
+      it { is_expected.to belong_to :category }
     end
     context 'validation' do
-      it { should validate_presence_of :path }
+      it { is_expected.to validate_presence_of :path }
       %i[likes_count comments_count].each do |field|
-        it { should validate_numericality_of(field).is_greater_than_or_equal_to(0) }
-        it { should allow_value(1).for(field) }
-        it { should allow_value(0).for(field) }
-        it { should_not allow_value(-1).for(field) }
+        it { is_expected.to validate_numericality_of(field).is_greater_than_or_equal_to(0) }
+        it { is_expected.to allow_value(1).for(field) }
+        it { is_expected.to allow_value(0).for(field) }
+        it { is_expected.to_not allow_value(-1).for(field) }
       end
     end
   end

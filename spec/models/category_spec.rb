@@ -39,17 +39,17 @@ RSpec.describe Category, type: :model do
   describe '' do
     context 'columns' do
       %i[id owner_id name slug].each do |field|
-        it { should have_db_column field }
+        it { is_expected.to have_db_column field }
       end
     end
     context 'association' do
-      it { should have_many(:images).dependent(:destroy) }
-      it { should have_many(:subscriptions).dependent(:delete_all) }
-      it { should belong_to(:user).with_foreign_key('owner_id') }
+      it { is_expected.to have_many(:images).dependent(:destroy) }
+      it { is_expected.to have_many(:subscriptions).dependent(:delete_all) }
+      it { is_expected.to belong_to(:user).with_foreign_key('owner_id') }
     end
     context 'validation' do
       %i[owner_id name].each do |field|
-        it { should validate_presence_of field }
+        it { is_expected.to validate_presence_of field }
       end
     end
   end

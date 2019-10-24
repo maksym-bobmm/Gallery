@@ -37,20 +37,20 @@ RSpec.describe Comment, type: :model do
   describe  do
     context 'collumns' do
       %i[id body user_id image_id created_at updated_at].each do |field|
-        it { should have_db_column field }
+        it { is_expected.to have_db_column field }
       end
     end
     context 'associations' do
       %i[user].each do |association|
-        it { should belong_to association }
+        it { is_expected.to belong_to association }
       end
       %i[image].each do |association|
-        it { should belong_to(association).counter_cache(true) }
+        it { is_expected.to belong_to(association).counter_cache(true) }
       end
     end
     context 'validation' do
       %i[body image user].each do |field|
-        it { should validate_presence_of field }
+        it { is_expected.to validate_presence_of field }
       end
     end
   end

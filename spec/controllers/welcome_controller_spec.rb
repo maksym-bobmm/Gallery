@@ -40,7 +40,7 @@ RSpec.describe WelcomeController, type: :controller do
   end
   describe  do
     context 'routes' do
-      it { should route(:get, '/').to(action: :index) }
+      it { is_expected.to route(:get, '/').to(action: :index) }
     end
   end
 end

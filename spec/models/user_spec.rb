@@ -50,21 +50,21 @@ RSpec.describe User, type: :model do
           reset_password_sent_at remember_created_at confirmation_token confirmed_at confirmation_sent_at provider
           uid failed_attempts unlock_token locked_at cached_failed_attempts locale birthdate avatar
         ].each do |field|
-        it { should have_db_column field }
+        it { is_expected.to have_db_column field }
       end
     end
     context 'associations' do
       %i[comments logs].each do |association|
-        it { should have_many association }
+        it { is_expected.to have_many association }
       end
       %i[likes subscriptions].each do |association|
-        it { should have_many(association).dependent(:delete_all) }
+        it { is_expected.to have_many(association).dependent(:delete_all) }
       end
-      it { should have_many(:categories).dependent(:destroy).with_foreign_key('owner_id') }
-      it { should have_many(:images).through(:likes) }
+      it { is_expected.to have_many(:categories).dependent(:destroy).with_foreign_key('owner_id') }
+      it { is_expected.to have_many(:images).through(:likes) }
     end
     context 'validations' do
-      it { should validate_presence_of :email }
+      it { is_expected.to validate_presence_of :email }
     end
   end
 end

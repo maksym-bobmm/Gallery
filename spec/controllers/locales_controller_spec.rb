@@ -39,14 +39,14 @@ RSpec.describe LocalesController, type: :controller do
 
   describe  do
     context 'routes' do
-      it { should route(:patch, '/locales').to(action: :update) }
-      it { should route(:put, '/locales').to(action: :update) }
-      it { should_not route(:get, '/locales').to(action: :index) }
-      it { should_not route(:get, '/locales/1').to(action: :show, id: 1) }
-      it { should_not route(:get, 'locales/1/edit').to(action: :edit, id: 1)}
-      it { should_not route(:post, '/locales').to(action: :create) }
-      it { should_not route(:delete, '/locales/1').to(action: :destroy, id: 1) }
-      it { should_not route(:get, '/locales/new').to(action: :new) }
+      it { is_expected.to route(:patch, '/locales').to(action: :update) }
+      it { is_expected.to route(:put, '/locales').to(action: :update) }
+      it { is_expected.to_not route(:get, '/locales').to(action: :index) }
+      it { is_expected.to_not route(:get, '/locales/1').to(action: :show, id: 1) }
+      it { is_expected.to_not route(:get, 'locales/1/edit').to(action: :edit, id: 1)}
+      it { is_expected.to_not route(:post, '/locales').to(action: :create) }
+      it { is_expected.to_not route(:delete, '/locales/1').to(action: :destroy, id: 1) }
+      it { is_expected.to_not route(:get, '/locales/new').to(action: :new) }
     end
   end
 end

@@ -21,14 +21,14 @@ RSpec.describe CommentsController, type: :controller do
   end
   describe  do
     context 'routes' do
-      it { should route(:post, '/comments').to(action: :create) }
-      it { should_not route(:get, '/comments').to(action: :index) }
-      it { should_not route(:get, '/comments/1').to(action: :show, id: 1) }
-      it { should_not route(:get, 'comments/1/edit').to(action: :edit, id: 1)}
-      it { should_not route(:patch, '/comments/1').to(action: :update, id: 1) }
-      it { should_not route(:put, '/comments/1').to(action: :update, id: 1) }
-      it { should_not route(:delete, '/comments/1').to(action: :destroy, id: 1) }
-      it { should_not route(:get, '/comments/new').to(action: :new) }
+      it { is_expected.to route(:post, '/comments').to(action: :create) }
+      it { is_expected.to_not route(:get, '/comments').to(action: :index) }
+      it { is_expected.to_not route(:get, '/comments/1').to(action: :show, id: 1) }
+      it { is_expected.to_not route(:get, 'comments/1/edit').to(action: :edit, id: 1)}
+      it { is_expected.to_not route(:patch, '/comments/1').to(action: :update, id: 1) }
+      it { is_expected.to_not route(:put, '/comments/1').to(action: :update, id: 1) }
+      it { is_expected.to_not route(:delete, '/comments/1').to(action: :destroy, id: 1) }
+      it { is_expected.to_not route(:get, '/comments/new').to(action: :new) }
     end
   end
 end

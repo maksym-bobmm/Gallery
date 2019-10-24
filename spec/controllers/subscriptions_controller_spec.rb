@@ -37,14 +37,14 @@ RSpec.describe SubscriptionsController, type: :controller do
   end
   describe  do
     context 'routes' do
-      it { should route(:post, '/subscriptions').to(action: :create) }
-      it { should route(:delete, '/subscriptions/1').to(action: :destroy, id: 1) }
-      it { should_not route(:get, '/subscriptions').to(action: :index) }
-      it { should_not route(:get, '/subscriptions/1').to(action: :show, id: 1) }
-      it { should_not route(:get, 'subscriptions/1/edit').to(action: :edit, id: 1)}
-      it { should_not route(:patch, '/subscriptions/1').to(action: :update, id: 1) }
-      it { should_not route(:put, '/subscriptions/1').to(action: :update, id: 1) }
-      it { should_not route(:get, '/subscriptions/new').to(action: :new) }
+      it { is_expected.to route(:post, '/subscriptions').to(action: :create) }
+      it { is_expected.to route(:delete, '/subscriptions/1').to(action: :destroy, id: 1) }
+      it { is_expected.to_not route(:get, '/subscriptions').to(action: :index) }
+      it { is_expected.to_not route(:get, '/subscriptions/1').to(action: :show, id: 1) }
+      it { is_expected.to_not route(:get, 'subscriptions/1/edit').to(action: :edit, id: 1)}
+      it { is_expected.to_not route(:patch, '/subscriptions/1').to(action: :update, id: 1) }
+      it { is_expected.to_not route(:put, '/subscriptions/1').to(action: :update, id: 1) }
+      it { is_expected.to_not route(:get, '/subscriptions/new').to(action: :new) }
     end
   end
 end

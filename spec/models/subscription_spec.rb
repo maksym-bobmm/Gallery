@@ -44,21 +44,21 @@ RSpec.describe Subscription, type: :model do
   describe  do
     context 'columns' do
       %i[id user_id category_id].each do |field|
-        it { should have_db_column field }
+        it { is_expected.to have_db_column field }
       end
     end
     context 'associations' do
       %i[user category].each do |association|
-        it { should belong_to association }
+        it { is_expected.to belong_to association }
       end
     end
     context 'validation' do
       %i[user category].each do |field|
-        it { should validate_presence_of field }
+        it { is_expected.to validate_presence_of field }
       end
       it do
         create(:subscription)
-        should validate_uniqueness_of(:user_id).scoped_to(:category_id).
+        is_expected.to validate_uniqueness_of(:user_id).scoped_to(:category_id).
                 with_message('is already subscribed to the category')
       end
     end

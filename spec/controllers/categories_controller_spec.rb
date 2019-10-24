@@ -15,7 +15,7 @@ RSpec.describe CategoriesController, type: :controller do
         get :show, params: { id: subject.id }
         assert_response :success
       end
-      # it 'should redirect to sign in on category#new' do
+      # it 'is_expected.to redirect to sign in on category#new' do
       #   get :new
       #   assert_redirect_and_redirected_to_sign_in
       # end
@@ -52,7 +52,7 @@ RSpec.describe CategoriesController, type: :controller do
         get :show, params: { id: subject.id }
         assert_response :success
       end
-      # it 'should get success on category#new' do
+      # it 'is_expected.to get success on category#new' do
       #   get :new
       #   assert_response :success
       # end
@@ -102,14 +102,14 @@ RSpec.describe CategoriesController, type: :controller do
   end
   describe  do
     context 'routes' do
-      it { should route(:get, '/categories').to(action: :index) }
-      it { should route(:get, '/categories/1').to(action: :show, id: 1) }
-      it { should route(:get, 'categories/1/edit').to(action: :edit, id: 1)}
-      it { should route(:post, '/categories').to(action: :create) }
-      it { should route(:patch, '/categories/1').to(action: :update, id: 1) }
-      it { should route(:put, '/categories/1').to(action: :update, id: 1) }
-      it { should route(:delete, '/categories/1').to(action: :destroy, id: 1) }
-      it { should_not route(:get, '/categories/new').to(action: :new) }
+      it { is_expected.to route(:get, '/categories').to(action: :index) }
+      it { is_expected.to route(:get, '/categories/1').to(action: :show, id: 1) }
+      it { is_expected.to route(:get, 'categories/1/edit').to(action: :edit, id: 1)}
+      it { is_expected.to route(:post, '/categories').to(action: :create) }
+      it { is_expected.to route(:patch, '/categories/1').to(action: :update, id: 1) }
+      it { is_expected.to route(:put, '/categories/1').to(action: :update, id: 1) }
+      it { is_expected.to route(:delete, '/categories/1').to(action: :destroy, id: 1) }
+      it { is_expected.to_not route(:get, '/categories/new').to(action: :new) }
     end
   end
 end

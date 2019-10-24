@@ -78,14 +78,14 @@ RSpec.describe ImagesController, type: :controller do
   end
   describe  do
     context 'routes' do
-      it { should route(:get, '/images').to(action: :index) }
-      it { should route(:get, '/images/1').to(action: :show, id: 1) }
-      it { should route(:post, '/images').to(action: :create) }
-      it { should_not route(:get, 'images/1/edit').to(action: :edit, id: 1)}
-      it { should_not route(:patch, '/images/1').to(action: :update, id: 1) }
-      it { should_not route(:put, '/images/1').to(action: :update, id: 1) }
-      it { should_not route(:delete, '/images/1').to(action: :destroy, id: 1) }
-      it { should_not route(:get, '/images/new').to(action: :new) }
+      it { is_expected.to route(:get, '/images').to(action: :index) }
+      it { is_expected.to route(:get, '/images/1').to(action: :show, id: 1) }
+      it { is_expected.to route(:post, '/images').to(action: :create) }
+      it { is_expected.to_not route(:get, 'images/1/edit').to(action: :edit, id: 1)}
+      it { is_expected.to_not route(:patch, '/images/1').to(action: :update, id: 1) }
+      it { is_expected.to_not route(:put, '/images/1').to(action: :update, id: 1) }
+      it { is_expected.to_not route(:delete, '/images/1').to(action: :destroy, id: 1) }
+      it { is_expected.to_not route(:get, '/images/new').to(action: :new) }
     end
   end
 end
