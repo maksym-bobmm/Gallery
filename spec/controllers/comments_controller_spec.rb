@@ -30,5 +30,10 @@ RSpec.describe CommentsController, type: :controller do
       it { is_expected.to_not route(:delete, '/comments/1').to(action: :destroy, id: 1) }
       it { is_expected.to_not route(:get, '/comments/new').to(action: :new) }
     end
+    context 'callbacks' do
+      %i[authenticate_user! find_image].each do |method|
+        it { is_expected.to use_before_action(method) }
+      end
+    end
   end
 end

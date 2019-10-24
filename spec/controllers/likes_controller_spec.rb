@@ -47,5 +47,11 @@ RSpec.describe LikesController, type: :controller do
       it { is_expected.to_not route(:put, '/likes/1').to(action: :update, id: 1) }
       it { is_expected.to_not route(:get, '/likes/new').to(action: :new) }
     end
+    context 'callbacks' do
+      %i[authenticate_user! find_image].each do |method|
+        it { is_expected.to use_before_action(method) }
+      end
+      it { is_expected.to use_after_action(:logging) }
+    end
   end
 end

@@ -87,5 +87,9 @@ RSpec.describe ImagesController, type: :controller do
       it { is_expected.to_not route(:delete, '/images/1').to(action: :destroy, id: 1) }
       it { is_expected.to_not route(:get, '/images/new').to(action: :new) }
     end
+    context 'params' do
+      params =  { path: 'qweqwe'}
+      xit { should permit(:path).for(:create, params: { name: 'qwe' }).on(:image) }
+    end
   end
 end

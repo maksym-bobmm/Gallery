@@ -2,8 +2,6 @@
 
 # need to delete
 class WelcomeController < ApplicationController
-  # before_action :authenticate_user!
-
   def index
     Rails.logger.fatal 'WelcomeController#index'
     @top_popular_images = find_popular_images

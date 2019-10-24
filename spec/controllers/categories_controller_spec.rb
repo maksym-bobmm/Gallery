@@ -111,5 +111,14 @@ RSpec.describe CategoriesController, type: :controller do
       it { is_expected.to route(:delete, '/categories/1').to(action: :destroy, id: 1) }
       it { is_expected.to_not route(:get, '/categories/new').to(action: :new) }
     end
+    context 'params' do
+      params = { cat: { name: 'qwert'} }
+      xit { should permit(:name).for(:create, params: params).on(:cat) }
+    end
+    context 'callbacks' do
+      %i[authenticate_user! sort_category].each do |method|
+        it { is_expected.to use_before_action(method) }
+      end
+    end
   end
 end

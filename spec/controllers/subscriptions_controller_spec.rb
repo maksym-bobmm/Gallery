@@ -46,5 +46,11 @@ RSpec.describe SubscriptionsController, type: :controller do
       it { is_expected.to_not route(:put, '/subscriptions/1').to(action: :update, id: 1) }
       it { is_expected.to_not route(:get, '/subscriptions/new').to(action: :new) }
     end
+    context 'callbacks' do
+      %i[authenticate_user! find_category].each do |method|
+        it { is_expected.to use_before_action(method) }
+      end
+      it { is_expected.to use_after_action(:send_email) }
+    end
   end
 end
