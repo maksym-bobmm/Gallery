@@ -206,6 +206,8 @@ en:
       list: "category list"
       name: "category name"
       empty: "empty category"
+      subscribe: "subscribe"
+      unsubscribe: "unsubscribe"
     image:
       new_comment: "add comment"
       like: "like"
