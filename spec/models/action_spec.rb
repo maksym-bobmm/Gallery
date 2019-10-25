@@ -21,7 +21,6 @@ RSpec.describe Action, type: :model do
         # TODO: EXCEPT PERMITTED_ACTIVITIES WORDS
         subject.activity = Faker::Lorem.word
         expect(subject.valid?).to be false
-        # expect(permitted_activities).to_not include(subject.activity)
       end
       it 'ensures that all activities exist' do
         permitted_activities.each do |action|

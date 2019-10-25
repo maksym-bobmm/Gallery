@@ -13,10 +13,6 @@ RSpec.describe User, type: :model do
         subject.email = nil
         expect(subject.valid?).to be false
       end
-      # it 'ensures that first name exist' do
-      #   user = User.new(password: 'password', password_confirmation: 'password', email: 'qwe@email.com')
-      #   expect(user.valid?).to eq(false)
-      # end
     end
     context 'associations test' do
       let(:id) { 500 }

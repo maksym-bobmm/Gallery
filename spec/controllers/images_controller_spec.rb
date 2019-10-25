@@ -10,10 +10,6 @@ RSpec.describe ImagesController, type: :controller do
       get :index
       assert_response :success
     end
-    # it 'get redirect to sign_in page on image#new' do
-    #   get :new
-    #   assert_redirect_and_redirected_to_sign_in
-    # end
     it 'redirects to sign_in page on image#create' do
       post :create
       assert_redirect_and_redirected_to_sign_in
@@ -30,10 +26,6 @@ RSpec.describe ImagesController, type: :controller do
       get :index
       assert_response :success
     end
-    # it 'get success on image#new' do
-    #   get :new
-    #   assert_response :success
-    # end
     it 'redirects on image#create' do
       post :create, params: { cat_id: image.category }
       assert_redirect_and_redirected_to @controller.instance_variable_get(:@category)

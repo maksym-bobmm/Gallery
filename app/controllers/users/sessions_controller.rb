@@ -2,7 +2,6 @@
 
 # class user session
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
   prepend_after_action :after_login, only: [:create]
   prepend_before_action :before_logout, only: [:destroy]
 

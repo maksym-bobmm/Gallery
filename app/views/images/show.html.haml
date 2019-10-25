@@ -28,18 +28,9 @@
         .col-10.d-inline-block
           = comment.created_at.strftime "%F %R"
           %p= comment&.body
-
-  -#%button.btn.btn-info
-  -#  - text = already_liked? ? t(:'site.image.unlike') : t(:'site.image.like')
-  -#  - method = already_liked? ? :delete : :post
-  -#  - path = already_liked? ? like_path : likes_path
-  -#  = link_to text, path, method: method, remote: true, class: 'stretched-link text-decoration-none text-dark'
-    -#= @likes_count == 1 ? t(:'site.image.like') : t(:'site.image.likes')
-    %span.badge.badge-light= @likes_count
   %p.menu.pt-5
     = form_with model: @comment, url: comments_path, local: true do |f|
       = f.label t(:'site.image.new_comment'), class: 'text-center'
       = f.text_area_tag :body
       = f.hidden_field :image_id, value: @image.id
       = f.submit t(:'site.common.create')
-  -#= link_to t(:'site.image.new_comment'), new_comment_path(image_id: params[:id])

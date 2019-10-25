@@ -5,7 +5,6 @@ class LikesController < ApplicationController
   before_action :authenticate_user!,  only: %i[create destroy]
   before_action :find_image,          only: %i[create destroy]
   after_action  :logging,             only: %i[create destroy]
-  # after_action :set_likes_count_to_redis, only: %i[create destroy]
 
   def create
     return if @image.likes.find_by(user_id: current_user.id)
@@ -37,7 +36,6 @@ class LikesController < ApplicationController
   def find_image
     id = category_params[:img_id] || Rails.application.routes.recognize_path(request.referrer)[:id]
     @image = Image.friendly.find(id)
-    # @image = Image.find(Rails.application.routes.recognize_path(request.referrer)[:id])
   end
 
   def category_params

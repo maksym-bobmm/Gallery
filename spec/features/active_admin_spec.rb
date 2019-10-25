@@ -85,7 +85,6 @@ RSpec.feature 'ActiveAdmins', type: :feature do
       new_category_name = Faker::Lorem.characters(number: 10)
       category = create(:category, name: category_name)
       visit admin_categories_path
-      # sleep 5
       within(:table_row, [category.name]) do
         click_link class: 'edit_link'
       end
@@ -93,7 +92,6 @@ RSpec.feature 'ActiveAdmins', type: :feature do
       fill_in 'category_name', with: new_category_name
       click_link_or_button 'Update Category'
       visit admin_categories_path
-      # sleep 5
 
       within '#main_content' do
         assert_text new_category_name
@@ -128,7 +126,6 @@ RSpec.feature 'ActiveAdmins', type: :feature do
       visit admin_admin_users_path
       within '.panel_contents' do
         find('option', text: 'Equals').click
-        # select 'Equals', from: 'Contains'
         fill_in 'q_email', with: admin2.email
         click_link_or_button 'Filter'
       end

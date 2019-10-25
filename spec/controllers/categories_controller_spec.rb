@@ -52,10 +52,6 @@ RSpec.describe CategoriesController, type: :controller do
         get :show, params: { id: subject.id }
         assert_response :success
       end
-      # it 'is_expected.to get success on category#new' do
-      #   get :new
-      #   assert_response :success
-      # end
       it 'gets success on category#create' do
         post :create, params: { name: Faker::Lorem.word, fake: 123 }
         assert_redirect_and_redirected_to categories_path
