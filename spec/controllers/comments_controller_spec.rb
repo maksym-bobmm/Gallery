@@ -34,6 +34,15 @@ RSpec.describe CommentsController, type: :controller do
       %i[authenticate_user! find_image].each do |method|
         it { is_expected.to use_before_action(method) }
       end
+      it { is_expected.to use_after_action(:logging) }
+    end
+    context 'strong params' do
+      let(:image) { create(:image) }
+      before(:each) { sign_in image.category.user }
+      it do
+        params = { body: Faker::Lorem.sentence, image_id: image.id }
+        is_expected.to permit(:body, :image_id).for(:create, params: params)
+      end
     end
   end
 end

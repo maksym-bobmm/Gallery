@@ -88,8 +88,13 @@ RSpec.describe ImagesController, type: :controller do
       it { is_expected.to_not route(:get, '/images/new').to(action: :new) }
     end
     context 'params' do
-      params =  { path: 'qweqwe'}
-      xit { should permit(:path).for(:create, params: { name: 'qwe' }).on(:image) }
+      let(:category) { create(:category) }
+      before(:each) { sign_in category.user }
+      it do
+        params =  { path:  Rails.root.join('app', 'assets', 'images', 'categories', 'cars', '239145_main.jpg').open,
+                    cat_id: category.id }
+        should permit(:path).for(:create, params: params)
+      end
     end
   end
 end

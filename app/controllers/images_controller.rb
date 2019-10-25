@@ -30,7 +30,7 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.permit(:path, :name, :filename, :picture)
+    params.permit(:path)
   end
 
   def find_category
