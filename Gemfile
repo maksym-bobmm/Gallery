@@ -64,6 +64,7 @@ group :test do
   gem 'database_cleaner', '~> 1.7'
   gem 'rspec'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   # Adds support for Capybara system testing and selenium driver
   gem 'simplecov', require: false
   gem 'webdrivers'

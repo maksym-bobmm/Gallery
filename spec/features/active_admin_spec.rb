@@ -58,10 +58,10 @@ RSpec.feature 'ActiveAdmins', type: :feature do
   context 'test checks that category' do
     let!(:category) { create(:category) }
     let(:admin) { create(:admin) }
+    let(:category_name) { Faker::Lorem.characters(number: 10) }
     before(:each) { sign_in admin }
     it 'can be created' do
       user = create(:user)
-      category_name = Faker::Lorem.word
       visit admin_categories_path
       click_link 'New Category'
       select user.email, from: 'category_owner_id'
@@ -71,7 +71,6 @@ RSpec.feature 'ActiveAdmins', type: :feature do
       assert_text 'Category was successfully created.'
     end
     it 'can be deleted from a list' do
-      category_name = Faker::Lorem.word
       category = create(:category, name: category_name)
       visit admin_categories_path
       within(:table_row, [category.name]) do
@@ -83,8 +82,7 @@ RSpec.feature 'ActiveAdmins', type: :feature do
       end
     end
     it 'can be edited from a list' do
-      category_name = Faker::Lorem.word
-      new_category_name = Faker::Lorem.word
+      new_category_name = Faker::Lorem.characters(number: 10)
       category = create(:category, name: category_name)
       visit admin_categories_path
       within(:table_row, [category.name]) do
@@ -128,7 +126,6 @@ RSpec.feature 'ActiveAdmins', type: :feature do
       visit admin_admin_users_path
       within '.panel_contents' do
         find('option', text: 'Equals').click
-        # select 'Equals', from: 'Contains'
         fill_in 'q_email', with: admin2.email
         click_link_or_button 'Filter'
       end

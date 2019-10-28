@@ -22,6 +22,9 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation, except: %w[actions])
   end
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
   # if Rails.env.test? || Rails.env.cucumber?
   #   FileUtils.rm_rf(Dir['test_image'])
   # end

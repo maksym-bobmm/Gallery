@@ -8,14 +8,17 @@ class SubscriptionsController < ApplicationController
 
   def create
     return if @category.subscriptions.find_by(user_id: current_user.id)
-
     @category.subscriptions.create(user_id: current_user.id)
-    redirect_to category_path(@category)
+    redirect_to category_path(@category) and return unless request.xhr?
+
+    render json: { subscriptions_link: helpers.button_for_unsubscribe(@category.id) }
   end
 
   def destroy
     @category.subscriptions.find_by(user_id: current_user.id).destroy
-    redirect_to category_path(@category)
+    redirect_to category_path(@category) and return unless request.xhr?
+
+    render json: { subscriptions_link: helpers.button_for_subscribe }
   end
 
   private
@@ -23,7 +26,6 @@ class SubscriptionsController < ApplicationController
   def send_email
     action = request.parameters[:action] == 'create'
     Resque.enqueue(SubscriptionJob, @category, current_user, action)
-    # UserMailer.with(category: @category, user: current_user, subscribe: action).subscriptions.deliver_later
   end
 
   def find_category

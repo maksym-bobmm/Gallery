@@ -2,7 +2,7 @@
 
 # application controller
 class ApplicationController < ActionController::Base
-  prepend_after_action :navigation, only: %i[index show]
+  after_action :navigation, only: %i[index show]
   before_action :sort_category, only: %i[index show]
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :switch_locale, unless: :admin_page?

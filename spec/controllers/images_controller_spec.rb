@@ -10,10 +10,6 @@ RSpec.describe ImagesController, type: :controller do
       get :index
       assert_response :success
     end
-    # it 'get redirect to sign_in page on image#new' do
-    #   get :new
-    #   assert_redirect_and_redirected_to_sign_in
-    # end
     it 'redirects to sign_in page on image#create' do
       post :create
       assert_redirect_and_redirected_to_sign_in
@@ -30,10 +26,6 @@ RSpec.describe ImagesController, type: :controller do
       get :index
       assert_response :success
     end
-    # it 'get success on image#new' do
-    #   get :new
-    #   assert_response :success
-    # end
     it 'redirects on image#create' do
       post :create, params: { cat_id: image.category }
       assert_redirect_and_redirected_to @controller.instance_variable_get(:@category)
@@ -73,6 +65,27 @@ RSpec.describe ImagesController, type: :controller do
       end
       it '@like_exist is false if user not signed in' do
         expect(@controller.instance_variable_get(:@like_exist)).to be false
+      end
+    end
+  end
+  describe  do
+    context 'routes' do
+      it { is_expected.to route(:get, '/images').to(action: :index) }
+      it { is_expected.to route(:get, '/images/1').to(action: :show, id: 1) }
+      it { is_expected.to route(:post, '/images').to(action: :create) }
+      it { is_expected.to_not route(:get, 'images/1/edit').to(action: :edit, id: 1)}
+      it { is_expected.to_not route(:patch, '/images/1').to(action: :update, id: 1) }
+      it { is_expected.to_not route(:put, '/images/1').to(action: :update, id: 1) }
+      it { is_expected.to_not route(:delete, '/images/1').to(action: :destroy, id: 1) }
+      it { is_expected.to_not route(:get, '/images/new').to(action: :new) }
+    end
+    context 'params' do
+      let(:category) { create(:category) }
+      before(:each) { sign_in category.user }
+      it do
+        params =  { path:  Rails.root.join('app', 'assets', 'images', 'categories', 'cars', '239145_main.jpg').open,
+                    cat_id: category.id }
+        should permit(:path).for(:create, params: params)
       end
     end
   end

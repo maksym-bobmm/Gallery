@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    if current_user.categories.create(name: category_params[:name])
+    if current_user.categories.create!(category_params)
       redirect_to categories_path
     else
       redirect_to new_category_path
@@ -42,6 +42,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.permit(:name)
+    params.permit( :name)
   end
 end
