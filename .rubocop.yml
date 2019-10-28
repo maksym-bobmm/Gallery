@@ -18,3 +18,8 @@ AllCops:
     - 'spec/factories.rb'
 Metrics/LineLength:
   Max: 120
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*spec.rb'
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact

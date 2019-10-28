@@ -8,3 +8,15 @@ for(var i=0; img.length; i++){
         img[i].css('width','15em');
     }
 }
+$(document).on('turbolinks:load', function() {
+    $(function() {
+        $('body').on('ajax:success', '#category-subscribe', function(event) {
+            $('#category-subscribe').replaceWith(event.detail[0].subscriptions_link);
+        });
+    });
+    $(function() {
+        $('body').on('ajax:success', '#category-unsubscribe', function(event) {
+            $('#category-unsubscribe').replaceWith(event.detail[0].subscriptions_link);
+        });
+    });
+});

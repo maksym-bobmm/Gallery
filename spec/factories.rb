@@ -56,11 +56,6 @@ FactoryBot.define do
       factory :subscription_with_category_id do
         before(:create) { |subscription| create(:category, id: subscription.category_id) }
       end
-    # factory :subscription_with_user_id_category_id do
-    #   before(:create) do |subscription|
-    #     if(User.find_by(id: subscription.user_id) && )
-    #   end
-    # end
   end
 
   factory :like do

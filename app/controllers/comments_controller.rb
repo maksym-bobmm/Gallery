@@ -2,15 +2,12 @@
 
 # comment controller class
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
-  before_action :find_image, only: [:create]
-  def new
-    @comment = Comment.new
-  end
+  before_action :authenticate_user!,  only: %i[new create]
+  before_action :find_image,          only: [:create]
+  after_action :logging,              only: [:create]
 
   def create
     current_user.comments.create!(comment_params)
-    Log.create(user_id: current_user.id, url: request.referer, created_at: Time.now, action_id: 3)
     redirect_to image_path(@image)
   end
 
@@ -24,5 +21,9 @@ class CommentsController < ApplicationController
   def find_image
     img_id = params[:image_id] || params[:comment][:image_id]
     @image = Image.friendly.find(img_id)
+  end
+
+  def logging
+    Log.create(user_id: current_user.id, url: request.referer, created_at: Time.now, action_id: 3)
   end
 end

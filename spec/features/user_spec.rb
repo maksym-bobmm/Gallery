@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.feature 'Users', type: :feature do
-  # let(:user) { create(:user) }
   context 'can' do
     let(:email) { 'gallery@mailinator.com' }
     let(:password) { 'qwerty' }

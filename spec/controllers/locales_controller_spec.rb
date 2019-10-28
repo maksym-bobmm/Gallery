@@ -36,4 +36,17 @@ RSpec.describe LocalesController, type: :controller do
       assert_redirected_to test_url_expected
     end
   end
+
+  describe  do
+    context 'routes' do
+      it { is_expected.to route(:patch, '/locales').to(action: :update) }
+      it { is_expected.to route(:put, '/locales').to(action: :update) }
+      it { is_expected.to_not route(:get, '/locales').to(action: :index) }
+      it { is_expected.to_not route(:get, '/locales/1').to(action: :show, id: 1) }
+      it { is_expected.to_not route(:get, 'locales/1/edit').to(action: :edit, id: 1)}
+      it { is_expected.to_not route(:post, '/locales').to(action: :create) }
+      it { is_expected.to_not route(:delete, '/locales/1').to(action: :destroy, id: 1) }
+      it { is_expected.to_not route(:get, '/locales/new').to(action: :new) }
+    end
+  end
 end
