@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-role :app, %w[ubuntu@ec2-18-184-13-33.eu-central-1.compute.amazonaws.com]
-role :web, %w[ubuntu@ec2-18-184-13-33.eu-central-1.compute.amazonaws.com]
-role :db,  %w[ubuntu@ec2-18-184-13-33.eu-central-1.compute.amazonaws.com]
+role :app, %w[ubuntu@ec2-18-184-8-143.eu-central-1.compute.amazonaws.com]
+role :web, %w[ubuntu@ec2-18-184-8-143.eu-central-1.compute.amazonaws.com]
+role :db,  %w[ubuntu@ec2-18-184-8-143.eu-central-1.compute.amazonaws.com]
 set :ssh_options, forward_agent: true, auth_methods: %w[publickey password]
 
 # server-based syntax
